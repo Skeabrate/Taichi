@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 export function StickyNav() {
@@ -58,6 +59,12 @@ export function StickyNav() {
         >
           KONTAKT
         </a>
+        <Link
+          href="/blog"
+          className="border-b-2 border-transparent pb-px text-lg font-semibold text-red-700 transition-colors hover:border-red-700"
+        >
+          AKTUALNOŚCI
+        </Link>
       </div>
     </nav>
   );

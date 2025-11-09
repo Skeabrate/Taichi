@@ -1,4 +1,5 @@
 import type { MainPageData } from "@/lib/contentful";
+import Link from "next/link";
 
 interface HeroProps {
   nameLastNameSeniority?: MainPageData["nameLastNameSeniority"];
@@ -54,6 +55,12 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
           >
             KONTAKT
           </a>
+          <Link
+            href="/blog"
+            className="border-b-2 border-transparent pb-px text-lg font-semibold text-red-700 transition-colors hover:border-red-700"
+          >
+            AKTUALNOŚCI
+          </Link>
         </nav>
       </div>
     </section>
