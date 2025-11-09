@@ -4,16 +4,20 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/FooterSection";
 import { Hero } from "@/components/sections/HeroSection";
 import { StickyNav } from "@/components/StickyNav";
+import { fetchMainPageData } from "@/lib/contentful";
 
-export default function Home() {
+export const revalidate = false;
+
+export default async function Home() {
+  const mainPageData = await fetchMainPageData();
   return (
     <main>
       <StickyNav />
-      <Hero />
-      <AboutSection />
-      <ClassesSection />
-      <ContactSection />
-      <Footer />
+      <Hero {...mainPageData} />
+      <AboutSection {...mainPageData} />
+      <ClassesSection {...mainPageData} />
+      <ContactSection {...mainPageData} />
+      <Footer {...mainPageData} />
     </main>
   );
 }

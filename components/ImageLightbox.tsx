@@ -1,27 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
+interface MediaItem {
+  url: string;
+  isVideo: boolean;
+  title?: string | null;
+  description?: string | null;
+}
+
 interface ImageLightboxProps {
-  images: string[];
+  media: MediaItem[];
   initialIndex: number;
   onClose: () => void;
 }
 
 export function ImageLightbox({
-  images,
+  media,
   initialIndex,
   onClose,
 }: ImageLightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Sync currentIndex when initialIndex changes
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
+
+  // Pause video when switching items
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [currentIndex]);
 
   const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -64,15 +86,38 @@ export function ImageLightbox({
         <ChevronRight size={48} />
       </button>
 
-      <img
-        src={images[currentIndex]}
-        alt={`Zdjęcie ${currentIndex + 1}`}
-        className="max-h-[90vh] max-w-[90vw] object-contain"
+      <div
+        className="relative max-h-[90vh] max-w-[90vw]"
         onClick={(e) => e.stopPropagation()}
-      />
+      >
+        {media[currentIndex]?.isVideo ? (
+          <video
+            ref={videoRef}
+            src={media[currentIndex].url}
+            controls
+            autoPlay
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+          >
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image
+            src={media[currentIndex]?.url || ""}
+            alt={
+              media[currentIndex]?.title ??
+              media[currentIndex]?.description ??
+              `Zdjęcie ${currentIndex + 1}`
+            }
+            width={1200}
+            height={800}
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+            unoptimized
+          />
+        )}
+      </div>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white">
-        {currentIndex + 1} / {images.length}
+        {currentIndex + 1} / {media.length}
       </div>
     </div>
   );

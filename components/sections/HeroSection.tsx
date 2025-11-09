@@ -1,4 +1,10 @@
-export function Hero() {
+import type { MainPageData } from "@/lib/contentful";
+
+interface HeroProps {
+  nameLastNameSeniority?: MainPageData["nameLastNameSeniority"];
+}
+
+export function Hero({ nameLastNameSeniority }: HeroProps) {
   return (
     <section className="relative flex h-screen min-h-[500px] flex-col items-center justify-center sm:min-h-[840px]">
       <div className="absolute inset-0 flex items-center justify-center">
@@ -23,9 +29,11 @@ export function Hero() {
           太極拳
         </h1>
         <h2 className="mb-4 text-3xl font-light sm:text-5xl">TAICHI QUAN</h2>
-        <p className="mb-12 text-xl text-gray-600 sm:text-2xl">
-          Jarosław Świeczkowski 5 Duan
-        </p>
+        {nameLastNameSeniority && (
+          <p className="mb-12 text-xl text-gray-600 sm:text-2xl">
+            {nameLastNameSeniority}
+          </p>
+        )}
 
         <nav className="flex flex-wrap justify-center gap-6">
           <a

@@ -1,4 +1,19 @@
-export function AboutSection() {
+import { RichTextRenderer } from "@/lib/rich-text-renderer";
+import type { MainPageData } from "@/lib/contentful";
+import type { Document } from "@contentful/rich-text-types";
+import Image from "next/image";
+
+interface AboutSectionProps {
+  aboutMe?: MainPageData["aboutMe"];
+  quoteAboutMe?: MainPageData["quoteAboutMe"];
+  mainAsset?: MainPageData["mainAsset"];
+}
+
+export function AboutSection({
+  aboutMe,
+  quoteAboutMe,
+  mainAsset,
+}: AboutSectionProps) {
   return (
     <section
       id="o-mnie"
@@ -10,48 +25,33 @@ export function AboutSection() {
         </h2>
 
         <div className="grid items-center gap-12 md:grid-cols-2">
-          <div className="relative">
-            <div className="absolute -top-4 -left-4 h-full w-full border-2 border-black opacity-20" />
-            <img
-              src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&h=800&fit=crop"
-              alt="Mistrz Jarosław Świeczkowski"
-              className="relative h-[500px] w-full border-4 border-black object-cover"
-            />
-          </div>
+          {mainAsset?.url && (
+            <div className="relative">
+              <div className="absolute -top-4 -left-4 h-full w-full border-2 border-black opacity-20" />
+              <div className="relative h-[500px] w-full border-4 border-black sm:h-[600px]">
+                <Image
+                  src={mainAsset.url}
+                  alt={mainAsset.title ?? mainAsset.description ?? ""}
+                  width={mainAsset.width || 800}
+                  height={mainAsset.height || 500}
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+            </div>
+          )}
 
           <div className="space-y-8 text-lg leading-relaxed">
-            <p className="text-xl font-light">
-              Nazywam się{" "}
-              <span className="font-bold">Jarosław Świeczkowski</span> i
-              praktykuję Taichi Quan od ponad 40 lat.
-            </p>
+            {aboutMe?.json && (
+              <RichTextRenderer document={aboutMe.json as Document} />
+            )}
 
-            <p>
-              Przez te cztery dekady miałem zaszczyt uczyć się od
-              najwybitniejszych mistrzów tej sztuki, w tym od mistrza Chen i
-              mistrza Chen Binga, którzy przekazali mi głęboką wiedzę o
-              tradycyjnym stylu Chen Taichi.
-            </p>
-
-            <p>
-              Taichi Quan to nie tylko forma sztuki walki - to filozofia życia,
-              sposób na osiągnięcie harmonii między ciałem a umysłem, równowagi
-              pomiędzy Yin i Yang. W mojej praktyce łączę tradycyjne techniki z
-              nowoczesnym podejściem do zdrowia i dobrostanu.
-            </p>
-
-            <p>
-              Moją misją jest przekazywanie tej starożytnej wiedzy kolejnym
-              pokoleniom, pomagając uczniom odkryć głębię tej praktyki - od
-              poprawy zdrowia fizycznego, przez rozwój wewnętrznej siły, po
-              osiągnięcie spokoju umysłu.
-            </p>
-
-            <div className="mt-12 border-t-2 border-gray-300 pt-8">
-              <p className="text-center text-gray-600 italic">
-                "Mistrz to ten, kto nigdy nie przestaje być uczniem"
-              </p>
-            </div>
+            {quoteAboutMe && (
+              <div className="mt-12 border-t-2 border-gray-300 pt-8">
+                <p className="text-center text-gray-600 italic">
+                  &ldquo;{quoteAboutMe}&rdquo;
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
