@@ -2,6 +2,7 @@ import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import type { MainPageData } from "@/lib/contentful";
 import type { Document } from "@contentful/rich-text-types";
 import Image from "next/image";
+import { YinYang } from "@/components/YinYang";
 
 interface AboutSectionProps {
   aboutMe?: MainPageData["aboutMe"];
@@ -20,8 +21,10 @@ export function AboutSection({
       className="flex min-h-screen items-center justify-center bg-neutral-100 px-4 py-20"
     >
       <div className="slide-up w-full max-w-6xl">
-        <h2 className="mb-12 inline-block w-full border-b-4 border-black pb-4 text-center text-5xl font-bold">
+        <h2 className="mb-12 flex w-full items-center justify-center gap-4 border-b-4 border-black pb-4 text-5xl font-bold">
+          <YinYang />
           O MNIE
+          <YinYang />
         </h2>
 
         <div className="grid items-center gap-12 md:grid-cols-2">

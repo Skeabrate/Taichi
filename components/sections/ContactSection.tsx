@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Youtube, Phone, Mail, Heart } from "lucide-react";
 import type { MainPageData } from "@/lib/contentful";
+import { YinYang } from "@/components/YinYang";
 
 interface ContactSectionProps {
   phoneNumber?: MainPageData["phoneNumber"];
@@ -24,8 +25,10 @@ export function ContactSection({
       className="flex min-h-screen items-center justify-center bg-neutral-100 px-4 py-20"
     >
       <div className="w-full max-w-4xl">
-        <h2 className="mb-12 border-b-4 border-black pb-4 text-center text-5xl font-bold">
+        <h2 className="mb-12 flex items-center justify-center gap-4 border-b-4 border-black pb-4 text-5xl font-bold">
+          <YinYang />
           KONTAKT
+          <YinYang />
         </h2>
 
         <div className="mx-auto max-w-2xl">

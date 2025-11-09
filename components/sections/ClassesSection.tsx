@@ -13,6 +13,7 @@ import {
 import { ImageLightbox } from "../ImageLightbox";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import type { MainPageData } from "@/lib/contentful";
+import { YinYang } from "@/components/YinYang";
 
 interface ClassesSectionProps {
   classesScheduleCollection?: MainPageData["classesScheduleCollection"];
@@ -69,8 +70,10 @@ export function ClassesSection({
   return (
     <section id="zajecia" className="min-h-screen px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <h2 className="slide-up mb-12 border-b-4 border-black pb-4 text-center text-5xl font-bold">
+        <h2 className="slide-up mb-12 flex items-center justify-center gap-4 border-b-4 border-black pb-4 text-5xl font-bold">
+          <YinYang />
           ZAJĘCIA
+          <YinYang />
         </h2>
 
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
