@@ -163,8 +163,8 @@ export function ClassesSection({
           </div>
 
           {trainingMedia.length > 0 && (
-            <div className="fade-in relative min-h-[85vh]">
-              <div className="sticky top-20 border-4 border-black bg-white p-2">
+            <div className="fade-in relative">
+              <div className="top-20 border-4 border-black bg-white p-2 sm:sticky">
                 <Carousel
                   className="w-full"
                   opts={{

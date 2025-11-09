@@ -56,7 +56,7 @@ export function ContactSection({
                 className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
               >
                 <Mail className="h-8 w-8" />
-                <span className="text-xl font-bold">{email}</span>
+                <span className="text-xl font-bold break-all">{email}</span>
               </a>
             )}
           </div>
