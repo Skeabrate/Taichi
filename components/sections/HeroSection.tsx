@@ -19,10 +19,10 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
         </div>
       </div>
 
-      <div className="absolute top-4 left-4 h-16 w-16 border-t-6 border-l-6 border-neutral-300 sm:top-8 sm:left-8" />
-      <div className="absolute top-4 right-4 h-16 w-16 border-t-6 border-r-6 border-neutral-300 sm:top-8 sm:right-8" />
-      <div className="absolute bottom-4 left-4 h-16 w-16 border-b-6 border-l-6 border-neutral-300 sm:bottom-8 sm:left-8" />
-      <div className="absolute right-4 bottom-4 h-16 w-16 border-r-6 border-b-6 border-neutral-300 sm:right-8 sm:bottom-8" />
+      <div className="absolute top-4 left-4 h-20 w-20 border-t-8 border-l-8 border-red-700 sm:top-8 sm:left-8 sm:h-36 sm:w-36" />
+      <div className="absolute top-4 right-4 h-20 w-20 border-t-8 border-r-8 border-red-700 sm:top-8 sm:right-8 sm:h-36 sm:w-36" />
+      <div className="absolute bottom-4 left-4 h-20 w-20 border-b-8 border-l-8 border-red-700 sm:bottom-8 sm:left-8 sm:h-36 sm:w-36" />
+      <div className="absolute right-4 bottom-4 h-20 w-20 border-r-8 border-b-8 border-red-700 sm:right-8 sm:bottom-8 sm:h-36 sm:w-36" />
 
       <div className="fade-in z-10 px-4 text-center">
         <h1 className="mb-6 text-6xl font-bold tracking-wider sm:text-8xl">
@@ -38,19 +38,19 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
         <nav className="flex flex-wrap justify-center gap-6">
           <a
             href="#o-mnie"
-            className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
+            className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-red-700"
           >
             O MNIE
           </a>
           <a
             href="#zajecia"
-            className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
+            className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-red-700"
           >
             ZAJĘCIA
           </a>
           <a
             href="#kontakt"
-            className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
+            className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-red-700"
           >
             KONTAKT
           </a>

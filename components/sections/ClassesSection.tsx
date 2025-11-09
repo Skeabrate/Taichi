@@ -70,10 +70,13 @@ export function ClassesSection({
   return (
     <section id="zajecia" className="min-h-screen px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <h2 className="slide-up mb-12 flex items-center justify-center gap-4 border-b-4 border-black pb-4 text-5xl font-bold">
-          <YinYang />
-          ZAJĘCIA
-          <YinYang />
+        <h2 className="slide-up mb-12 flex flex-col items-center justify-center gap-4 border-b-4 border-black pb-2 text-5xl font-bold">
+          <div className="mb-2 flex items-center gap-4">
+            <YinYang />
+            ZAJĘCIA
+            <YinYang />
+          </div>
+          <div className="h-2 w-1/3 bg-red-700" />
         </h2>
 
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">

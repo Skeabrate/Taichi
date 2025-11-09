@@ -21,10 +21,13 @@ export function AboutSection({
       className="flex min-h-screen items-center justify-center bg-neutral-100 px-4 py-20"
     >
       <div className="slide-up w-full max-w-6xl">
-        <h2 className="mb-12 flex w-full items-center justify-center gap-4 border-b-4 border-black pb-4 text-5xl font-bold">
-          <YinYang />
-          O MNIE
-          <YinYang />
+        <h2 className="mb-12 flex w-full flex-col items-center justify-center gap-4 border-b-4 border-black pb-2 text-5xl font-bold">
+          <div className="mb-2 flex items-center gap-4">
+            <YinYang />
+            O MNIE
+            <YinYang />
+          </div>
+          <div className="h-2 w-1/3 bg-red-700" />
         </h2>
 
         <div className="grid items-center gap-12 md:grid-cols-2">

@@ -38,7 +38,7 @@ export function Footer({
                 href={facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-70"
+                className="transition-colors hover:text-red-700"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -49,7 +49,7 @@ export function Footer({
                 href={instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-70"
+                className="transition-colors hover:text-red-700"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -60,7 +60,7 @@ export function Footer({
                 href={youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-70"
+                className="transition-colors hover:text-red-700"
                 aria-label="YouTube"
               >
                 <Youtube size={20} />
@@ -71,7 +71,7 @@ export function Footer({
                 href={patreon}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-70"
+                className="transition-colors hover:text-red-700"
                 aria-label="Patreon"
               >
                 <Heart size={20} />
