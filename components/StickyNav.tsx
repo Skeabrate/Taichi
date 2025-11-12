@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { NAVIGATION_LINKS } from "@/lib/constants";
 
 export function StickyNav() {
   const [isVisible, setIsVisible] = useState(false);
@@ -41,36 +42,27 @@ export function StickyNav() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-8 gap-y-0 px-4 py-3">
-        <a
-          className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
-          href="#o-mnie"
-        >
-          O MNIE
-        </a>
-        <a
-          href="#o-taichi"
-          className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
-        >
-          O TAICHI
-        </a>
-        <a
-          href="#zajecia"
-          className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
-        >
-          ZAJĘCIA
-        </a>
-        <a
-          href="#kontakt"
-          className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
-        >
-          KONTAKT
-        </a>
-        <Link
-          href="/blog"
-          className="border-b-2 border-transparent pb-px text-lg font-semibold text-red-700 transition-colors hover:border-red-700"
-        >
-          AKTUALNOŚCI
-        </Link>
+        {NAVIGATION_LINKS.map((link) => {
+          const className = `border-b-2 border-transparent pb-px text-lg transition-colors ${
+            link.isSpecial
+              ? "font-semibold text-red-700 hover:border-red-700"
+              : "hover:border-neutral-700"
+          }`;
+
+          if (link.href.startsWith("/")) {
+            return (
+              <Link key={link.href} href={link.href} className={className}>
+                {link.label}
+              </Link>
+            );
+          }
+
+          return (
+            <a key={link.href} href={link.href} className={className}>
+              {link.label}
+            </a>
+          );
+        })}
       </div>
     </nav>
   );

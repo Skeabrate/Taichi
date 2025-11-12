@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/sections/FooterSection";
+import { fetchMainPageData } from "@/lib/contentful";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -91,17 +93,20 @@ export const metadata: Metadata = {
   category: "martial arts",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const mainPageData = await fetchMainPageData();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Footer {...mainPageData} />
       </body>
     </html>
   );

@@ -1,13 +1,14 @@
 "use client";
 
-import { MapPin, Clock, Play } from "lucide-react";
-import { useState } from "react";
-import Image from "next/image";
-import { ImageLightbox } from "../ImageLightbox";
-import { RichTextRenderer } from "@/lib/rich-text-renderer";
-import type { MainPageData } from "@/lib/contentful";
-import { YinYang } from "@/components/YinYang";
 import { ChineseBorder } from "@/components/ChineseBorder";
+import { YinYang } from "@/components/YinYang";
+import { NAV_LABEL_CLASSES, SECTION_ID_CLASSES } from "@/lib/constants";
+import type { MainPageData } from "@/lib/contentful";
+import { RichTextRenderer } from "@/lib/rich-text-renderer";
+import { Clock, MapPin, Play } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { ImageLightbox } from "../ImageLightbox";
 
 interface ClassesSectionProps {
   classesScheduleCollection?: MainPageData["classesScheduleCollection"];
@@ -63,12 +64,15 @@ export function ClassesSection({
   };
 
   return (
-    <section id="zajecia" className="bg-neutral-100 px-4 py-12 sm:py-28">
+    <section
+      id={SECTION_ID_CLASSES}
+      className="bg-neutral-100 px-4 py-12 sm:py-28"
+    >
       <div className="mx-auto max-w-7xl">
         <h2 className="slide-up mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
-            ZAJĘCIA
+            {NAV_LABEL_CLASSES}
             <YinYang />
           </div>
           <ChineseBorder />

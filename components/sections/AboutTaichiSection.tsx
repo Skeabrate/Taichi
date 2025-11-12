@@ -1,8 +1,9 @@
 import { ChineseBorder } from "@/components/ChineseBorder";
 import { YinYang } from "@/components/YinYang";
+import { NAV_LABEL_TAICHI, SECTION_ID_TAICHI } from "@/lib/constants";
+import type { MainPageData } from "@/lib/contentful";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import type { Document } from "@contentful/rich-text-types";
-import type { MainPageData } from "@/lib/contentful";
 import Image from "next/image";
 
 interface AboutTaichiSectionProps {
@@ -22,14 +23,14 @@ export function AboutTaichiSection({
 }: AboutTaichiSectionProps) {
   return (
     <section
-      id="o-taichi"
+      id={SECTION_ID_TAICHI}
       className="flex items-center justify-center bg-white px-4 py-12 sm:py-28"
     >
       <div className="slide-up w-full max-w-6xl">
         <h2 className="mb-12 flex w-full flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
-            O TAICHI
+            {NAV_LABEL_TAICHI}
             <YinYang />
           </div>
           <ChineseBorder />

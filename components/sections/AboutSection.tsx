@@ -4,6 +4,7 @@ import type { Document } from "@contentful/rich-text-types";
 import Image from "next/image";
 import { YinYang } from "@/components/YinYang";
 import { ChineseBorder } from "@/components/ChineseBorder";
+import { SECTION_ID_ABOUT, NAV_LABEL_ABOUT } from "@/lib/constants";
 
 interface AboutSectionProps {
   aboutMe?: MainPageData["aboutMe"];
@@ -18,14 +19,14 @@ export function AboutSection({
 }: AboutSectionProps) {
   return (
     <section
-      id="o-mnie"
+      id={SECTION_ID_ABOUT}
       className="flex items-center justify-center bg-neutral-100 px-4 py-12 sm:py-28"
     >
       <div className="slide-up w-full max-w-6xl">
         <h2 className="mb-12 flex w-full flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
-            O MNIE
+            {NAV_LABEL_ABOUT}
             <YinYang />
           </div>
           <ChineseBorder />

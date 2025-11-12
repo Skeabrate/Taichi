@@ -2,6 +2,7 @@ import { Facebook, Instagram, Youtube, Phone, Mail, Heart } from "lucide-react";
 import type { MainPageData } from "@/lib/contentful";
 import { YinYang } from "@/components/YinYang";
 import { ChineseBorder } from "@/components/ChineseBorder";
+import { SECTION_ID_CONTACT, NAV_LABEL_CONTACT } from "@/lib/constants";
 
 interface ContactSectionProps {
   phoneNumber?: MainPageData["phoneNumber"];
@@ -22,14 +23,14 @@ export function ContactSection({
 }: ContactSectionProps) {
   return (
     <section
-      id="kontakt"
+      id={SECTION_ID_CONTACT}
       className="flex items-center justify-center bg-white px-4 py-12 sm:py-28"
     >
       <div className="slide-up w-full max-w-4xl">
         <h2 className="mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
-            KONTAKT
+            {NAV_LABEL_CONTACT}
             <YinYang />
           </div>
           <ChineseBorder />
