@@ -5,3 +5,34 @@
 		scroll-behavior: smooth;
   }
 }
+
+@layer components {
+  .prose {
+    @apply text-gray-700;
+  }
+  
+  .prose h2 {
+    @apply mt-8 mb-4 text-3xl font-bold text-gray-900;
+  }
+  
+  .prose h3 {
+    @apply mt-6 mb-3 text-2xl font-bold text-gray-900;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose ul,
+  .prose ol {
+    @apply mb-4 ml-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose a {
+    @apply text-red-700 underline hover:text-red-800;
+  }
+}
