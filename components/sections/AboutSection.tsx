@@ -3,6 +3,7 @@ import type { MainPageData } from "@/lib/contentful";
 import type { Document } from "@contentful/rich-text-types";
 import Image from "next/image";
 import { YinYang } from "@/components/YinYang";
+import { ChineseBorder } from "@/components/ChineseBorder";
 
 interface AboutSectionProps {
   aboutMe?: MainPageData["aboutMe"];
@@ -18,23 +19,23 @@ export function AboutSection({
   return (
     <section
       id="o-mnie"
-      className="flex min-h-screen items-center justify-center bg-neutral-100 px-4 py-20"
+      className="flex items-center justify-center bg-neutral-100 px-4 py-12 sm:py-28"
     >
       <div className="slide-up w-full max-w-6xl">
-        <h2 className="mb-12 flex w-full flex-col items-center justify-center gap-4 border-b-4 border-black pb-2 text-5xl font-bold">
+        <h2 className="mb-12 flex w-full flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
             O MNIE
             <YinYang />
           </div>
-          <div className="h-2 w-1/3 bg-red-700" />
+          <ChineseBorder />
         </h2>
 
         <div className="grid items-center gap-12 md:grid-cols-2">
           {mainAsset?.url && (
             <div className="relative">
-              <div className="absolute -top-4 -left-4 h-full w-full border-2 border-black opacity-20" />
-              <div className="relative h-[500px] w-full border-4 border-black sm:h-[600px]">
+              <div className="absolute -top-4 -left-4 h-full w-full rounded-3xl border-2 border-black opacity-20" />
+              <div className="relative h-[500px] w-full overflow-hidden rounded-3xl border-4 border-black sm:h-[600px]">
                 <Image
                   src={mainAsset.url}
                   alt={mainAsset.title ?? mainAsset.description ?? ""}

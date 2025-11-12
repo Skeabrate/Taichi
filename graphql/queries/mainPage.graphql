@@ -103,6 +103,71 @@ query GetMainPage {
       youtube
       patreon
       quoteFooter
+      quoteAboutTaichi
+      aboutTaichiText {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+      taichiImage {
+        sys {
+          id
+        }
+        url
+        title
+        description
+        width
+        height
+      }
+      aboutTaichiTextLeftColumn {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+      aboutTaichiTextRightColumn {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
     }
   }
 }

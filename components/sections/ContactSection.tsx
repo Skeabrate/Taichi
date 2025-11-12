@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Youtube, Phone, Mail, Heart } from "lucide-react";
 import type { MainPageData } from "@/lib/contentful";
 import { YinYang } from "@/components/YinYang";
+import { ChineseBorder } from "@/components/ChineseBorder";
 
 interface ContactSectionProps {
   phoneNumber?: MainPageData["phoneNumber"];
@@ -22,16 +23,16 @@ export function ContactSection({
   return (
     <section
       id="kontakt"
-      className="flex min-h-screen items-center justify-center bg-neutral-100 px-4 py-20"
+      className="flex items-center justify-center bg-white px-4 py-12 sm:py-28"
     >
       <div className="slide-up w-full max-w-4xl">
-        <h2 className="mb-12 flex flex-col items-center justify-center gap-4 border-b-4 border-black pb-2 text-5xl font-bold">
+        <h2 className="mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
             KONTAKT
             <YinYang />
           </div>
-          <div className="h-2 w-1/3 bg-red-700" />
+          <ChineseBorder />
         </h2>
 
         <div className="mx-auto max-w-2xl">
@@ -43,7 +44,7 @@ export function ContactSection({
             {phoneNumber && (
               <a
                 href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-                className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
+                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
               >
                 <Phone className="h-8 w-8" />
                 <span className="text-xl font-bold">{phoneNumber}</span>
@@ -53,7 +54,7 @@ export function ContactSection({
             {email && (
               <a
                 href={`mailto:${email}`}
-                className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
+                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
               >
                 <Mail className="h-8 w-8" />
                 <span className="text-xl font-bold break-all">{email}</span>
@@ -72,7 +73,7 @@ export function ContactSection({
                     href={facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
                   >
                     <Facebook className="h-8 w-8" />
                     <span className="text-xl font-bold">Facebook</span>
@@ -84,7 +85,7 @@ export function ContactSection({
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
                   >
                     <Instagram className="h-8 w-8" />
                     <span className="text-xl font-bold">Instagram</span>
@@ -96,7 +97,7 @@ export function ContactSection({
                     href={youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
                   >
                     <Youtube className="h-8 w-8" />
                     <span className="text-xl font-bold">YouTube</span>
@@ -108,7 +109,7 @@ export function ContactSection({
                     href={patreon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 border-2 border-black p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
                   >
                     <Heart className="h-8 w-8" />
                     <span className="text-xl font-bold">Patreon</span>

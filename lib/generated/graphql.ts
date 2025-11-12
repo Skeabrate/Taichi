@@ -524,8 +524,13 @@ export type MainPage = Entry & _Node & {
   patreonSection?: Maybe<MainPagePatreonSection>;
   phoneNumber?: Maybe<Scalars['String']['output']>;
   quoteAboutMe?: Maybe<Scalars['String']['output']>;
+  quoteAboutTaichi?: Maybe<Scalars['String']['output']>;
   quoteFooter?: Maybe<Scalars['String']['output']>;
   sys: Sys;
+  taichiImage?: Maybe<Asset>;
+  aboutTaichiText?: Maybe<MainPageAboutTaichiText>;
+  aboutTaichiTextLeftColumn?: Maybe<MainPageAboutTaichiTextLeftColumn>;
+  aboutTaichiTextRightColumn?: Maybe<MainPageAboutTaichiTextRightColumn>;
   youtube?: Maybe<Scalars['String']['output']>;
 };
 
@@ -535,6 +540,20 @@ export type MainPageaboutMeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPageaboutTaichiTextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPageaboutTaichiTextLeftColumnArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPageaboutTaichiTextRightColumnArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageclassesAssetsCollectionArgs = {
@@ -685,6 +704,150 @@ export type MainPageAboutMeResourcesHyperlink = ResourceLink & {
 
 export type MainPageAboutMeResourcesInline = ResourceLink & {
   __typename?: 'MainPageAboutMeResourcesInline';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiText = {
+  __typename?: 'MainPageAboutTaichiText';
+  json: Scalars['JSON']['output'];
+  links: MainPageAboutTaichiTextLinks;
+};
+
+export type MainPageAboutTaichiTextAssets = {
+  __typename?: 'MainPageAboutTaichiTextAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type MainPageAboutTaichiTextEntries = {
+  __typename?: 'MainPageAboutTaichiTextEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type MainPageAboutTaichiTextLinks = {
+  __typename?: 'MainPageAboutTaichiTextLinks';
+  assets: MainPageAboutTaichiTextAssets;
+  entries: MainPageAboutTaichiTextEntries;
+  resources: MainPageAboutTaichiTextResources;
+};
+
+export type MainPageAboutTaichiTextResources = {
+  __typename?: 'MainPageAboutTaichiTextResources';
+  block: Array<MainPageAboutTaichiTextResourcesBlock>;
+  hyperlink: Array<MainPageAboutTaichiTextResourcesHyperlink>;
+  inline: Array<MainPageAboutTaichiTextResourcesInline>;
+};
+
+export type MainPageAboutTaichiTextResourcesBlock = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextResourcesHyperlink = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextResourcesInline = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextResourcesInline';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextLeftColumn = {
+  __typename?: 'MainPageAboutTaichiTextLeftColumn';
+  json: Scalars['JSON']['output'];
+  links: MainPageAboutTaichiTextLeftColumnLinks;
+};
+
+export type MainPageAboutTaichiTextLeftColumnAssets = {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type MainPageAboutTaichiTextLeftColumnEntries = {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type MainPageAboutTaichiTextLeftColumnLinks = {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnLinks';
+  assets: MainPageAboutTaichiTextLeftColumnAssets;
+  entries: MainPageAboutTaichiTextLeftColumnEntries;
+  resources: MainPageAboutTaichiTextLeftColumnResources;
+};
+
+export type MainPageAboutTaichiTextLeftColumnResources = {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnResources';
+  block: Array<MainPageAboutTaichiTextLeftColumnResourcesBlock>;
+  hyperlink: Array<MainPageAboutTaichiTextLeftColumnResourcesHyperlink>;
+  inline: Array<MainPageAboutTaichiTextLeftColumnResourcesInline>;
+};
+
+export type MainPageAboutTaichiTextLeftColumnResourcesBlock = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextLeftColumnResourcesHyperlink = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextLeftColumnResourcesInline = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextLeftColumnResourcesInline';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextRightColumn = {
+  __typename?: 'MainPageAboutTaichiTextRightColumn';
+  json: Scalars['JSON']['output'];
+  links: MainPageAboutTaichiTextRightColumnLinks;
+};
+
+export type MainPageAboutTaichiTextRightColumnAssets = {
+  __typename?: 'MainPageAboutTaichiTextRightColumnAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type MainPageAboutTaichiTextRightColumnEntries = {
+  __typename?: 'MainPageAboutTaichiTextRightColumnEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type MainPageAboutTaichiTextRightColumnLinks = {
+  __typename?: 'MainPageAboutTaichiTextRightColumnLinks';
+  assets: MainPageAboutTaichiTextRightColumnAssets;
+  entries: MainPageAboutTaichiTextRightColumnEntries;
+  resources: MainPageAboutTaichiTextRightColumnResources;
+};
+
+export type MainPageAboutTaichiTextRightColumnResources = {
+  __typename?: 'MainPageAboutTaichiTextRightColumnResources';
+  block: Array<MainPageAboutTaichiTextRightColumnResourcesBlock>;
+  hyperlink: Array<MainPageAboutTaichiTextRightColumnResourcesHyperlink>;
+  inline: Array<MainPageAboutTaichiTextRightColumnResourcesInline>;
+};
+
+export type MainPageAboutTaichiTextRightColumnResourcesBlock = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextRightColumnResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextRightColumnResourcesHyperlink = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextRightColumnResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextRightColumnResourcesInline = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextRightColumnResourcesInline';
   sys: ResourceSys;
 };
 
@@ -1128,7 +1291,7 @@ export type cfClassesScheduleNestedFilter = {
 export type GetMainPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMainPageQuery = { __typename?: 'Query', mainPageCollection?: { __typename?: 'MainPageCollection', items: Array<{ __typename?: 'MainPage', nameLastNameSeniority?: string | null, quoteAboutMe?: string | null, phoneNumber?: string | null, email?: string | null, facebook?: string | null, instagram?: string | null, youtube?: string | null, patreon?: string | null, quoteFooter?: string | null, sys: { __typename?: 'Sys', id: string }, aboutMe?: { __typename?: 'MainPageAboutMe', json: Record<string, any>, links: { __typename?: 'MainPageAboutMeLinks', assets: { __typename?: 'MainPageAboutMeAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, mainAsset?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, classesScheduleCollection?: { __typename?: 'MainPageClassesScheduleCollection', items: Array<{ __typename?: 'ClassesSchedule', day?: string | null, hours?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, localization?: { __typename?: 'MainPageLocalization', json: Record<string, any>, links: { __typename?: 'MainPageLocalizationLinks', assets: { __typename?: 'MainPageLocalizationAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, coordinates?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, patreonSection?: { __typename?: 'MainPagePatreonSection', json: Record<string, any>, links: { __typename?: 'MainPagePatreonSectionLinks', assets: { __typename?: 'MainPagePatreonSectionAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesAssetsCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null } | null> } | null };
+export type GetMainPageQuery = { __typename?: 'Query', mainPageCollection?: { __typename?: 'MainPageCollection', items: Array<{ __typename?: 'MainPage', nameLastNameSeniority?: string | null, quoteAboutMe?: string | null, phoneNumber?: string | null, email?: string | null, facebook?: string | null, instagram?: string | null, youtube?: string | null, patreon?: string | null, quoteFooter?: string | null, quoteAboutTaichi?: string | null, sys: { __typename?: 'Sys', id: string }, aboutMe?: { __typename?: 'MainPageAboutMe', json: Record<string, any>, links: { __typename?: 'MainPageAboutMeLinks', assets: { __typename?: 'MainPageAboutMeAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, mainAsset?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, taichiImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, aboutTaichiText?: { __typename?: 'MainPageAboutTaichiText', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLinks', assets: { __typename?: 'MainPageAboutTaichiTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, aboutTaichiTextLeftColumn?: { __typename?: 'MainPageAboutTaichiTextLeftColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLeftColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextLeftColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, aboutTaichiTextRightColumn?: { __typename?: 'MainPageAboutTaichiTextRightColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextRightColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextRightColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesScheduleCollection?: { __typename?: 'MainPageClassesScheduleCollection', items: Array<{ __typename?: 'ClassesSchedule', day?: string | null, hours?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, localization?: { __typename?: 'MainPageLocalization', json: Record<string, any>, links: { __typename?: 'MainPageLocalizationLinks', assets: { __typename?: 'MainPageLocalizationAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, coordinates?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, patreonSection?: { __typename?: 'MainPagePatreonSection', json: Record<string, any>, links: { __typename?: 'MainPagePatreonSectionLinks', assets: { __typename?: 'MainPagePatreonSectionAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesAssetsCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null } | null> } | null };
 
 
 export const GetMainPage = gql`
@@ -1237,6 +1400,71 @@ export const GetMainPage = gql`
       youtube
       patreon
       quoteFooter
+      quoteAboutTaichi
+      aboutTaichiText {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+      taichiImage {
+        sys {
+          id
+        }
+        url
+        title
+        description
+        width
+        height
+      }
+      aboutTaichiTextLeftColumn {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+      aboutTaichiTextRightColumn {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
     }
   }
 }

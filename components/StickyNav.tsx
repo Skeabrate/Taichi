@@ -48,6 +48,12 @@ export function StickyNav() {
           O MNIE
         </a>
         <a
+          href="#o-taichi"
+          className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
+        >
+          O TAICHI
+        </a>
+        <a
           href="#zajecia"
           className="border-b-2 border-transparent pb-px text-lg transition-colors hover:border-neutral-700"
         >

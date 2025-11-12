@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/sections/AboutSection";
+import { AboutTaichiSection } from "@/components/sections/AboutTaichiSection";
 import { ClassesSection } from "@/components/sections/ClassesSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/FooterSection";
@@ -15,6 +16,7 @@ export default async function Home() {
       <StickyNav />
       <Hero {...mainPageData} />
       <AboutSection {...mainPageData} />
+      <AboutTaichiSection {...mainPageData} />
       <ClassesSection {...mainPageData} />
       <ContactSection {...mainPageData} />
       <Footer {...mainPageData} />

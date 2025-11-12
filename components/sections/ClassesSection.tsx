@@ -3,17 +3,11 @@
 import { MapPin, Clock, Play } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { ImageLightbox } from "../ImageLightbox";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import type { MainPageData } from "@/lib/contentful";
 import { YinYang } from "@/components/YinYang";
+import { ChineseBorder } from "@/components/ChineseBorder";
 
 interface ClassesSectionProps {
   classesScheduleCollection?: MainPageData["classesScheduleCollection"];
@@ -36,6 +30,7 @@ export function ClassesSection({
   const classesAssets = classesAssetsCollection?.items;
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [showAllPhotos, setShowAllPhotos] = useState(false);
 
   // Process assets to include both images and videos
   const trainingMedia =
@@ -68,20 +63,21 @@ export function ClassesSection({
   };
 
   return (
-    <section id="zajecia" className="min-h-screen px-4 py-20">
+    <section id="zajecia" className="bg-neutral-100 px-4 py-12 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <h2 className="slide-up mb-12 flex flex-col items-center justify-center gap-4 border-b-4 border-black pb-2 text-5xl font-bold">
+        <h2 className="slide-up mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
             ZAJĘCIA
             <YinYang />
           </div>
-          <div className="h-2 w-1/3 bg-red-700" />
+          <ChineseBorder />
         </h2>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Left column: Harmonogram and Nauka Online */}
           <div className="fade-in space-y-6">
-            <div className="border-2 border-black p-8">
+            <div className="rounded-3xl border-2 border-gray-300 p-8">
               <div className="mb-6 flex items-start gap-4">
                 <Clock className="mt-1 h-8 w-8" />
                 <div>
@@ -118,35 +114,8 @@ export function ClassesSection({
               </div>
             </div>
 
-            <div className="border-2 border-black p-8">
-              <div className="flex items-start gap-4">
-                <MapPin className="mt-1 h-8 w-8 shrink-0" />
-                <div className="w-full flex-1">
-                  <h3 className="mb-4 text-2xl font-bold">LOKALIZACJA</h3>
-                  {localization?.json && (
-                    <RichTextRenderer document={localization.json as any} />
-                  )}
-                  {getGoogleMapsUrl() && (
-                    <div className="mt-4 h-[300px] w-full border-2 border-black">
-                      <iframe
-                        src={getGoogleMapsUrl()!}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="Lokalizacja zajęć"
-                        className="h-full w-full"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
             {patreonSection?.json && (
-              <div className="border-2 border-black bg-gray-50 p-8">
+              <div className="rounded-3xl border-2 border-gray-300 bg-gray-50 p-8">
                 <RichTextRenderer document={patreonSection.json as any} />
                 {patreonUrl && (
                   <a
@@ -162,76 +131,116 @@ export function ClassesSection({
             )}
           </div>
 
-          {trainingMedia.length > 0 && (
-            <div className="fade-in relative">
-              <div className="top-20 border-4 border-black bg-white p-2 sm:sticky">
-                <Carousel
-                  className="w-full"
-                  opts={{
-                    align: "start",
-                    loop: true,
-                    slidesToScroll: 1,
-                  }}
-                >
-                  <CarouselContent className="-ml-4">
-                    {trainingMedia.map((media, index) => (
-                      <CarouselItem key={index} className="pl-4 md:basis-full">
-                        <div
-                          className="relative h-[400px] cursor-pointer"
-                          onClick={() => openLightbox(index)}
-                        >
-                          {media.isVideo ? (
-                            <>
-                              <video
-                                src={media.url}
-                                className="h-full w-full object-cover"
-                                muted
-                                playsInline
-                              />
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors hover:bg-black/30">
-                                <div className="flex flex-col items-center gap-2">
-                                  <div className="rounded-full bg-white/90 p-4">
-                                    <Play
-                                      className="h-8 w-8 text-black"
-                                      fill="black"
-                                    />
-                                  </div>
-                                  <span className="text-sm font-bold text-white">
-                                    Kliknij aby odtworzyć
-                                  </span>
-                                </div>
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <Image
-                                src={media.url}
-                                alt={
-                                  media.title ??
-                                  media.description ??
-                                  `Zdjęcie z treningu ${index + 1}`
-                                }
-                                fill
-                                className="object-cover object-top"
-                              />
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors hover:bg-black/10">
-                                <span className="text-sm font-bold text-white opacity-0 transition-opacity hover:opacity-100">
-                                  Kliknij aby powiększyć
-                                </span>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4" />
-                  <CarouselNext className="right-4" />
-                </Carousel>
+          {/* Right column: Lokalizacja */}
+          <div className="fade-in flex">
+            <div className="flex w-full flex-col rounded-3xl border-2 border-gray-300 p-8">
+              <div className="flex items-start gap-4">
+                <MapPin className="mt-1 h-8 w-8 shrink-0" />
+                <div className="w-full flex-1">
+                  <h3 className="mb-4 text-2xl font-bold">LOKALIZACJA</h3>
+                  {localization?.json && (
+                    <RichTextRenderer document={localization.json as any} />
+                  )}
+                  {getGoogleMapsUrl() && (
+                    <div className="mt-4 flex-1 overflow-hidden rounded-2xl border-2 border-gray-300">
+                      <iframe
+                        src={getGoogleMapsUrl()!}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0, minHeight: "300px" }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Lokalizacja zajęć"
+                        className="h-full w-full"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
+
+        {/* Image gallery grid below */}
+        {trainingMedia.length > 0 && (
+          <div className="fade-in mt-12">
+            <div className="relative">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {trainingMedia
+                  .slice(0, showAllPhotos ? trainingMedia.length : 6)
+                  .map((media, displayIndex) => {
+                    const originalIndex = displayIndex;
+                    return (
+                      <div
+                        key={originalIndex}
+                        className={`group relative aspect-square cursor-pointer overflow-hidden rounded-3xl border-2 border-gray-300 ${
+                          !showAllPhotos && displayIndex === 5 ? "relative" : ""
+                        }`}
+                        onClick={() => openLightbox(originalIndex)}
+                      >
+                        {media.isVideo ? (
+                          <>
+                            <video
+                              src={media.url}
+                              className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                              muted
+                              playsInline
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
+                              <div className="flex flex-col items-center gap-2">
+                                <div className="rounded-full bg-white/90 p-4">
+                                  <Play
+                                    className="h-8 w-8 text-black"
+                                    fill="black"
+                                  />
+                                </div>
+                                <span className="text-sm font-bold text-white">
+                                  Kliknij aby odtworzyć
+                                </span>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <Image
+                              src={media.url}
+                              alt={
+                                media.title ??
+                                media.description ??
+                                `Zdjęcie z treningu ${originalIndex + 1}`
+                              }
+                              fill
+                              className="object-cover object-top transition-transform group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/10">
+                              <span className="text-sm font-bold text-white opacity-0 transition-opacity group-hover:opacity-100">
+                                Kliknij aby powiększyć
+                              </span>
+                            </div>
+                          </>
+                        )}
+                        {/* Blur overlay on 6th image when not showing all */}
+                        {!showAllPhotos && displayIndex === 5 && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-md">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setShowAllPhotos(true);
+                              }}
+                              className="rounded-full bg-red-700 px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-red-800"
+                            >
+                              Pokaż wszystkie zdjęcia ({trainingMedia.length})
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {lightboxOpen && (
