@@ -1,7 +1,7 @@
 import { Footer } from "@/components/sections/FooterSection";
 import { fetchMainPageData } from "@/lib/contentful";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Eagle_Lake } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +12,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const eagleLake = Eagle_Lake({
+  variable: "--font-eagle-lake",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -103,7 +109,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${eagleLake.variable} antialiased`}
       >
         {children}
         <Footer {...mainPageData} />

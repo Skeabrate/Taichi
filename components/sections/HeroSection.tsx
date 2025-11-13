@@ -15,7 +15,7 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
         <h1 className="mb-6 text-6xl font-bold tracking-wider sm:text-8xl">
           太極拳
         </h1>
-        <h2 className="mb-4 text-3xl font-light sm:text-5xl">TAI CHI CHUAN</h2>
+        <h2 className="mb-4 text-4xl font-bold sm:text-6xl">TAI CHI CHUAN</h2>
         {nameLastNameSeniority && (
           <p className="mb-12 text-xl text-gray-600 sm:text-2xl">
             {nameLastNameSeniority}

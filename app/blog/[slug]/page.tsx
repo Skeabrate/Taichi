@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   };
 
   return (
-    <article className="min-h-screen bg-linear-to-b from-gray-50 to-white">
+    <article className="blog-post min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Hero Image Section */}
       <header className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <div className="absolute inset-0 z-10 bg-linear-to-t from-black/60 to-black/20" />
