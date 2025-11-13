@@ -158,7 +158,7 @@ export async function fetchBlogPostsCount(): Promise<number | null> {
         query: queryString,
       }),
       cache: "force-cache",
-      next: { revalidate: 3600 },
+      next: { revalidate: false },
     });
 
     const data = (await response.json()) as {
@@ -265,7 +265,7 @@ export async function fetchBlogPostBySlug(
         variables,
       }),
       cache: "force-cache",
-      next: { revalidate: 3600 },
+      next: { revalidate: false },
     });
 
     const data = (await response.json()) as {
