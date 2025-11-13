@@ -17,8 +17,8 @@ export function Navigation({ basePath }: NavigationProps) {
             ? `${basePath}${link.href}`
             : link.href;
 
-        const className = `border-b-2 border-transparent pb-px text-lg transition-colors hover:border-red-700 ${
-          link.isSpecial ? "font-semibold text-red-700" : ""
+        const className = `border-b-2 border-transparent pb-px text-lg transition-colors hover:border-red-800 ${
+          link.isSpecial ? "font-semibold text-red-800" : ""
         }`;
 
         if (link.href.startsWith("/") || basePath) {

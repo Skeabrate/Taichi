@@ -6,12 +6,35 @@ import Image from "next/image";
 interface RichTextRendererProps {
   document: Document;
   className?: string;
+  links?: {
+    assets?: {
+      block?: Array<{
+        sys: { id: string };
+        url?: string | null;
+        title?: string | null;
+        description?: string | null;
+        contentType?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null>;
+    };
+  };
 }
 
 export function RichTextRenderer({
   document,
   className,
+  links,
 }: RichTextRendererProps) {
+  // Create a map of asset IDs to asset data for quick lookup
+  const assetMap = new Map<string, any>();
+  if (links?.assets?.block) {
+    links.assets.block.forEach((asset) => {
+      if (asset?.sys?.id) {
+        assetMap.set(asset.sys.id, asset);
+      }
+    });
+  }
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
@@ -20,7 +43,7 @@ export function RichTextRenderer({
     },
     renderNode: {
       [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => (
-        <h3 className="mb-4 text-2xl font-bold">{children}</h3>
+        <h3 className="mb-4 text-2xl font-bold text-red-800">{children}</h3>
       ),
       [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
         <ul className="mb-4 ml-6 list-disc space-y-2">{children}</ul>
@@ -45,8 +68,14 @@ export function RichTextRenderer({
         </a>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        // Try to get asset from links first, then fall back to node.data.target
+        const assetId = node.data.target?.sys?.id;
+        const assetFromLinks = assetId ? assetMap.get(assetId) : null;
+
+        const assetData = assetFromLinks || node.data.target?.fields || {};
         const { url, title, description, width, height, contentType } =
-          node.data.target.fields || {};
+          assetData;
+
         if (!url) return null;
 
         // Check if it's a video file
@@ -73,14 +102,26 @@ export function RichTextRenderer({
         }
 
         // Render as image for other file types
+        // Calculate dimensions maintaining aspect ratio with max height of 500px
+        const maxHeight = 500;
+        let imageWidth = width || 800;
+        let imageHeight = height || 600;
+
+        if (imageHeight > maxHeight) {
+          const ratio = maxHeight / imageHeight;
+          imageHeight = maxHeight;
+          imageWidth = Math.round(imageWidth * ratio);
+        }
+
         return (
-          <div className="my-4 w-full">
+          <div className="my-4 flex w-full">
             <Image
               src={url}
               alt={title || description || ""}
-              width={width || 800}
-              height={height || 600}
-              className="w-full rounded"
+              width={imageWidth}
+              height={imageHeight}
+              className="max-h-[500px] w-auto rounded"
+              style={{ maxHeight: "500px", objectFit: "contain" }}
             />
           </div>
         );

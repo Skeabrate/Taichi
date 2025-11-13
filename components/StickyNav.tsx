@@ -45,7 +45,7 @@ export function StickyNav() {
         {NAVIGATION_LINKS.map((link) => {
           const className = `border-b-2 border-transparent pb-px text-lg transition-colors ${
             link.isSpecial
-              ? "font-semibold text-red-700 hover:border-red-700"
+              ? "font-semibold text-red-800 hover:border-red-800"
               : "hover:border-neutral-700"
           }`;
 

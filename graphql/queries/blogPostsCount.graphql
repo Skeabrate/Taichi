@@ -1,0 +1,6 @@
+query GetBlogPostsCount {
+  blogPostCollection {
+    total
+  }
+}
+

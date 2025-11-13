@@ -232,7 +232,7 @@ export function ClassesSection({
                                 e.stopPropagation();
                                 setShowAllPhotos(true);
                               }}
-                              className="rounded-full bg-red-700 px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-red-800"
+                              className="rounded-full bg-red-800 px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-red-800"
                             >
                               Pokaż wszystkie zdjęcia ({trainingMedia.length})
                             </button>

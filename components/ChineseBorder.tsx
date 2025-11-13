@@ -6,8 +6,8 @@ export function ChineseBorder({ className = "" }: ChineseBorderProps) {
   return (
     <div className={`relative flex items-center justify-center ${className}`}>
       {/* Main horizontal line */}
-      <div className="h-2 w-1/3 bg-red-700" />
-      
+      <div className="h-2 w-1/3 bg-red-800" />
+
       {/* Left upward curve (like roof eave) - more pronounced */}
       <svg
         className="absolute left-0 h-8 w-16 -translate-x-1/2"
@@ -17,13 +17,13 @@ export function ChineseBorder({ className = "" }: ChineseBorderProps) {
       >
         <path
           d="M0 16 Q16 0, 32 16"
-          stroke="#991b1b"
+          stroke="#9f0712"
           strokeWidth="8"
           strokeLinecap="round"
           fill="none"
         />
       </svg>
-      
+
       {/* Right upward curve (like roof eave) - more pronounced */}
       <svg
         className="absolute right-0 h-8 w-16 translate-x-1/2"
@@ -33,7 +33,7 @@ export function ChineseBorder({ className = "" }: ChineseBorderProps) {
       >
         <path
           d="M32 16 Q48 0, 64 16"
-          stroke="#991b1b"
+          stroke="#9f0712"
           strokeWidth="8"
           strokeLinecap="round"
           fill="none"
@@ -42,4 +42,3 @@ export function ChineseBorder({ className = "" }: ChineseBorderProps) {
     </div>
   );
 }
-

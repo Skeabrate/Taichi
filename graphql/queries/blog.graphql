@@ -1,0 +1,11 @@
+query GetBlog {
+  blogCollection(limit: 1) {
+    items {
+      sys {
+        id
+      }
+      title
+      description
+    }
+  }
+}

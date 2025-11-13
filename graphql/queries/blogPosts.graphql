@@ -1,0 +1,76 @@
+query GetBlogPosts($limit: Int, $skip: Int, $order: [BlogPostOrder]) {
+  blogPostCollection(limit: $limit, skip: $skip, order: $order) {
+    total
+    items {
+      sys {
+        id
+        publishedAt
+      }
+      slug
+      title
+      excerpt
+      thumbnail {
+        url
+        title
+        width
+        height
+      }
+      content {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetBlogPostBySlug($slug: String!) {
+  blogPostCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      sys {
+        id
+        publishedAt
+      }
+      slug
+      title
+      excerpt
+      thumbnail {
+        url
+        title
+        width
+        height
+      }
+      content {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -33,6 +33,6 @@
   }
   
   .prose a {
-    @apply text-red-700 underline hover:text-red-800;
+    @apply text-red-800 underline hover:text-red-800;
   }
 }

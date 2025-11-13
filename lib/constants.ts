@@ -6,16 +6,16 @@ export interface NavigationLink {
 
 // Section IDs
 export const SECTION_ID_ABOUT = "o-mnie";
-export const SECTION_ID_TAICHI = "o-taichi";
+export const SECTION_ID_TAICHI = "o-tai-chi";
 export const SECTION_ID_CLASSES = "zajecia";
 export const SECTION_ID_CONTACT = "kontakt";
 
 // Navigation Labels
 export const NAV_LABEL_ABOUT = "O MNIE";
-export const NAV_LABEL_TAICHI = "O TAICHI";
+export const NAV_LABEL_TAICHI = "O TAI CHI";
 export const NAV_LABEL_CLASSES = "ZAJĘCIA";
 export const NAV_LABEL_CONTACT = "KONTAKT";
-export const NAV_LABEL_BLOG = "ŚWIAT TAICHI";
+export const NAV_LABEL_BLOG = "ŚWIAT TAI CHI";
 
 export const NAVIGATION_LINKS: NavigationLink[] = [
   { href: `#${SECTION_ID_ABOUT}`, label: NAV_LABEL_ABOUT },

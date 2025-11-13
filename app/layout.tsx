@@ -1,8 +1,8 @@
+import { Footer } from "@/components/sections/FooterSection";
+import { fetchMainPageData } from "@/lib/contentful";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Footer } from "@/components/sections/FooterSection";
-import { fetchMainPageData } from "@/lib/contentful";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,21 +16,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Taichi Quan - Mistrz Jarosław Świeczkowski",
-    template: "%s | Taichi Quan",
+    default: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
+    template: "%s | Tai Chi Chuan",
   },
   description:
-    "Odkryj starożytną sztukę Taichi Quan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Taichi, zajęcia stacjonarne i online. Harmonia ciała i umysłu.",
+    "Odkryj starożytną sztukę Tai Chi Chuan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi, zajęcia stacjonarne i online. Harmonia ciała i umysłu.",
   keywords: [
-    "taichi",
-    "taichi quan",
     "tai chi",
-    "chen taichi",
-    "tai chi quan",
-    "mistrz taichi",
-    "zajęcia taichi",
-    "taichi warszawa",
-    "taichi polska",
+    "tai chi chuan",
+    "tai chi",
+    "chen tai chi",
+    "tai chi chuan",
+    "mistrz tai chi",
+    "zajęcia tai chi",
+    "tai chi warszawa",
+    "tai chi polska",
     "chi kung",
     "qigong",
     "sztuki walki",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://taichi.example.com",
+    process.env.NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl",
   ),
   alternates: {
     canonical: "/",
@@ -56,25 +56,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pl_PL",
     url: "/",
-    title: "Taichi Quan - Mistrz Jarosław Świeczkowski",
+    title: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
     description:
-      "Odkryj starożytną sztukę Taichi Quan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Taichi, zajęcia stacjonarne i online.",
-    siteName: "Taichi Quan",
+      "Odkryj starożytną sztukę Tai Chi Chuan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi, zajęcia stacjonarne i online.",
+    siteName: "Tai Chi Chuan",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/jaroslaw-swieczkowski-tai-chi.webp",
         width: 1200,
         height: 630,
-        alt: "Taichi Quan - Mistrz Jarosław Świeczkowski",
+        alt: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Taichi Quan - Mistrz Jarosław Świeczkowski",
+    title: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
     description:
-      "Odkryj starożytną sztukę Taichi Quan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Taichi.",
-    images: ["/og-image.jpg"],
+      "Odkryj starożytną sztukę Tai Chi Chuan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi.",
+    images: ["/jaroslaw-swieczkowski-tai-chi.webp"],
   },
   robots: {
     index: true,

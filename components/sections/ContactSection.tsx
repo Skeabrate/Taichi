@@ -45,7 +45,7 @@ export function ContactSection({
             {phoneNumber && (
               <a
                 href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
+                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
               >
                 <Phone className="h-8 w-8" />
                 <span className="text-xl font-bold">{phoneNumber}</span>
@@ -55,7 +55,7 @@ export function ContactSection({
             {email && (
               <a
                 href={`mailto:${email}`}
-                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
+                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
               >
                 <Mail className="h-8 w-8" />
                 <span className="text-xl font-bold break-all">{email}</span>
@@ -74,7 +74,7 @@ export function ContactSection({
                     href={facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
                   >
                     <Facebook className="h-8 w-8" />
                     <span className="text-xl font-bold">Facebook</span>
@@ -86,7 +86,7 @@ export function ContactSection({
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
                   >
                     <Instagram className="h-8 w-8" />
                     <span className="text-xl font-bold">Instagram</span>
@@ -98,7 +98,7 @@ export function ContactSection({
                     href={youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
                   >
                     <Youtube className="h-8 w-8" />
                     <span className="text-xl font-bold">YouTube</span>
@@ -110,7 +110,7 @@ export function ContactSection({
                     href={patreon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
                   >
                     <Heart className="h-8 w-8" />
                     <span className="text-xl font-bold">Patreon</span>

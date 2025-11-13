@@ -172,8 +172,17 @@ export type AssetFilter = {
 
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
+  blogPostCollection?: Maybe<BlogPostCollection>;
   entryCollection?: Maybe<EntryCollection>;
   mainPageCollection?: Maybe<MainPageCollection>;
+};
+
+
+export type AssetLinkingCollectionsblogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -213,6 +222,269 @@ export type AssetOrder =
   | 'url_DESC'
   | 'width_ASC'
   | 'width_DESC';
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blog) */
+export type Blog = Entry & _Node & {
+  __typename?: 'Blog';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<BlogLinkingCollections>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blog) */
+export type BlogdescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blog) */
+export type BloglinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blog) */
+export type BlogtitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlogCollection = {
+  __typename?: 'BlogCollection';
+  items: Array<Maybe<Blog>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlogFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlogFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlogFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlogLinkingCollections = {
+  __typename?: 'BlogLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type BlogLinkingCollectionsentryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type BlogOrder =
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC';
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPost = Entry & _Node & {
+  __typename?: 'BlogPost';
+  _id: Scalars['ID']['output'];
+  content?: Maybe<BlogPostContent>;
+  contentfulMetadata: ContentfulMetadata;
+  createDate?: Maybe<Scalars['DateTime']['output']>;
+  excerpt?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<BlogPostLinkingCollections>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  thumbnail?: Maybe<Asset>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPostcontentArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPostcreateDateArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPostexcerptArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPostlinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPostslugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPostthumbnailArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
+export type BlogPosttitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlogPostCollection = {
+  __typename?: 'BlogPostCollection';
+  items: Array<Maybe<BlogPost>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlogPostContent = {
+  __typename?: 'BlogPostContent';
+  json: Scalars['JSON']['output'];
+  links: BlogPostContentLinks;
+};
+
+export type BlogPostContentAssets = {
+  __typename?: 'BlogPostContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type BlogPostContentEntries = {
+  __typename?: 'BlogPostContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type BlogPostContentLinks = {
+  __typename?: 'BlogPostContentLinks';
+  assets: BlogPostContentAssets;
+  entries: BlogPostContentEntries;
+  resources: BlogPostContentResources;
+};
+
+export type BlogPostContentResources = {
+  __typename?: 'BlogPostContentResources';
+  block: Array<BlogPostContentResourcesBlock>;
+  hyperlink: Array<BlogPostContentResourcesHyperlink>;
+  inline: Array<BlogPostContentResourcesInline>;
+};
+
+export type BlogPostContentResourcesBlock = ResourceLink & {
+  __typename?: 'BlogPostContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type BlogPostContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'BlogPostContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type BlogPostContentResourcesInline = ResourceLink & {
+  __typename?: 'BlogPostContentResourcesInline';
+  sys: ResourceSys;
+};
+
+export type BlogPostFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlogPostFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlogPostFilter>>>;
+  content_contains?: InputMaybe<Scalars['String']['input']>;
+  content_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  content_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  createDate?: InputMaybe<Scalars['DateTime']['input']>;
+  createDate_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  createDate_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  createDate_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  createDate_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createDate_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  createDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  createDate_not?: InputMaybe<Scalars['DateTime']['input']>;
+  createDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  excerpt_contains?: InputMaybe<Scalars['String']['input']>;
+  excerpt_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  excerpt_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  excerpt_not?: InputMaybe<Scalars['String']['input']>;
+  excerpt_not_contains?: InputMaybe<Scalars['String']['input']>;
+  excerpt_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  thumbnail_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlogPostLinkingCollections = {
+  __typename?: 'BlogPostLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type BlogPostLinkingCollectionsentryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type BlogPostOrder =
+  | 'createDate_ASC'
+  | 'createDate_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC'
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC';
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/classesSchedule) */
 export type ClassesSchedule = Entry & _Node & {
@@ -509,6 +781,9 @@ export type MainPage = Entry & _Node & {
   __typename?: 'MainPage';
   _id: Scalars['ID']['output'];
   aboutMe?: Maybe<MainPageAboutMe>;
+  aboutTaichiText?: Maybe<MainPageAboutTaichiText>;
+  aboutTaichiTextLeftColumn?: Maybe<MainPageAboutTaichiTextLeftColumn>;
+  aboutTaichiTextRightColumn?: Maybe<MainPageAboutTaichiTextRightColumn>;
   classesAssetsCollection?: Maybe<AssetCollection>;
   classesScheduleCollection?: Maybe<MainPageClassesScheduleCollection>;
   contentfulMetadata: ContentfulMetadata;
@@ -528,9 +803,6 @@ export type MainPage = Entry & _Node & {
   quoteFooter?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   taichiImage?: Maybe<Asset>;
-  aboutTaichiText?: Maybe<MainPageAboutTaichiText>;
-  aboutTaichiTextLeftColumn?: Maybe<MainPageAboutTaichiTextLeftColumn>;
-  aboutTaichiTextRightColumn?: Maybe<MainPageAboutTaichiTextRightColumn>;
   youtube?: Maybe<Scalars['String']['output']>;
 };
 
@@ -540,20 +812,24 @@ export type MainPageaboutMeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
+
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutTaichiTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutTaichiTextLeftColumnArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
+
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutTaichiTextRightColumnArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageclassesAssetsCollectionArgs = {
@@ -649,8 +925,21 @@ export type MainPagequoteAboutMeArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPagequoteAboutTaichiArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagequoteFooterArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPagetaichiImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -726,35 +1015,6 @@ export type MainPageAboutTaichiTextEntries = {
   inline: Array<Maybe<Entry>>;
 };
 
-export type MainPageAboutTaichiTextLinks = {
-  __typename?: 'MainPageAboutTaichiTextLinks';
-  assets: MainPageAboutTaichiTextAssets;
-  entries: MainPageAboutTaichiTextEntries;
-  resources: MainPageAboutTaichiTextResources;
-};
-
-export type MainPageAboutTaichiTextResources = {
-  __typename?: 'MainPageAboutTaichiTextResources';
-  block: Array<MainPageAboutTaichiTextResourcesBlock>;
-  hyperlink: Array<MainPageAboutTaichiTextResourcesHyperlink>;
-  inline: Array<MainPageAboutTaichiTextResourcesInline>;
-};
-
-export type MainPageAboutTaichiTextResourcesBlock = ResourceLink & {
-  __typename?: 'MainPageAboutTaichiTextResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type MainPageAboutTaichiTextResourcesHyperlink = ResourceLink & {
-  __typename?: 'MainPageAboutTaichiTextResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type MainPageAboutTaichiTextResourcesInline = ResourceLink & {
-  __typename?: 'MainPageAboutTaichiTextResourcesInline';
-  sys: ResourceSys;
-};
-
 export type MainPageAboutTaichiTextLeftColumn = {
   __typename?: 'MainPageAboutTaichiTextLeftColumn';
   json: Scalars['JSON']['output'];
@@ -800,6 +1060,35 @@ export type MainPageAboutTaichiTextLeftColumnResourcesHyperlink = ResourceLink &
 
 export type MainPageAboutTaichiTextLeftColumnResourcesInline = ResourceLink & {
   __typename?: 'MainPageAboutTaichiTextLeftColumnResourcesInline';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextLinks = {
+  __typename?: 'MainPageAboutTaichiTextLinks';
+  assets: MainPageAboutTaichiTextAssets;
+  entries: MainPageAboutTaichiTextEntries;
+  resources: MainPageAboutTaichiTextResources;
+};
+
+export type MainPageAboutTaichiTextResources = {
+  __typename?: 'MainPageAboutTaichiTextResources';
+  block: Array<MainPageAboutTaichiTextResourcesBlock>;
+  hyperlink: Array<MainPageAboutTaichiTextResourcesHyperlink>;
+  inline: Array<MainPageAboutTaichiTextResourcesInline>;
+};
+
+export type MainPageAboutTaichiTextResourcesBlock = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextResourcesHyperlink = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type MainPageAboutTaichiTextResourcesInline = ResourceLink & {
+  __typename?: 'MainPageAboutTaichiTextResourcesInline';
   sys: ResourceSys;
 };
 
@@ -887,6 +1176,15 @@ export type MainPageFilter = {
   aboutMe_contains?: InputMaybe<Scalars['String']['input']>;
   aboutMe_exists?: InputMaybe<Scalars['Boolean']['input']>;
   aboutMe_not_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiTextLeftColumn_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiTextLeftColumn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  aboutTaichiTextLeftColumn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiTextRightColumn_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiTextRightColumn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  aboutTaichiTextRightColumn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiText_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiText_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  aboutTaichiText_not_contains?: InputMaybe<Scalars['String']['input']>;
   classesAssetsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   classesSchedule?: InputMaybe<cfClassesScheduleNestedFilter>;
   classesScheduleCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -950,6 +1248,13 @@ export type MainPageFilter = {
   quoteAboutMe_not?: InputMaybe<Scalars['String']['input']>;
   quoteAboutMe_not_contains?: InputMaybe<Scalars['String']['input']>;
   quoteAboutMe_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  quoteAboutTaichi?: InputMaybe<Scalars['String']['input']>;
+  quoteAboutTaichi_contains?: InputMaybe<Scalars['String']['input']>;
+  quoteAboutTaichi_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  quoteAboutTaichi_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  quoteAboutTaichi_not?: InputMaybe<Scalars['String']['input']>;
+  quoteAboutTaichi_not_contains?: InputMaybe<Scalars['String']['input']>;
+  quoteAboutTaichi_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   quoteFooter?: InputMaybe<Scalars['String']['input']>;
   quoteFooter_contains?: InputMaybe<Scalars['String']['input']>;
   quoteFooter_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -958,6 +1263,7 @@ export type MainPageFilter = {
   quoteFooter_not_contains?: InputMaybe<Scalars['String']['input']>;
   quoteFooter_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  taichiImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   youtube?: InputMaybe<Scalars['String']['input']>;
   youtube_contains?: InputMaybe<Scalars['String']['input']>;
   youtube_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1106,6 +1412,10 @@ export type Query = {
   _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  blog?: Maybe<Blog>;
+  blogCollection?: Maybe<BlogCollection>;
+  blogPost?: Maybe<BlogPost>;
+  blogPostCollection?: Maybe<BlogPostCollection>;
   classesSchedule?: Maybe<ClassesSchedule>;
   classesScheduleCollection?: Maybe<ClassesScheduleCollection>;
   entryCollection?: Maybe<EntryCollection>;
@@ -1142,6 +1452,40 @@ export type QueryassetCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AssetFilter>;
+};
+
+
+export type QueryblogArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryblogCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlogOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<BlogFilter>;
+};
+
+
+export type QueryblogPostArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryblogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlogPostOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<BlogPostFilter>;
 };
 
 
@@ -1288,12 +1632,125 @@ export type cfClassesScheduleNestedFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
+export type GetBlogQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetBlogQuery = { __typename?: 'Query', blogCollection?: { __typename?: 'BlogCollection', items: Array<{ __typename?: 'Blog', title?: string | null, description?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
+
+export type GetBlogPostsQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlogPostOrder>> | InputMaybe<BlogPostOrder>>;
+}>;
+
+
+export type GetBlogPostsQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', total: number, items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, sys: { __typename?: 'Sys', id: string, publishedAt?: string | null }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+
+export type GetBlogPostBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetBlogPostBySlugQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, sys: { __typename?: 'Sys', id: string, publishedAt?: string | null }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+
 export type GetMainPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMainPageQuery = { __typename?: 'Query', mainPageCollection?: { __typename?: 'MainPageCollection', items: Array<{ __typename?: 'MainPage', nameLastNameSeniority?: string | null, quoteAboutMe?: string | null, phoneNumber?: string | null, email?: string | null, facebook?: string | null, instagram?: string | null, youtube?: string | null, patreon?: string | null, quoteFooter?: string | null, quoteAboutTaichi?: string | null, sys: { __typename?: 'Sys', id: string }, aboutMe?: { __typename?: 'MainPageAboutMe', json: Record<string, any>, links: { __typename?: 'MainPageAboutMeLinks', assets: { __typename?: 'MainPageAboutMeAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, mainAsset?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, taichiImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, aboutTaichiText?: { __typename?: 'MainPageAboutTaichiText', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLinks', assets: { __typename?: 'MainPageAboutTaichiTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, aboutTaichiTextLeftColumn?: { __typename?: 'MainPageAboutTaichiTextLeftColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLeftColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextLeftColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, aboutTaichiTextRightColumn?: { __typename?: 'MainPageAboutTaichiTextRightColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextRightColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextRightColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesScheduleCollection?: { __typename?: 'MainPageClassesScheduleCollection', items: Array<{ __typename?: 'ClassesSchedule', day?: string | null, hours?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, localization?: { __typename?: 'MainPageLocalization', json: Record<string, any>, links: { __typename?: 'MainPageLocalizationLinks', assets: { __typename?: 'MainPageLocalizationAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, coordinates?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, patreonSection?: { __typename?: 'MainPagePatreonSection', json: Record<string, any>, links: { __typename?: 'MainPagePatreonSectionLinks', assets: { __typename?: 'MainPagePatreonSectionAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesAssetsCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null } | null> } | null };
+export type GetMainPageQuery = { __typename?: 'Query', mainPageCollection?: { __typename?: 'MainPageCollection', items: Array<{ __typename?: 'MainPage', nameLastNameSeniority?: string | null, quoteAboutMe?: string | null, phoneNumber?: string | null, email?: string | null, facebook?: string | null, instagram?: string | null, youtube?: string | null, patreon?: string | null, quoteFooter?: string | null, quoteAboutTaichi?: string | null, sys: { __typename?: 'Sys', id: string }, aboutMe?: { __typename?: 'MainPageAboutMe', json: Record<string, any>, links: { __typename?: 'MainPageAboutMeLinks', assets: { __typename?: 'MainPageAboutMeAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, mainAsset?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, classesScheduleCollection?: { __typename?: 'MainPageClassesScheduleCollection', items: Array<{ __typename?: 'ClassesSchedule', day?: string | null, hours?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, localization?: { __typename?: 'MainPageLocalization', json: Record<string, any>, links: { __typename?: 'MainPageLocalizationLinks', assets: { __typename?: 'MainPageLocalizationAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, coordinates?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, patreonSection?: { __typename?: 'MainPagePatreonSection', json: Record<string, any>, links: { __typename?: 'MainPagePatreonSectionLinks', assets: { __typename?: 'MainPagePatreonSectionAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesAssetsCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, aboutTaichiText?: { __typename?: 'MainPageAboutTaichiText', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLinks', assets: { __typename?: 'MainPageAboutTaichiTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, taichiImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, aboutTaichiTextLeftColumn?: { __typename?: 'MainPageAboutTaichiTextLeftColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLeftColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextLeftColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, aboutTaichiTextRightColumn?: { __typename?: 'MainPageAboutTaichiTextRightColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextRightColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextRightColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 
+export const GetBlog = gql`
+    query GetBlog {
+  blogCollection(limit: 1) {
+    items {
+      sys {
+        id
+      }
+      title
+      description
+    }
+  }
+}
+    `;
+export const GetBlogPosts = gql`
+    query GetBlogPosts($limit: Int, $skip: Int, $order: [BlogPostOrder]) {
+  blogPostCollection(limit: $limit, skip: $skip, order: $order) {
+    total
+    items {
+      sys {
+        id
+        publishedAt
+      }
+      slug
+      title
+      excerpt
+      thumbnail {
+        url
+        title
+        width
+        height
+      }
+      content {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetBlogPostBySlug = gql`
+    query GetBlogPostBySlug($slug: String!) {
+  blogPostCollection(where: {slug: $slug}, limit: 1) {
+    items {
+      sys {
+        id
+        publishedAt
+      }
+      slug
+      title
+      excerpt
+      thumbnail {
+        url
+        title
+        width
+        height
+      }
+      content {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+              contentType
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 export const GetMainPage = gql`
     query GetMainPage {
   mainPageCollection(limit: 1) {

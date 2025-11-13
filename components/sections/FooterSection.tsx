@@ -23,7 +23,7 @@ export function Footer({
       <div className="mx-auto max-w-6xl text-center">
         <p className="text-sm">
           © {new Date().getFullYear()}{" "}
-          {nameLastNameSeniority || "Jarosław Świeczkowski"} - Taichi Quan.
+          {nameLastNameSeniority || "Jarosław Świeczkowski"} - Tai Chi Chuan.
           Wszelkie prawa zastrzeżone.
         </p>
         {quoteFooter && (
@@ -38,7 +38,7 @@ export function Footer({
                 href={facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-red-700"
+                className="transition-colors hover:text-red-800"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -49,7 +49,7 @@ export function Footer({
                 href={instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-red-700"
+                className="transition-colors hover:text-red-800"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -60,7 +60,7 @@ export function Footer({
                 href={youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-red-700"
+                className="transition-colors hover:text-red-800"
                 aria-label="YouTube"
               >
                 <Youtube size={20} />
@@ -71,7 +71,7 @@ export function Footer({
                 href={patreon}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-red-700"
+                className="transition-colors hover:text-red-800"
                 aria-label="Patreon"
               >
                 <Heart size={20} />
