@@ -1,18 +1,35 @@
+"use client";
+
+import { useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import type { MainPageData } from "@/lib/contentful";
 import { Navigation } from "@/components/Navigation";
 import { YinYangBackground } from "@/components/YinYangBackground";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { motion } from "framer-motion";
 
 interface HeroProps {
   nameLastNameSeniority?: MainPageData["nameLastNameSeniority"];
 }
 
 export function Hero({ nameLastNameSeniority }: HeroProps) {
-  return (
-    <section className="relative flex h-screen min-h-[500px] flex-col items-center justify-center overflow-hidden">
-      <YinYangBackground />
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
-      <FadeIn className="z-10 px-4 text-center">
+  return (
+    <section
+      ref={ref}
+      className="relative flex h-screen min-h-[500px] flex-col items-center justify-center overflow-hidden"
+    >
+      <motion.div style={{ y }} className="absolute inset-0">
+        <YinYangBackground />
+      </motion.div>
+
+      <FadeIn className="relative z-10 px-4 text-center">
         <h1 className="mb-6 text-6xl font-bold tracking-wider sm:text-8xl">
           太極拳
         </h1>

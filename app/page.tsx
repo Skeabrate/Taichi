@@ -1,3 +1,4 @@
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { AboutTaichiSection } from "@/components/sections/AboutTaichiSection";
 import { ClassesSection } from "@/components/sections/ClassesSection";
@@ -18,6 +19,7 @@ export default async function Home() {
       <AboutTaichiSection {...mainPageData} />
       <ClassesSection {...mainPageData} />
       <ContactSection {...mainPageData} />
+      <ScrollToTop />
     </main>
   );
 }

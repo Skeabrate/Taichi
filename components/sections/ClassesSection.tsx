@@ -129,7 +129,7 @@ export function ClassesSection({
                     href={patreonUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-black px-8 py-3 font-bold text-white transition-colors hover:bg-gray-800"
+                    className="mt-4 inline-block rounded-lg bg-black px-8 py-3 font-bold text-white transition-all hover:scale-105 hover:bg-gray-800 hover:shadow-lg"
                   >
                     ODWIEDŹ PATREON
                   </a>

@@ -9,10 +9,9 @@
     font-family: var(--font-eagle-lake), serif;
   }
 
-  .blog-post h1,
-  .blog-post h2 {
-    font-family: inherit;
-  }
+	button {
+		cursor: pointer;
+	}
 }
 
 @layer utilities {
@@ -30,13 +29,10 @@
     @apply mt-8 mb-4 text-3xl font-bold text-gray-900;
     font-family: var(--font-eagle-lake), serif;
   }
-
-  .blog-post .prose h2 {
-    font-family: inherit;
-  }
   
   .prose h3 {
     @apply mt-6 mb-3 text-2xl font-bold text-gray-900;
+    font-family: var(--font-eagle-lake), serif;
   }
   
   .prose p {

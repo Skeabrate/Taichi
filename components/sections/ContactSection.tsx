@@ -50,9 +50,9 @@ export function ContactSection({
               <FadeIn delay={0.2}>
                 <a
                   href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-                  className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                  className="group flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-all hover:border-red-800 hover:bg-red-800 hover:text-white hover:shadow-lg"
                 >
-                  <Phone className="h-8 w-8" />
+                  <Phone className="h-8 w-8 transition-transform group-hover:scale-110" />
                   <span className="text-xl font-bold">{phoneNumber}</span>
                 </a>
               </FadeIn>
@@ -62,9 +62,9 @@ export function ContactSection({
               <FadeIn delay={0.3}>
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                  className="group flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-all hover:border-red-800 hover:bg-red-800 hover:text-white hover:shadow-lg"
                 >
-                  <Mail className="h-8 w-8" />
+                  <Mail className="h-8 w-8 transition-transform group-hover:scale-110" />
                   <span className="text-xl font-bold break-all">{email}</span>
                 </a>
               </FadeIn>
@@ -83,9 +83,9 @@ export function ContactSection({
                       href={facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                      className="group flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-all hover:border-red-800 hover:bg-red-800 hover:text-white hover:shadow-lg"
                     >
-                      <Facebook className="h-8 w-8" />
+                      <Facebook className="h-8 w-8 transition-transform group-hover:scale-110" />
                       <span className="text-xl font-bold">Facebook</span>
                     </a>
                   </FadeIn>
@@ -97,9 +97,9 @@ export function ContactSection({
                       href={instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                      className="group flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-all hover:border-red-800 hover:bg-red-800 hover:text-white hover:shadow-lg"
                     >
-                      <Instagram className="h-8 w-8" />
+                      <Instagram className="h-8 w-8 transition-transform group-hover:scale-110" />
                       <span className="text-xl font-bold">Instagram</span>
                     </a>
                   </FadeIn>
@@ -111,9 +111,9 @@ export function ContactSection({
                       href={youtube}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                      className="group flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-all hover:border-red-800 hover:bg-red-800 hover:text-white hover:shadow-lg"
                     >
-                      <Youtube className="h-8 w-8" />
+                      <Youtube className="h-8 w-8 transition-transform group-hover:scale-110" />
                       <span className="text-xl font-bold">YouTube</span>
                     </a>
                   </FadeIn>
@@ -125,9 +125,9 @@ export function ContactSection({
                       href={patreon}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                      className="group flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-all hover:border-red-800 hover:bg-red-800 hover:text-white hover:shadow-lg"
                     >
-                      <Heart className="h-8 w-8" />
+                      <Heart className="h-8 w-8 transition-transform group-hover:scale-110" />
                       <span className="text-xl font-bold">Patreon</span>
                     </a>
                   </FadeIn>
