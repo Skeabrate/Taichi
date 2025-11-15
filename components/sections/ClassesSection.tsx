@@ -9,6 +9,9 @@ import { Clock, MapPin, Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { ImageLightbox } from "../ImageLightbox";
+import { FadeInTitle } from "@/components/animations/FadeInTitle";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { FadeInImage } from "@/components/animations/FadeInImage";
 
 interface ClassesSectionProps {
   classesScheduleCollection?: MainPageData["classesScheduleCollection"];
@@ -69,18 +72,18 @@ export function ClassesSection({
       className="bg-neutral-100 px-4 py-12 sm:py-28"
     >
       <div className="mx-auto max-w-7xl">
-        <h2 className="slide-up mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
+        <FadeInTitle className="mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
             {NAV_LABEL_CLASSES}
             <YinYang />
           </div>
           <ChineseBorder />
-        </h2>
+        </FadeInTitle>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Left column: Harmonogram and Nauka Online */}
-          <div className="fade-in space-y-6">
+          <FadeIn delay={0.1} className="space-y-6">
             <div className="rounded-3xl border-2 border-gray-300 p-8">
               <div className="mb-6 flex items-start gap-4">
                 <Clock className="mt-1 h-8 w-8" />
@@ -133,10 +136,10 @@ export function ClassesSection({
                 )}
               </div>
             )}
-          </div>
+          </FadeIn>
 
           {/* Right column: Lokalizacja */}
-          <div className="fade-in flex">
+          <FadeIn delay={0.2} className="flex">
             <div className="flex w-full flex-col rounded-3xl border-2 border-gray-300 p-8">
               <div className="flex items-start gap-4">
                 <MapPin className="mt-1 h-8 w-8 shrink-0" />
@@ -163,26 +166,27 @@ export function ClassesSection({
                 </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
 
         {/* Image gallery grid below */}
         {trainingMedia.length > 0 && (
-          <div className="fade-in mt-12">
+          <div className="mt-12">
             <div className="relative">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {trainingMedia
                   .slice(0, showAllPhotos ? trainingMedia.length : 6)
                   .map((media, displayIndex) => {
                     const originalIndex = displayIndex;
+                    const delay = 0.3 + displayIndex * 0.1;
                     return (
-                      <div
-                        key={originalIndex}
-                        className={`group relative aspect-square cursor-pointer overflow-hidden rounded-3xl border-2 border-gray-300 ${
-                          !showAllPhotos && displayIndex === 5 ? "relative" : ""
-                        }`}
-                        onClick={() => openLightbox(originalIndex)}
-                      >
+                      <FadeInImage key={originalIndex} delay={delay}>
+                        <div
+                          className={`group relative aspect-square cursor-pointer overflow-hidden rounded-3xl border-2 border-gray-300 ${
+                            !showAllPhotos && displayIndex === 5 ? "relative" : ""
+                          }`}
+                          onClick={() => openLightbox(originalIndex)}
+                        >
                         {media.isVideo ? (
                           <>
                             <video
@@ -238,7 +242,8 @@ export function ClassesSection({
                             </button>
                           </div>
                         )}
-                      </div>
+                        </div>
+                      </FadeInImage>
                     );
                   })}
               </div>

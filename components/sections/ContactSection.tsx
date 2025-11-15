@@ -3,6 +3,8 @@ import type { MainPageData } from "@/lib/contentful";
 import { YinYang } from "@/components/YinYang";
 import { ChineseBorder } from "@/components/ChineseBorder";
 import { SECTION_ID_CONTACT, NAV_LABEL_CONTACT } from "@/lib/constants";
+import { FadeInTitle } from "@/components/animations/FadeInTitle";
+import { FadeIn } from "@/components/animations/FadeIn";
 
 interface ContactSectionProps {
   phoneNumber?: MainPageData["phoneNumber"];
@@ -26,98 +28,112 @@ export function ContactSection({
       id={SECTION_ID_CONTACT}
       className="flex items-center justify-center bg-white px-4 py-12 sm:py-28"
     >
-      <div className="slide-up w-full max-w-4xl">
-        <h2 className="mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
+      <div className="w-full max-w-4xl">
+        <FadeInTitle className="mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
           <div className="mb-2 flex items-center gap-4">
             <YinYang />
             {NAV_LABEL_CONTACT}
             <YinYang />
           </div>
           <ChineseBorder />
-        </h2>
+        </FadeInTitle>
 
         <div className="mx-auto max-w-2xl">
-          <h3 className="mb-5 text-center text-2xl font-bold">
-            Skontaktuj Się Ze Mną
-          </h3>
+          <FadeIn delay={0.1}>
+            <h3 className="mb-5 text-center text-2xl font-bold">
+              Skontaktuj Się Ze Mną
+            </h3>
+          </FadeIn>
 
           <div className="mb-6 grid gap-4">
             {phoneNumber && (
-              <a
-                href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
-              >
-                <Phone className="h-8 w-8" />
-                <span className="text-xl font-bold">{phoneNumber}</span>
-              </a>
+              <FadeIn delay={0.2}>
+                <a
+                  href={`tel:${phoneNumber.replace(/\s/g, "")}`}
+                  className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                >
+                  <Phone className="h-8 w-8" />
+                  <span className="text-xl font-bold">{phoneNumber}</span>
+                </a>
+              </FadeIn>
             )}
 
             {email && (
-              <a
-                href={`mailto:${email}`}
-                className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
-              >
-                <Mail className="h-8 w-8" />
-                <span className="text-xl font-bold break-all">{email}</span>
-              </a>
+              <FadeIn delay={0.3}>
+                <a
+                  href={`mailto:${email}`}
+                  className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                >
+                  <Mail className="h-8 w-8" />
+                  <span className="text-xl font-bold break-all">{email}</span>
+                </a>
+              </FadeIn>
             )}
           </div>
 
           {(facebook || instagram || youtube || patreon) && (
-            <div className="pt-8">
+            <FadeIn delay={0.4} className="pt-8">
               <h3 className="mb-5 text-center text-2xl font-bold">
                 Znajdź Mnie Online
               </h3>
               <div className="grid gap-6">
                 {facebook && (
-                  <a
-                    href={facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
-                  >
-                    <Facebook className="h-8 w-8" />
-                    <span className="text-xl font-bold">Facebook</span>
-                  </a>
+                  <FadeIn delay={0.5}>
+                    <a
+                      href={facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                    >
+                      <Facebook className="h-8 w-8" />
+                      <span className="text-xl font-bold">Facebook</span>
+                    </a>
+                  </FadeIn>
                 )}
 
                 {instagram && (
-                  <a
-                    href={instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
-                  >
-                    <Instagram className="h-8 w-8" />
-                    <span className="text-xl font-bold">Instagram</span>
-                  </a>
+                  <FadeIn delay={0.6}>
+                    <a
+                      href={instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                    >
+                      <Instagram className="h-8 w-8" />
+                      <span className="text-xl font-bold">Instagram</span>
+                    </a>
+                  </FadeIn>
                 )}
 
                 {youtube && (
-                  <a
-                    href={youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
-                  >
-                    <Youtube className="h-8 w-8" />
-                    <span className="text-xl font-bold">YouTube</span>
-                  </a>
+                  <FadeIn delay={0.7}>
+                    <a
+                      href={youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                    >
+                      <Youtube className="h-8 w-8" />
+                      <span className="text-xl font-bold">YouTube</span>
+                    </a>
+                  </FadeIn>
                 )}
 
                 {patreon && (
-                  <a
-                    href={patreon}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
-                  >
-                    <Heart className="h-8 w-8" />
-                    <span className="text-xl font-bold">Patreon</span>
-                  </a>
+                  <FadeIn delay={0.8}>
+                    <a
+                      href={patreon}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 rounded-3xl border-2 border-gray-300 p-6 transition-colors hover:bg-red-800 hover:text-white"
+                    >
+                      <Heart className="h-8 w-8" />
+                      <span className="text-xl font-bold">Patreon</span>
+                    </a>
+                  </FadeIn>
                 )}
               </div>
-            </div>
+            </FadeIn>
           )}
         </div>
       </div>
