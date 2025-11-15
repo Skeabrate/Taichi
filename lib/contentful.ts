@@ -246,10 +246,9 @@ export async function fetchBlogPosts(
 }
 
 export async function fetchBlogPostSlugs(
-  limit: number = 1000,
+  limit: number = 100,
   skip: number = 0,
 ): Promise<string[]> {
-  // Simple inline query that only fetches slugs to avoid complexity
   const query = `
     query GetBlogPostSlugs($limit: Int, $skip: Int) {
       blogPostCollection(limit: $limit, skip: $skip) {
@@ -298,6 +297,76 @@ export async function fetchBlogPostSlugs(
       .filter((slug): slug is string => Boolean(slug));
   } catch (error) {
     console.error("Error fetching blog post slugs:", error);
+    return [];
+  }
+}
+
+export interface BlogPostSitemapEntry {
+  slug: string;
+  publishedAt: string;
+}
+
+export async function fetchBlogPostSitemapEntries(
+  limit: number = 100,
+  skip: number = 0,
+): Promise<BlogPostSitemapEntry[]> {
+  const query = `
+    query GetBlogPostSitemapEntries($limit: Int, $skip: Int) {
+      blogPostCollection(limit: $limit, skip: $skip) {
+        items {
+          slug
+          sys {
+            publishedAt
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const variables = {
+      limit,
+      skip,
+    };
+
+    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+      cache: "force-cache",
+    });
+
+    const data = (await response.json()) as {
+      data?: {
+        blogPostCollection?: {
+          items: Array<{
+            slug: string | null;
+            sys: { publishedAt: string | null };
+          }>;
+        };
+      };
+      errors?: Array<{ message: string }>;
+    };
+
+    if (!response.ok || data.errors) {
+      return [];
+    }
+
+    const items = data.data?.blogPostCollection?.items ?? [];
+    return items
+      .map((item) => ({
+        slug: item.slug,
+        publishedAt: item.sys.publishedAt || new Date().toISOString(),
+      }))
+      .filter((entry): entry is BlogPostSitemapEntry => Boolean(entry.slug));
+  } catch (error) {
+    console.error("Error fetching blog post sitemap entries:", error);
     return [];
   }
 }

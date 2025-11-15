@@ -2,6 +2,7 @@ import {
   fetchBlogPosts,
   fetchBlogPostBySlug,
   fetchBlogPostSlugs,
+  fetchBlogPostSitemapEntries,
   type GetBlogPostsQuery,
   type GetBlogPostBySlugQuery,
 } from "./contentful";
@@ -126,7 +127,7 @@ export async function getPostBySlug(
 export async function getAllPostSlugs(): Promise<string[]> {
   const slugs: string[] = [];
   let skip = 0;
-  const limit = 1000;
+  const limit = 100;
   let hasMore = true;
 
   while (hasMore) {
@@ -147,4 +148,32 @@ export async function getAllPostSlugs(): Promise<string[]> {
   }
 
   return slugs;
+}
+
+export async function getAllPostSitemapEntries(): Promise<
+  Array<{ slug: string; publishedAt: string }>
+> {
+  const entries: Array<{ slug: string; publishedAt: string }> = [];
+  let skip = 0;
+  const limit = 100;
+  let hasMore = true;
+
+  while (hasMore) {
+    const batchEntries = await fetchBlogPostSitemapEntries(limit, skip);
+
+    if (batchEntries.length === 0) {
+      hasMore = false;
+      break;
+    }
+
+    entries.push(...batchEntries);
+
+    if (batchEntries.length < limit) {
+      hasMore = false;
+    } else {
+      skip += limit;
+    }
+  }
+
+  return entries;
 }
