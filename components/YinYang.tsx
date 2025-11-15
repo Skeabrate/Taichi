@@ -14,15 +14,15 @@ export function YinYang({ className = "" }: YinYangProps) {
         <div
           className="absolute top-[25%] left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-200"
           style={{
-            width: size * 0.25,
-            height: size * 0.25,
+            width: size * 0.2,
+            height: size * 0.2,
           }}
         />
         <div
           className="absolute top-[75%] left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
           style={{
-            width: size * 0.25,
-            height: size * 0.25,
+            width: size * 0.2,
+            height: size * 0.2,
           }}
         />
         <div className="absolute top-0 left-1/4 h-1/2 w-1/2 rounded-full bg-white" />

@@ -15,6 +15,12 @@
   }
 }
 
+@layer utilities {
+  .font-eagle-lake {
+    font-family: var(--font-eagle-lake), serif;
+  }
+}
+
 @layer components {
   .prose {
     @apply text-gray-700;
