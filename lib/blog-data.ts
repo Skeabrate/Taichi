@@ -1,6 +1,7 @@
 import {
   fetchBlogPosts,
   fetchBlogPostBySlug,
+  fetchBlogPostSlugs,
   type GetBlogPostsQuery,
   type GetBlogPostBySlugQuery,
 } from "./contentful";
@@ -120,4 +121,30 @@ export async function getPostBySlug(
   }
 
   return mapContentfulPostToBlogPost(post);
+}
+
+export async function getAllPostSlugs(): Promise<string[]> {
+  const slugs: string[] = [];
+  let skip = 0;
+  const limit = 1000;
+  let hasMore = true;
+
+  while (hasMore) {
+    const batchSlugs = await fetchBlogPostSlugs(limit, skip);
+
+    if (batchSlugs.length === 0) {
+      hasMore = false;
+      break;
+    }
+
+    slugs.push(...batchSlugs);
+
+    if (batchSlugs.length < limit) {
+      hasMore = false;
+    } else {
+      skip += limit;
+    }
+  }
+
+  return slugs;
 }
