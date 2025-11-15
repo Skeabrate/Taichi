@@ -7,9 +7,9 @@ export function YinYangBackground() {
     <div className="absolute inset-0 flex items-center justify-center">
       <motion.div
         className="relative aspect-square h-[90%]"
-        // animate={{ rotate: 360 }}
+        animate={{ rotate: 360 }}
         transition={{
-          duration: 60,
+          duration: 120,
           repeat: Infinity,
           ease: "linear",
         }}
