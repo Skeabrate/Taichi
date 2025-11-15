@@ -8,3 +8,4 @@ export const CONTENTFUL_GRAPHQL_ENDPOINT =
     : "";
 export const NEXT_PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 export const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
+export const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET;
