@@ -37,13 +37,17 @@ export function RichTextRenderer({
   }
   const options = {
     renderMark: {
-      [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
+      [MARKS.BOLD]: (text: ReactNode) => (
+        <strong className="font-eagle-lake">{text}</strong>
+      ),
       [MARKS.ITALIC]: (text: ReactNode) => <em>{text}</em>,
       [MARKS.UNDERLINE]: (text: ReactNode) => <u>{text}</u>,
     },
     renderNode: {
       [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => (
-        <h3 className="mb-4 text-2xl font-bold text-red-800">{children}</h3>
+        <h3 className="font-eagle-lake mb-4 text-2xl font-bold text-red-800">
+          {children}
+        </h3>
       ),
       [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
         <ul className="mb-4 ml-6 list-disc space-y-2">{children}</ul>
