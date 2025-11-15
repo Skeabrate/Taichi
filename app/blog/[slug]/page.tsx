@@ -1,11 +1,12 @@
-import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { getAllPostSlugs, getPostBySlug } from "@/lib/blog-data";
+import { NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
+import { RichTextRenderer } from "@/lib/rich-text-renderer";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getPostBySlug, getAllPostSlugs } from "@/lib/blog-data";
-import { RichTextRenderer } from "@/lib/rich-text-renderer";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { notFound } from "next/navigation";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -30,7 +31,7 @@ export async function generateMetadata({
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
+  const siteUrl = NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
 
   return {
     title: post.title,

@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
+import { NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
+  const baseUrl = NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
 
   return {
     rules: [
@@ -14,4 +15,3 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
-

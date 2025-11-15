@@ -74,3 +74,22 @@ query GetBlogPostBySlug($slug: String!) {
     }
   }
 }
+
+query GetBlogPostSlugs($limit: Int, $skip: Int) {
+  blogPostCollection(limit: $limit, skip: $skip) {
+    items {
+      slug
+    }
+  }
+}
+
+query GetBlogPostSitemapEntries($limit: Int, $skip: Int) {
+  blogPostCollection(limit: $limit, skip: $skip) {
+    items {
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+}

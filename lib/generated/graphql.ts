@@ -1653,6 +1653,27 @@ export type GetBlogPostBySlugQueryVariables = Exact<{
 
 export type GetBlogPostBySlugQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, sys: { __typename?: 'Sys', id: string, publishedAt?: string | null }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
+export type GetBlogPostSlugsQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetBlogPostSlugsQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', items: Array<{ __typename?: 'BlogPost', slug?: string | null } | null> } | null };
+
+export type GetBlogPostSitemapEntriesQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetBlogPostSitemapEntriesQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', items: Array<{ __typename?: 'BlogPost', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: string | null } } | null> } | null };
+
+export type GetBlogPostsCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetBlogPostsCountQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', total: number } | null };
+
 export type GetMainPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1748,6 +1769,34 @@ export const GetBlogPostBySlug = gql`
         }
       }
     }
+  }
+}
+    `;
+export const GetBlogPostSlugs = gql`
+    query GetBlogPostSlugs($limit: Int, $skip: Int) {
+  blogPostCollection(limit: $limit, skip: $skip) {
+    items {
+      slug
+    }
+  }
+}
+    `;
+export const GetBlogPostSitemapEntries = gql`
+    query GetBlogPostSitemapEntries($limit: Int, $skip: Int) {
+  blogPostCollection(limit: $limit, skip: $skip) {
+    items {
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+}
+    `;
+export const GetBlogPostsCount = gql`
+    query GetBlogPostsCount {
+  blogPostCollection {
+    total
   }
 }
     `;

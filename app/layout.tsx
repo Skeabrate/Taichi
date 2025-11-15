@@ -1,7 +1,8 @@
 import { Footer } from "@/components/sections/FooterSection";
 import { fetchMainPageData } from "@/lib/contentful";
+import { GOOGLE_SITE_VERIFICATION, NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Eagle_Lake } from "next/font/google";
+import { Eagle_Lake, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -52,9 +53,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl",
-  ),
+  metadataBase: new URL(NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl"),
   alternates: {
     canonical: "/",
   },
@@ -94,7 +93,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
+    google: GOOGLE_SITE_VERIFICATION,
   },
   category: "martial arts",
 };

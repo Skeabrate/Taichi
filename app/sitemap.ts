@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { getAllPostSitemapEntries, POSTS_PER_PAGE } from "@/lib/blog-data";
+import { NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
+  const baseUrl = NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [

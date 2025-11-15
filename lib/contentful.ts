@@ -1,38 +1,25 @@
 import { print } from "graphql";
 import {
-  GetMainPage,
-  GetMainPageQuery,
-  GetMainPageQueryVariables,
   GetBlog,
-  GetBlogQuery,
-  GetBlogQueryVariables,
-  GetBlogPosts,
-  GetBlogPostsQuery,
-  GetBlogPostsQueryVariables,
   GetBlogPostBySlug,
   GetBlogPostBySlugQuery,
   GetBlogPostBySlugQueryVariables,
-} from "./generated/graphql";
-import gql from "graphql-tag";
-
-const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
-const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
-const CONTENTFUL_ENVIRONMENT = process.env.CONTENTFUL_ENVIRONMENT || "master";
-const CONTENTFUL_GRAPHQL_ENDPOINT =
-  CONTENTFUL_SPACE_ID && CONTENTFUL_ENVIRONMENT
-    ? `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`
-    : "";
-
-export type {
-  GetMainPageQuery,
-  GetMainPageQueryVariables,
-  GetBlogQuery,
-  GetBlogQueryVariables,
+  GetBlogPosts,
+  GetBlogPostsCount,
+  GetBlogPostsCountQuery,
+  GetBlogPostSitemapEntries,
+  GetBlogPostSitemapEntriesQuery,
+  GetBlogPostSitemapEntriesQueryVariables,
+  GetBlogPostSlugs,
+  GetBlogPostSlugsQuery,
+  GetBlogPostSlugsQueryVariables,
   GetBlogPostsQuery,
   GetBlogPostsQueryVariables,
-  GetBlogPostBySlugQuery,
-  GetBlogPostBySlugQueryVariables,
+  GetBlogQuery,
+  GetMainPage,
+  GetMainPageQuery,
 } from "./generated/graphql";
+import { fetchContentfulGraphQL } from "./utils";
 
 export type MainPageData = NonNullable<
   NonNullable<GetMainPageQuery["mainPageCollection"]>["items"][0]
@@ -43,138 +30,44 @@ export type BlogData = NonNullable<
 >;
 
 export async function fetchMainPageData(): Promise<MainPageData | null> {
-  try {
-    const queryString = print(GetMainPage);
-    const variables: GetMainPageQueryVariables = {};
+  const queryString = print(GetMainPage);
+  const { data } = await fetchContentfulGraphQL<GetMainPageQuery>(
+    queryString,
+    {},
+    { revalidate: false },
+  );
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query: queryString,
-        variables,
-      }),
-      cache: "force-cache",
-      next: { revalidate: false },
-    });
-
-    const data = (await response.json()) as {
-      data?: GetMainPageQuery;
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok) {
-      const errorMessage = data.errors
-        ? JSON.stringify(data.errors, null, 2)
-        : response.statusText;
-      throw new Error(`Contentful API error: ${errorMessage}`);
-    }
-
-    if (data.errors) {
-      return null;
-    }
-
-    const mainPageItem = data.data?.mainPageCollection?.items?.[0];
-    if (!mainPageItem) {
-      return null;
-    }
-
-    return mainPageItem;
-  } catch (error) {
-    console.error("Error fetching Contentful data:", error);
+  if (!data) {
     return null;
   }
+
+  return data.mainPageCollection?.items?.[0] ?? null;
 }
 
 export async function fetchBlogData(): Promise<BlogData | null> {
-  try {
-    const queryString = print(GetBlog);
-    const variables: GetBlogQueryVariables = {};
+  const queryString = print(GetBlog);
+  const { data } = await fetchContentfulGraphQL<GetBlogQuery>(
+    queryString,
+    {},
+    { revalidate: false },
+  );
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query: queryString,
-        variables,
-      }),
-      cache: "force-cache",
-      next: { revalidate: false },
-    });
-
-    const data = (await response.json()) as {
-      data?: GetBlogQuery;
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok) {
-      const errorMessage = data.errors
-        ? JSON.stringify(data.errors, null, 2)
-        : response.statusText;
-      throw new Error(`Contentful API error: ${errorMessage}`);
-    }
-
-    if (data.errors) {
-      return null;
-    }
-
-    const blogItem = data.data?.blogCollection?.items?.[0];
-    if (!blogItem) {
-      return null;
-    }
-
-    return blogItem;
-  } catch (error) {
-    console.error("Error fetching Contentful blog data:", error);
+  if (!data) {
     return null;
   }
+
+  return data.blogCollection?.items?.[0] ?? null;
 }
 
-const GetBlogPostsCount = gql`
-  query GetBlogPostsCount {
-    blogPostCollection {
-      total
-    }
-  }
-`;
-
 export async function fetchBlogPostsCount(): Promise<number | null> {
-  try {
-    const queryString = print(GetBlogPostsCount);
+  const queryString = print(GetBlogPostsCount);
+  const { data } = await fetchContentfulGraphQL<GetBlogPostsCountQuery>(
+    queryString,
+    undefined,
+    { revalidate: false },
+  );
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query: queryString,
-      }),
-      cache: "force-cache",
-      next: { revalidate: false },
-    });
-
-    const data = (await response.json()) as {
-      data?: { blogPostCollection?: { total: number } };
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok || data.errors) {
-      return null;
-    }
-
-    return data.data?.blogPostCollection?.total ?? null;
-  } catch (error) {
-    console.error("Error fetching blog posts count:", error);
-    return null;
-  }
+  return data?.blogPostCollection?.total ?? null;
 }
 
 export async function fetchBlogPosts(
@@ -186,119 +79,50 @@ export async function fetchBlogPosts(
   >[];
   total: number;
 } | null> {
-  try {
-    const queryString = print(GetBlogPosts);
-    const variables: GetBlogPostsQueryVariables = {
-      limit: limit ?? 100,
-      skip: skip ?? 0,
-      order: ["createDate_DESC"],
-    };
+  const queryString = print(GetBlogPosts);
+  const variables: GetBlogPostsQueryVariables = {
+    limit: limit ?? 100,
+    skip: skip ?? 0,
+    order: ["createDate_DESC"],
+  };
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query: queryString,
-        variables,
-      }),
-      cache: "force-cache",
-    });
+  const { data } = await fetchContentfulGraphQL<GetBlogPostsQuery>(
+    queryString,
+    variables,
+  );
 
-    const data = (await response.json()) as {
-      data?: GetBlogPostsQuery;
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok) {
-      const errorMessage = data.errors
-        ? JSON.stringify(data.errors, null, 2)
-        : response.statusText;
-      throw new Error(`Contentful API error: ${errorMessage}`);
-    }
-
-    if (data.errors) {
-      return null;
-    }
-
-    const collection = data.data?.blogPostCollection;
-    if (!collection) {
-      return null;
-    }
-
-    const filteredPosts = collection.items.filter(Boolean) as NonNullable<
-      NonNullable<GetBlogPostsQuery["blogPostCollection"]>["items"][0]
-    >[];
-
-    return {
-      posts: filteredPosts,
-      total: collection.total,
-    };
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error message:", error.message);
-      console.error("Error stack:", error.stack);
-    }
+  if (!data?.blogPostCollection) {
     return null;
   }
+
+  const filteredPosts = data.blogPostCollection.items.filter(
+    Boolean,
+  ) as NonNullable<
+    NonNullable<GetBlogPostsQuery["blogPostCollection"]>["items"][0]
+  >[];
+
+  return {
+    posts: filteredPosts,
+    total: data.blogPostCollection.total,
+  };
 }
 
 export async function fetchBlogPostSlugs(
   limit: number = 100,
   skip: number = 0,
 ): Promise<string[]> {
-  const query = `
-    query GetBlogPostSlugs($limit: Int, $skip: Int) {
-      blogPostCollection(limit: $limit, skip: $skip) {
-        items {
-          slug
-        }
-      }
-    }
-  `;
+  const queryString = print(GetBlogPostSlugs);
+  const variables: GetBlogPostSlugsQueryVariables = { limit, skip };
 
-  try {
-    const variables = {
-      limit,
-      skip,
-    };
+  const { data } = await fetchContentfulGraphQL<GetBlogPostSlugsQuery>(
+    queryString,
+    variables,
+  );
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
-      cache: "force-cache",
-    });
-
-    const data = (await response.json()) as {
-      data?: {
-        blogPostCollection?: {
-          items: Array<{ slug: string | null }>;
-        };
-      };
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok || data.errors) {
-      return [];
-    }
-
-    const items = data.data?.blogPostCollection?.items ?? [];
-    return items
-      .map((item) => item.slug)
-      .filter((slug): slug is string => Boolean(slug));
-  } catch (error) {
-    console.error("Error fetching blog post slugs:", error);
-    return [];
-  }
+  const items = data?.blogPostCollection?.items ?? [];
+  return items
+    .map((item) => item?.slug)
+    .filter((slug): slug is string => Boolean(slug));
 }
 
 export interface BlogPostSitemapEntry {
@@ -310,65 +134,21 @@ export async function fetchBlogPostSitemapEntries(
   limit: number = 100,
   skip: number = 0,
 ): Promise<BlogPostSitemapEntry[]> {
-  const query = `
-    query GetBlogPostSitemapEntries($limit: Int, $skip: Int) {
-      blogPostCollection(limit: $limit, skip: $skip) {
-        items {
-          slug
-          sys {
-            publishedAt
-          }
-        }
-      }
-    }
-  `;
+  const queryString = print(GetBlogPostSitemapEntries);
+  const variables: GetBlogPostSitemapEntriesQueryVariables = { limit, skip };
 
-  try {
-    const variables = {
-      limit,
-      skip,
-    };
+  const { data } = await fetchContentfulGraphQL<GetBlogPostSitemapEntriesQuery>(
+    queryString,
+    variables,
+  );
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
-      cache: "force-cache",
-    });
-
-    const data = (await response.json()) as {
-      data?: {
-        blogPostCollection?: {
-          items: Array<{
-            slug: string | null;
-            sys: { publishedAt: string | null };
-          }>;
-        };
-      };
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok || data.errors) {
-      return [];
-    }
-
-    const items = data.data?.blogPostCollection?.items ?? [];
-    return items
-      .map((item) => ({
-        slug: item.slug,
-        publishedAt: item.sys.publishedAt || new Date().toISOString(),
-      }))
-      .filter((entry): entry is BlogPostSitemapEntry => Boolean(entry.slug));
-  } catch (error) {
-    console.error("Error fetching blog post sitemap entries:", error);
-    return [];
-  }
+  const items = data?.blogPostCollection?.items ?? [];
+  return items
+    .map((item) => ({
+      slug: item?.slug,
+      publishedAt: item?.sys?.publishedAt || new Date().toISOString(),
+    }))
+    .filter((entry): entry is BlogPostSitemapEntry => Boolean(entry.slug));
 }
 
 export async function fetchBlogPostBySlug(
@@ -376,51 +156,14 @@ export async function fetchBlogPostBySlug(
 ): Promise<NonNullable<
   NonNullable<GetBlogPostBySlugQuery["blogPostCollection"]>["items"][0]
 > | null> {
-  try {
-    const queryString = print(GetBlogPostBySlug);
-    const variables: GetBlogPostBySlugQueryVariables = { slug };
+  const queryString = print(GetBlogPostBySlug);
+  const variables: GetBlogPostBySlugQueryVariables = { slug };
 
-    const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({
-        query: queryString,
-        variables,
-      }),
-      cache: "force-cache",
-      next: { revalidate: false },
-    });
+  const { data } = await fetchContentfulGraphQL<GetBlogPostBySlugQuery>(
+    queryString,
+    variables,
+    { revalidate: false },
+  );
 
-    const data = (await response.json()) as {
-      data?: GetBlogPostBySlugQuery;
-      errors?: Array<{ message: string }>;
-    };
-
-    if (!response.ok) {
-      const errorMessage = data.errors
-        ? JSON.stringify(data.errors, null, 2)
-        : response.statusText;
-      throw new Error(`Contentful API error: ${errorMessage}`);
-    }
-
-    if (data.errors) {
-      return null;
-    }
-
-    const post = data.data?.blogPostCollection?.items?.[0];
-    if (!post) {
-      return null;
-    }
-
-    return post;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error message:", error.message);
-      console.error("Error stack:", error.stack);
-    }
-    return null;
-  }
+  return data?.blogPostCollection?.items?.[0] ?? null;
 }
