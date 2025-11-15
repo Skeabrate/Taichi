@@ -37,9 +37,6 @@ export function RichTextRenderer({
   }
   const options = {
     renderMark: {
-      [MARKS.BOLD]: (text: ReactNode) => (
-        <strong className="font-eagle-lake">{text}</strong>
-      ),
       [MARKS.ITALIC]: (text: ReactNode) => <em>{text}</em>,
       [MARKS.UNDERLINE]: (text: ReactNode) => <u>{text}</u>,
     },
