@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     siteName: "Tai Chi Chuan",
     images: [
       {
-        url: "/jaroslaw-swieczkowski-tai-chi.webp",
+        url: "/jaroslaw-swieczkowski.webp",
         width: 1200,
         height: 630,
         alt: "Tai Chi Chuan - Instruktor Jarosław Świeczkowski",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     title: "Tai Chi Chuan - Instruktor Jarosław Świeczkowski",
     description:
       "Odkryj starożytną sztukę Tai Chi Chuan z instruktorem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi.",
-    images: ["/jaroslaw-swieczkowski-tai-chi.webp"],
+    images: ["/jaroslaw-swieczkowski.webp"],
   },
   robots: {
     index: true,
