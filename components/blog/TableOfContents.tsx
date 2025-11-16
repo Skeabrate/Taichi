@@ -23,7 +23,7 @@ export function TableOfContents({
   }
 
   return (
-    <div className="sticky top-0 hidden max-h-[90vh] overflow-y-auto pt-8 md:block">
+    <div className="max-h-[90vh] overflow-y-auto pt-8 md:sticky md:top-0">
       <div className="rounded-lg border-2 border-gray-200 bg-white p-6">
         <h3 className="mb-5 text-xl font-bold text-gray-900">Spis treści</h3>
         <nav>

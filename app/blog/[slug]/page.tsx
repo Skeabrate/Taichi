@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Content Section */}
       <section className="mx-auto max-w-7xl px-4 pb-12 md:pb-16 lg:pb-20">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr]">
+        <div className="grid grid-cols-1 gap-x-8 md:grid-cols-[300px_1fr]">
           {headings.length > 0 && (
             <TableOfContents
               headings={headings}
@@ -143,12 +143,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               shareTitle={post.title}
             />
           )}
-          <div className="prose prose-lg prose-red max-w-[700px]">
+          <div className="prose prose-lg prose-red max-w-[700px] pt-8">
             {post.content && (
               <RichTextRenderer
                 document={post.content}
                 links={post.contentLinks}
-                className="prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-8 prose-h2:text-gray-900 prose-h2:scroll-mt-5 prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6 prose-h3:text-red-800 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:text-lg prose-a:text-red-800 prose-a:no-underline prose-a:font-semibold hover:prose-a:underline prose-strong:text-gray-900 prose-strong:font-bold prose-ul:my-6 prose-ol:my-6 prose-li:text-gray-700 prose-li:text-lg prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8 prose-img:max-h-[500px] prose-img:w-auto prose-img:object-contain prose-blockquote:border-l-4 prose-blockquote:border-red-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600"
+                className="prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-8 prose-h2:text-gray-900 prose-h2:scroll-mt-5 prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6 prose-h3:text-red-800 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:text-lg prose-a:text-red-800 prose-a:no-underline prose-a:font-semibold hover:prose-a:underline prose-strong:text-gray-900 prose-strong:font-bold prose-ul:my-6 prose-ol:my-6 prose-li:text-gray-700 prose-li:text-lg prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8 prose-img:max-h-[500px] prose-img:w-auto prose-img:object-contain prose-blockquote:border-l-4 prose-blockquote:border-red-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600 [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:pt-0"
               />
             )}
           </div>
