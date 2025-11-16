@@ -4,11 +4,11 @@ query GetBlogPosts($limit: Int, $skip: Int, $order: [BlogPostOrder]) {
     items {
       sys {
         id
-        publishedAt
       }
       slug
       title
       excerpt
+      createDate
       thumbnail {
         url
         title
@@ -42,11 +42,11 @@ query GetBlogPostBySlug($slug: String!) {
     items {
       sys {
         id
-        publishedAt
       }
       slug
       title
       excerpt
+      createDate
       thumbnail {
         url
         title

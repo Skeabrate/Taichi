@@ -1,3 +1,5 @@
+"use client";
+
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES, MARKS, Document } from "@contentful/rich-text-types";
 import { ReactNode } from "react";
@@ -19,12 +21,46 @@ interface RichTextRendererProps {
       } | null>;
     };
   };
+  onHeadingsExtracted?: (headings: Array<{ id: string; text: string }>) => void;
+}
+
+/**
+ * Generate a URL-friendly ID from heading text
+ */
+function generateId(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "") // Remove special characters
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
+}
+
+/**
+ * Extract text content from a node recursively
+ */
+function extractText(node: any): string {
+  if (typeof node === "string") {
+    return node;
+  }
+  if (node?.nodeType === "text") {
+    return node.value || "";
+  }
+  if (node?.content && Array.isArray(node.content)) {
+    return node.content.map(extractText).join("");
+  }
+  if (Array.isArray(node)) {
+    return node.map(extractText).join("");
+  }
+  return "";
 }
 
 export function RichTextRenderer({
   document,
   className,
   links,
+  onHeadingsExtracted,
 }: RichTextRendererProps) {
   // Create a map of asset IDs to asset data for quick lookup
   const assetMap = new Map<string, any>();
@@ -35,12 +71,62 @@ export function RichTextRenderer({
       }
     });
   }
+
+  // Extract headings for TOC
+  if (onHeadingsExtracted && document?.content) {
+    const headings: Array<{ id: string; text: string }> = [];
+    document.content.forEach((node) => {
+      if (node.nodeType === BLOCKS.HEADING_2) {
+        const text = extractText(node);
+        if (text) {
+          const id = generateId(text);
+          headings.push({ id, text });
+        }
+      }
+    });
+    onHeadingsExtracted(headings);
+  }
+
   const options = {
     renderMark: {
       [MARKS.ITALIC]: (text: ReactNode) => <em>{text}</em>,
       [MARKS.UNDERLINE]: (text: ReactNode) => <u>{text}</u>,
     },
     renderNode: {
+      [BLOCKS.HEADING_2]: (node: any, children: ReactNode) => {
+        const text = extractText(node);
+        const id = text ? generateId(text) : "";
+        return (
+          <h2 id={id} className="scroll-mt-20">
+            <a
+              href={`#${id}`}
+              className="text-gray-900 no-underline hover:underline"
+              onClick={(e) => {
+                e.preventDefault();
+                if (typeof window !== "undefined") {
+                  const element = window.document.getElementById(id);
+                  if (element) {
+                    const offset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition =
+                      elementPosition + window.pageYOffset - offset;
+
+                    // Update URL hash
+                    window.history.pushState(null, "", `#${id}`);
+
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth",
+                    });
+                  }
+                }
+              }}
+            >
+              {children}
+            </a>
+          </h2>
+        );
+      },
       [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => (
         <h3 className="font-eagle-lake mb-4 text-2xl font-bold text-red-800">
           {children}
@@ -121,8 +207,7 @@ export function RichTextRenderer({
               alt={title || description || ""}
               width={imageWidth}
               height={imageHeight}
-              className="max-h-[500px] w-auto rounded"
-              style={{ maxHeight: "500px", objectFit: "contain" }}
+              className="max-h-[700px] w-full rounded object-contain object-left"
             />
           </div>
         );

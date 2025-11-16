@@ -1644,14 +1644,14 @@ export type GetBlogPostsQueryVariables = Exact<{
 }>;
 
 
-export type GetBlogPostsQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', total: number, items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, sys: { __typename?: 'Sys', id: string, publishedAt?: string | null }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type GetBlogPostsQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', total: number, items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, createDate?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type GetBlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetBlogPostBySlugQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, sys: { __typename?: 'Sys', id: string, publishedAt?: string | null }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type GetBlogPostBySlugQuery = { __typename?: 'Query', blogPostCollection?: { __typename?: 'BlogPostCollection', items: Array<{ __typename?: 'BlogPost', slug?: string | null, title?: string | null, excerpt?: string | null, createDate?: string | null, sys: { __typename?: 'Sys', id: string }, thumbnail?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null } | null, content?: { __typename?: 'BlogPostContent', json: Record<string, any>, links: { __typename?: 'BlogPostContentLinks', assets: { __typename?: 'BlogPostContentAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type GetBlogPostSlugsQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -1700,11 +1700,11 @@ export const GetBlogPosts = gql`
     items {
       sys {
         id
-        publishedAt
       }
       slug
       title
       excerpt
+      createDate
       thumbnail {
         url
         title
@@ -1739,11 +1739,11 @@ export const GetBlogPostBySlug = gql`
     items {
       sys {
         id
-        publishedAt
       }
       slug
       title
       excerpt
+      createDate
       thumbnail {
         url
         title

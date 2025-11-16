@@ -1,18 +1,18 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
-// FIXME: Envs doesn't seem to load correctly here, and hardcoded ones have to be used as a workaround.
-import {
-  CONTENTFUL_ACCESS_TOKEN,
-  CONTENTFUL_GRAPHQL_ENDPOINT,
-} from "./lib/envs";
+
+const CONTENTFUL_SPACE_ID = "df0umoagux3q";
+const CONTENTFUL_ACCESS_TOKEN = "PgIjDYYAN8wWs1pBa0ml-2ACWtmraH6CFjDiZpbIcZk";
+const CONTENTFUL_ENVIRONMENT = "master";
 
 const config: CodegenConfig = {
   overwrite: true,
   schema: {
-    [CONTENTFUL_GRAPHQL_ENDPOINT]: {
-      headers: {
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
+    [`https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`]:
+      {
+        headers: {
+          Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
+        },
       },
-    },
   },
   documents: ["graphql/**/*.graphql"],
   generates: {

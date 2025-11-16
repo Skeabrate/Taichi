@@ -40,7 +40,7 @@ export function AboutSection({
             <FadeInImage>
               <div className="relative">
                 <div className="absolute -top-4 -left-4 h-full w-full rounded-3xl border-2 border-black opacity-20" />
-                <div className="relative h-[500px] w-full overflow-hidden rounded-3xl border-4 border-black sm:h-[600px]">
+                <div className="relative h-[500px] w-full overflow-hidden rounded-3xl border-4 border-black sm:h-[600px] md:h-[700px]">
                   <Image
                     src={mainAsset.url}
                     alt={mainAsset.title ?? mainAsset.description ?? ""}

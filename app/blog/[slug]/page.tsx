@@ -1,5 +1,7 @@
+import { TableOfContents } from "@/components/blog/TableOfContents";
 import { Button } from "@/components/ui/button";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog-data";
+import { extractHeadings } from "@/lib/blog-utils";
 import { NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import { ArrowLeft } from "lucide-react";
@@ -48,7 +50,7 @@ export async function generateMetadata({
         },
       ],
       type: "article",
-      publishedTime: post.createdAt,
+      publishedTime: post.createDate,
     },
     twitter: {
       card: "summary_large_image",
@@ -78,6 +80,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       day: "numeric",
     });
   };
+
+  // Extract headings for table of contents
+  const headings = post.content ? extractHeadings(post.content) : [];
+
+  // Build share URL
+  const siteUrl = NEXT_PUBLIC_SITE_URL || "https://taichi-world.pl";
+  const shareUrl = `${siteUrl}/blog/${post.slug}`;
 
   return (
     <article className="blog-post min-h-screen bg-linear-to-b from-gray-50 to-white">
@@ -110,7 +119,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="absolute right-0 bottom-0 left-0 z-20 p-8 md:p-12 lg:p-16">
           <div className="mx-auto max-w-4xl">
             <time className="mb-3 block text-sm font-medium text-white/90">
-              {formatDate(post.createdAt)}
+              {formatDate(post.createDate)}
             </time>
             <h1 className="mb-4 text-4xl leading-tight font-bold text-white drop-shadow-lg md:text-5xl lg:text-6xl">
               {post.title}
@@ -125,16 +134,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
 
       {/* Content Section */}
-      <section className="mx-auto max-w-4xl px-4 pb-12 md:pb-16 lg:pb-20">
-        {post.content && (
-          <div className="prose prose-lg prose-red max-w-none">
-            <RichTextRenderer
-              document={post.content}
-              links={post.contentLinks}
-              className="prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-8 prose-h2:text-red-800 prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6 prose-h3:text-red-800 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:text-lg prose-a:text-red-800 prose-a:no-underline prose-a:font-semibold hover:prose-a:underline prose-strong:text-gray-900 prose-strong:font-bold prose-ul:my-6 prose-ol:my-6 prose-li:text-gray-700 prose-li:text-lg prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8 prose-img:max-h-[500px] prose-img:w-auto prose-img:object-contain prose-blockquote:border-l-4 prose-blockquote:border-red-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600"
+      <section className="mx-auto max-w-7xl px-4 pb-12 md:pb-16 lg:pb-20">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr]">
+          {headings.length > 0 && (
+            <TableOfContents
+              headings={headings}
+              shareUrl={shareUrl}
+              shareTitle={post.title}
             />
+          )}
+          <div className="prose prose-lg prose-red max-w-[700px]">
+            {post.content && (
+              <RichTextRenderer
+                document={post.content}
+                links={post.contentLinks}
+                className="prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-8 prose-h2:text-gray-900 prose-h2:scroll-mt-20 prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6 prose-h3:text-red-800 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:text-lg prose-a:text-red-800 prose-a:no-underline prose-a:font-semibold hover:prose-a:underline prose-strong:text-gray-900 prose-strong:font-bold prose-ul:my-6 prose-ol:my-6 prose-li:text-gray-700 prose-li:text-lg prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8 prose-img:max-h-[500px] prose-img:w-auto prose-img:object-contain prose-blockquote:border-l-4 prose-blockquote:border-red-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600"
+              />
+            )}
           </div>
-        )}
+        </div>
 
         {/* Back to Blog Button */}
         <div className="mt-16 border-t border-gray-200 pt-8">

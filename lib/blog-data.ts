@@ -28,7 +28,7 @@ export interface BlogPost {
     };
   };
   thumbnail: string;
-  createdAt: string;
+  createDate: string;
 }
 
 // Lightweight version for list views (without content for better serialization)
@@ -38,7 +38,7 @@ export interface BlogPostListItem {
   title: string;
   description: string;
   thumbnail: string;
-  createdAt: string;
+  createDate: string;
 }
 
 type BlogPostItem = NonNullable<
@@ -76,8 +76,8 @@ function mapContentfulPostToBlogPost(
         }
       : undefined,
     thumbnail: thumbnailUrl,
-    createdAt: post.sys.publishedAt
-      ? new Date(post.sys.publishedAt).toISOString().split("T")[0]
+    createDate: post.createDate
+      ? new Date(post.createDate).toISOString().split("T")[0]
       : new Date().toISOString().split("T")[0],
   };
 }
@@ -91,7 +91,7 @@ export function mapToBlogPostListItem(post: BlogPost): BlogPostListItem {
     title: post.title,
     description: post.description,
     thumbnail: post.thumbnail,
-    createdAt: post.createdAt,
+    createDate: post.createDate,
   };
 }
 

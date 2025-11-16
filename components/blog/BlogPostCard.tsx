@@ -31,7 +31,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         </div>
         <div className="p-6">
           <time className="text-sm text-gray-500">
-            {formatDate(post.createdAt)}
+            {formatDate(post.createDate)}
           </time>
           <h3 className="mt-2 text-2xl font-bold text-gray-900 transition-colors group-hover:text-red-800">
             {post.title}

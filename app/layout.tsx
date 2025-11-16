@@ -23,18 +23,18 @@ const eagleLake = Eagle_Lake({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
+    default: "Tai Chi Chuan - Instruktor Jarosław Świeczkowski",
     template: "%s | Tai Chi Chuan",
   },
   description:
-    "Odkryj starożytną sztukę Tai Chi Chuan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi, zajęcia stacjonarne i online. Harmonia ciała i umysłu.",
+    "Odkryj starożytną sztukę Tai Chi Chuan z instruktorem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi, zajęcia stacjonarne i online. Harmonia ciała i umysłu.",
   keywords: [
     "tai chi",
     "tai chi chuan",
     "tai chi",
     "chen tai chi",
     "tai chi chuan",
-    "mistrz tai chi",
+    "instruktor tai chi",
     "zajęcia tai chi",
     "tai chi warszawa",
     "tai chi polska",
@@ -61,24 +61,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pl_PL",
     url: "/",
-    title: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
+    title: "Tai Chi Chuan - Instruktor Jarosław Świeczkowski",
     description:
-      "Odkryj starożytną sztukę Tai Chi Chuan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi, zajęcia stacjonarne i online.",
+      "Odkryj starożytną sztukę Tai Chi Chuan z instruktorem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi, zajęcia stacjonarne i online.",
     siteName: "Tai Chi Chuan",
     images: [
       {
         url: "/jaroslaw-swieczkowski-tai-chi.webp",
         width: 1200,
         height: 630,
-        alt: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
+        alt: "Tai Chi Chuan - Instruktor Jarosław Świeczkowski",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tai Chi Chuan - Mistrz Jarosław Świeczkowski",
+    title: "Tai Chi Chuan - Instruktor Jarosław Świeczkowski",
     description:
-      "Odkryj starożytną sztukę Tai Chi Chuan z mistrzem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi.",
+      "Odkryj starożytną sztukę Tai Chi Chuan z instruktorem Jarosławem Świeczkowskim. Tradycyjny styl Chen Tai Chi.",
     images: ["/jaroslaw-swieczkowski-tai-chi.webp"],
   },
   robots: {
