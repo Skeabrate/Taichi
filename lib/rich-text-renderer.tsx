@@ -97,30 +97,10 @@ export function RichTextRenderer({
         const text = extractText(node);
         const id = text ? generateId(text) : "";
         return (
-          <h2 id={id} className="scroll-mt-20">
+          <h2 id={id} className="scroll-mt-2">
             <a
               href={`#${id}`}
               className="text-gray-900 no-underline hover:underline"
-              onClick={(e) => {
-                e.preventDefault();
-                if (typeof window !== "undefined") {
-                  const element = window.document.getElementById(id);
-                  if (element) {
-                    const offset = 80;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition =
-                      elementPosition + window.pageYOffset - offset;
-
-                    // Update URL hash
-                    window.history.pushState(null, "", `#${id}`);
-
-                    window.scrollTo({
-                      top: offsetPosition,
-                      behavior: "smooth",
-                    });
-                  }
-                }
-              }}
             >
               {children}
             </a>

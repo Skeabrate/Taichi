@@ -22,24 +22,6 @@ export function TableOfContents({
     return null;
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Account for sticky nav
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      // Update URL hash
-      window.history.pushState(null, "", `#${id}`);
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <div className="sticky top-0 hidden max-h-[90vh] overflow-y-auto pt-8 md:block">
       <div className="rounded-lg border-2 border-gray-200 bg-white p-6">
@@ -53,7 +35,6 @@ export function TableOfContents({
                 </span>
                 <a
                   href={`#${heading.id}`}
-                  onClick={(e) => handleClick(e, heading.id)}
                   className="block text-base text-gray-600 transition-colors hover:text-red-800"
                 >
                   {heading.text}
