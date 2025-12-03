@@ -80,7 +80,7 @@ export function AboutTaichiSection({
       {/* Background Yin Yang with dots */}
       <div className="absolute top-1/2 right-5 -translate-y-1/2 opacity-[0.02]">
         <YinYang
-          className="text-foreground h-[600px] w-[600px]"
+          className="text-foreground animate-spin-slow h-[600px] w-[600px]"
           withDots={true}
         />
       </div>

@@ -13,7 +13,7 @@ export function BlogHeading({ blogData }: BlogHeadingProps) {
       {/* Background decorative yin yang */}
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 opacity-[0.02]">
         <YinYang
-          className="text-foreground h-[400px] w-[400px]"
+          className="text-foreground h-[400px] w-[400px] animate-spin-slow"
           withDots={true}
         />
       </div>
