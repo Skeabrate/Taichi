@@ -18,16 +18,18 @@ export function BlogPageClient({
   blogData,
 }: BlogPageClientProps) {
   return (
-    <main>
+    <>
       <BlogHeading blogData={blogData} />
-      <section className="bg-white px-4 py-12">
-        <div className="mx-auto max-w-6xl">
+
+      <section className="bg-background relative overflow-hidden pt-8 pb-24 lg:pb-32">
+        <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
           {posts.length === 0 ? (
-            <div className="py-12 text-center text-gray-500">
+            <div className="text-muted-foreground py-12 text-center">
               Brak dostępnych wpisów. Tutaj niedługo pojawią się nowe artykuły.
             </div>
           ) : (
             <>
+              {/* Blog posts grid */}
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post) => (
                   <BlogPostCard key={post.id} post={post} />
@@ -35,12 +37,17 @@ export function BlogPageClient({
               </div>
 
               {totalPages > 1 && (
-                <Pagination currentPage={currentPage} totalPages={totalPages} />
+                <div className="mt-12">
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                  />
+                </div>
               )}
             </>
           )}
         </div>
       </section>
-    </main>
+    </>
   );
 }

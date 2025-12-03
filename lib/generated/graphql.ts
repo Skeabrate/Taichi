@@ -42,24 +42,28 @@ export type Asset = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetcontentTypeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetdescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetfileNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetheightArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -72,12 +76,14 @@ export type AssetlinkedFromArgs = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetsizeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssettitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -85,12 +91,14 @@ export type AssettitleArgs = {
 export type AsseturlArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   transform?: InputMaybe<ImageTransformOptions>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetwidthArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AssetCollection = {
@@ -183,6 +191,7 @@ export type AssetLinkingCollectionsblogPostCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -191,6 +200,7 @@ export type AssetLinkingCollectionsentryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -199,6 +209,7 @@ export type AssetLinkingCollectionsmainPageCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AssetOrder =
@@ -238,6 +249,7 @@ export type Blog = Entry & _Node & {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blog) */
 export type BlogdescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -250,6 +262,7 @@ export type BloglinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blog) */
 export type BlogtitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type BlogCollection = {
@@ -292,6 +305,7 @@ export type BlogLinkingCollectionsentryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type BlogOrder =
@@ -323,18 +337,21 @@ export type BlogPost = Entry & _Node & {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
 export type BlogPostcontentArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
 export type BlogPostcreateDateArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
 export type BlogPostexcerptArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -347,6 +364,7 @@ export type BlogPostlinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
 export type BlogPostslugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -354,12 +372,14 @@ export type BlogPostslugArgs = {
 export type BlogPostthumbnailArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/blogPost) */
 export type BlogPosttitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type BlogPostCollection = {
@@ -470,6 +490,7 @@ export type BlogPostLinkingCollectionsentryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type BlogPostOrder =
@@ -501,12 +522,14 @@ export type ClassesSchedule = Entry & _Node & {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/classesSchedule) */
 export type ClassesScheduledayArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/classesSchedule) */
 export type ClassesSchedulehoursArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -556,6 +579,7 @@ export type ClassesScheduleLinkingCollectionsentryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -565,6 +589,7 @@ export type ClassesScheduleLinkingCollectionsmainPageCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<ClassesScheduleLinkingCollectionsMainPageCollectionOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ClassesScheduleLinkingCollectionsMainPageCollectionOrder =
@@ -677,6 +702,166 @@ export type EntryOrder =
   | 'sys_publishedVersion_ASC'
   | 'sys_publishedVersion_DESC';
 
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/healthBenefits) */
+export type HealthBenefits = Entry & _Node & {
+  __typename?: 'HealthBenefits';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  icon?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  linkedFrom?: Maybe<HealthBenefitsLinkingCollections>;
+  sys: Sys;
+  text?: Maybe<HealthBenefitsText>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/healthBenefits) */
+export type HealthBenefitsiconArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/healthBenefits) */
+export type HealthBenefitslinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/healthBenefits) */
+export type HealthBenefitstextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HealthBenefitsCollection = {
+  __typename?: 'HealthBenefitsCollection';
+  items: Array<Maybe<HealthBenefits>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type HealthBenefitsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<HealthBenefitsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<HealthBenefitsFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  icon_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  text_contains?: InputMaybe<Scalars['String']['input']>;
+  text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text_not_contains?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HealthBenefitsLinkingCollections = {
+  __typename?: 'HealthBenefitsLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  mainPageCollection?: Maybe<MainPageCollection>;
+};
+
+
+export type HealthBenefitsLinkingCollectionsentryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type HealthBenefitsLinkingCollectionsmainPageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<HealthBenefitsLinkingCollectionsMainPageCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HealthBenefitsLinkingCollectionsMainPageCollectionOrder =
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'facebook_ASC'
+  | 'facebook_DESC'
+  | 'instagram_ASC'
+  | 'instagram_DESC'
+  | 'nameLastNameSeniority_ASC'
+  | 'nameLastNameSeniority_DESC'
+  | 'patreon_ASC'
+  | 'patreon_DESC'
+  | 'phoneNumber_ASC'
+  | 'phoneNumber_DESC'
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC'
+  | 'youtube_ASC'
+  | 'youtube_DESC';
+
+export type HealthBenefitsOrder =
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC';
+
+export type HealthBenefitsText = {
+  __typename?: 'HealthBenefitsText';
+  json: Scalars['JSON']['output'];
+  links: HealthBenefitsTextLinks;
+};
+
+export type HealthBenefitsTextAssets = {
+  __typename?: 'HealthBenefitsTextAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type HealthBenefitsTextEntries = {
+  __typename?: 'HealthBenefitsTextEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type HealthBenefitsTextLinks = {
+  __typename?: 'HealthBenefitsTextLinks';
+  assets: HealthBenefitsTextAssets;
+  entries: HealthBenefitsTextEntries;
+  resources: HealthBenefitsTextResources;
+};
+
+export type HealthBenefitsTextResources = {
+  __typename?: 'HealthBenefitsTextResources';
+  block: Array<HealthBenefitsTextResourcesBlock>;
+  hyperlink: Array<HealthBenefitsTextResourcesHyperlink>;
+  inline: Array<HealthBenefitsTextResourcesInline>;
+};
+
+export type HealthBenefitsTextResourcesBlock = ResourceLink & {
+  __typename?: 'HealthBenefitsTextResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type HealthBenefitsTextResourcesHyperlink = ResourceLink & {
+  __typename?: 'HealthBenefitsTextResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type HealthBenefitsTextResourcesInline = ResourceLink & {
+  __typename?: 'HealthBenefitsTextResourcesInline';
+  sys: ResourceSys;
+};
+
 export type ImageFormat =
   /** AVIF image format. */
   | 'AVIF'
@@ -781,6 +966,8 @@ export type MainPage = Entry & _Node & {
   __typename?: 'MainPage';
   _id: Scalars['ID']['output'];
   aboutMe?: Maybe<MainPageAboutMe>;
+  aboutTaichiHealthBenefitsCollection?: Maybe<MainPageAboutTaichiHealthBenefitsCollection>;
+  aboutTaichiLabsCollection?: Maybe<MainPageAboutTaichiLabsCollection>;
   aboutTaichiText?: Maybe<MainPageAboutTaichiText>;
   aboutTaichiTextLeftColumn?: Maybe<MainPageAboutTaichiTextLeftColumn>;
   aboutTaichiTextRightColumn?: Maybe<MainPageAboutTaichiTextRightColumn>;
@@ -810,24 +997,52 @@ export type MainPage = Entry & _Node & {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutMeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPageaboutTaichiHealthBenefitsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<MainPageAboutTaichiHealthBenefitsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<HealthBenefitsFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
+export type MainPageaboutTaichiLabsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<MainPageAboutTaichiLabsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<HealthBenefitsFilter>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutTaichiTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutTaichiTextLeftColumnArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageaboutTaichiTextRightColumnArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -837,6 +1052,7 @@ export type MainPageclassesAssetsCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -847,6 +1063,7 @@ export type MainPageclassesScheduleCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<MainPageClassesScheduleCollectionOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ClassesScheduleFilter>;
 };
 
@@ -854,24 +1071,28 @@ export type MainPageclassesScheduleCollectionArgs = {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagecoordinatesArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageemailArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagefacebookArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageinstagramArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -884,6 +1105,7 @@ export type MainPagelinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagelocalizationArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -891,48 +1113,56 @@ export type MainPagelocalizationArgs = {
 export type MainPagemainAssetArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagenameLastNameSeniorityArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagepatreonArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagepatreonSectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagephoneNumberArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagequoteAboutMeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagequoteAboutTaichiArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPagequoteFooterArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -940,12 +1170,14 @@ export type MainPagequoteFooterArgs = {
 export type MainPagetaichiImageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/df0umoagux3q/content_types/mainPage) */
 export type MainPageyoutubeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type MainPageAboutMe = {
@@ -995,6 +1227,42 @@ export type MainPageAboutMeResourcesInline = ResourceLink & {
   __typename?: 'MainPageAboutMeResourcesInline';
   sys: ResourceSys;
 };
+
+export type MainPageAboutTaichiHealthBenefitsCollection = {
+  __typename?: 'MainPageAboutTaichiHealthBenefitsCollection';
+  items: Array<Maybe<HealthBenefits>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type MainPageAboutTaichiHealthBenefitsCollectionOrder =
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC';
+
+export type MainPageAboutTaichiLabsCollection = {
+  __typename?: 'MainPageAboutTaichiLabsCollection';
+  items: Array<Maybe<HealthBenefits>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type MainPageAboutTaichiLabsCollectionOrder =
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC';
 
 export type MainPageAboutTaichiText = {
   __typename?: 'MainPageAboutTaichiText';
@@ -1176,6 +1444,10 @@ export type MainPageFilter = {
   aboutMe_contains?: InputMaybe<Scalars['String']['input']>;
   aboutMe_exists?: InputMaybe<Scalars['Boolean']['input']>;
   aboutMe_not_contains?: InputMaybe<Scalars['String']['input']>;
+  aboutTaichiHealthBenefits?: InputMaybe<cfHealthBenefitsNestedFilter>;
+  aboutTaichiHealthBenefitsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  aboutTaichiLabs?: InputMaybe<cfHealthBenefitsNestedFilter>;
+  aboutTaichiLabsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   aboutTaichiTextLeftColumn_contains?: InputMaybe<Scalars['String']['input']>;
   aboutTaichiTextLeftColumn_exists?: InputMaybe<Scalars['Boolean']['input']>;
   aboutTaichiTextLeftColumn_not_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1284,6 +1556,7 @@ export type MainPageLinkingCollectionsentryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type MainPageLocalization = {
@@ -1419,6 +1692,8 @@ export type Query = {
   classesSchedule?: Maybe<ClassesSchedule>;
   classesScheduleCollection?: Maybe<ClassesScheduleCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  healthBenefits?: Maybe<HealthBenefits>;
+  healthBenefitsCollection?: Maybe<HealthBenefitsCollection>;
   mainPage?: Maybe<MainPage>;
   mainPageCollection?: Maybe<MainPageCollection>;
 };
@@ -1428,6 +1703,7 @@ export type Query_nodeArgs = {
   id: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1435,6 +1711,7 @@ export type Query_nodesArgs = {
   ids: Array<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1442,6 +1719,7 @@ export type QueryassetArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1451,6 +1729,7 @@ export type QueryassetCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<AssetOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetFilter>;
 };
 
@@ -1459,6 +1738,7 @@ export type QueryblogArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1468,6 +1748,7 @@ export type QueryblogCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<BlogOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<BlogFilter>;
 };
 
@@ -1476,6 +1757,7 @@ export type QueryblogPostArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1485,6 +1767,7 @@ export type QueryblogPostCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<BlogPostOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<BlogPostFilter>;
 };
 
@@ -1493,6 +1776,7 @@ export type QueryclassesScheduleArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1502,6 +1786,7 @@ export type QueryclassesScheduleCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<ClassesScheduleOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ClassesScheduleFilter>;
 };
 
@@ -1512,7 +1797,27 @@ export type QueryentryCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<EntryOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryhealthBenefitsArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryhealthBenefitsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<HealthBenefitsOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<HealthBenefitsFilter>;
 };
 
 
@@ -1520,6 +1825,7 @@ export type QuerymainPageArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1529,6 +1835,7 @@ export type QuerymainPageCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<MainPageOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<MainPageFilter>;
 };
 
@@ -1632,6 +1939,20 @@ export type cfClassesScheduleNestedFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
+export type cfHealthBenefitsNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<cfHealthBenefitsNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<cfHealthBenefitsNestedFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  icon_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  text_contains?: InputMaybe<Scalars['String']['input']>;
+  text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text_not_contains?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type GetBlogQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1677,7 +1998,7 @@ export type GetBlogPostsCountQuery = { __typename?: 'Query', blogPostCollection?
 export type GetMainPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMainPageQuery = { __typename?: 'Query', mainPageCollection?: { __typename?: 'MainPageCollection', items: Array<{ __typename?: 'MainPage', nameLastNameSeniority?: string | null, quoteAboutMe?: string | null, phoneNumber?: string | null, email?: string | null, facebook?: string | null, instagram?: string | null, youtube?: string | null, patreon?: string | null, quoteFooter?: string | null, quoteAboutTaichi?: string | null, sys: { __typename?: 'Sys', id: string }, aboutMe?: { __typename?: 'MainPageAboutMe', json: Record<string, any>, links: { __typename?: 'MainPageAboutMeLinks', assets: { __typename?: 'MainPageAboutMeAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, mainAsset?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, classesScheduleCollection?: { __typename?: 'MainPageClassesScheduleCollection', items: Array<{ __typename?: 'ClassesSchedule', day?: string | null, hours?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, localization?: { __typename?: 'MainPageLocalization', json: Record<string, any>, links: { __typename?: 'MainPageLocalizationLinks', assets: { __typename?: 'MainPageLocalizationAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, coordinates?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, patreonSection?: { __typename?: 'MainPagePatreonSection', json: Record<string, any>, links: { __typename?: 'MainPagePatreonSectionLinks', assets: { __typename?: 'MainPagePatreonSectionAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesAssetsCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, aboutTaichiText?: { __typename?: 'MainPageAboutTaichiText', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLinks', assets: { __typename?: 'MainPageAboutTaichiTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, taichiImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, aboutTaichiTextLeftColumn?: { __typename?: 'MainPageAboutTaichiTextLeftColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLeftColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextLeftColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, aboutTaichiTextRightColumn?: { __typename?: 'MainPageAboutTaichiTextRightColumn', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextRightColumnLinks', assets: { __typename?: 'MainPageAboutTaichiTextRightColumnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type GetMainPageQuery = { __typename?: 'Query', mainPageCollection?: { __typename?: 'MainPageCollection', items: Array<{ __typename?: 'MainPage', nameLastNameSeniority?: string | null, quoteAboutMe?: string | null, phoneNumber?: string | null, email?: string | null, facebook?: string | null, instagram?: string | null, youtube?: string | null, patreon?: string | null, quoteFooter?: string | null, quoteAboutTaichi?: string | null, sys: { __typename?: 'Sys', id: string }, aboutMe?: { __typename?: 'MainPageAboutMe', json: Record<string, any>, links: { __typename?: 'MainPageAboutMeLinks', assets: { __typename?: 'MainPageAboutMeAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, mainAsset?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, classesScheduleCollection?: { __typename?: 'MainPageClassesScheduleCollection', items: Array<{ __typename?: 'ClassesSchedule', day?: string | null, hours?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, localization?: { __typename?: 'MainPageLocalization', json: Record<string, any>, links: { __typename?: 'MainPageLocalizationLinks', assets: { __typename?: 'MainPageLocalizationAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, coordinates?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, patreonSection?: { __typename?: 'MainPagePatreonSection', json: Record<string, any>, links: { __typename?: 'MainPagePatreonSectionLinks', assets: { __typename?: 'MainPagePatreonSectionAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, classesAssetsCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, aboutTaichiText?: { __typename?: 'MainPageAboutTaichiText', json: Record<string, any>, links: { __typename?: 'MainPageAboutTaichiTextLinks', assets: { __typename?: 'MainPageAboutTaichiTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, taichiImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, aboutTaichiHealthBenefitsCollection?: { __typename?: 'MainPageAboutTaichiHealthBenefitsCollection', items: Array<{ __typename?: 'HealthBenefits', icon?: Array<string | null> | null, sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'HealthBenefitsText', json: Record<string, any>, links: { __typename?: 'HealthBenefitsTextLinks', assets: { __typename?: 'HealthBenefitsTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null, aboutTaichiLabsCollection?: { __typename?: 'MainPageAboutTaichiLabsCollection', items: Array<{ __typename?: 'HealthBenefits', icon?: Array<string | null> | null, sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'HealthBenefitsText', json: Record<string, any>, links: { __typename?: 'HealthBenefitsTextLinks', assets: { __typename?: 'HealthBenefitsTextAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null } | null> } | null };
 
 
 export const GetBlog = gql`
@@ -1935,38 +2256,54 @@ export const GetMainPage = gql`
         width
         height
       }
-      aboutTaichiTextLeftColumn {
-        json
-        links {
-          assets {
-            block {
-              sys {
-                id
+      aboutTaichiHealthBenefitsCollection {
+        items {
+          sys {
+            id
+          }
+          icon
+          text {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  description
+                  contentType
+                  width
+                  height
+                }
               }
-              url
-              title
-              description
-              contentType
-              width
-              height
             }
           }
         }
       }
-      aboutTaichiTextRightColumn {
-        json
-        links {
-          assets {
-            block {
-              sys {
-                id
+      aboutTaichiLabsCollection {
+        items {
+          sys {
+            id
+          }
+          icon
+          text {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  description
+                  contentType
+                  width
+                  height
+                }
               }
-              url
-              title
-              description
-              contentType
-              width
-              height
             }
           }
         }

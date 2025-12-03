@@ -132,38 +132,54 @@ query GetMainPage {
         width
         height
       }
-      aboutTaichiTextLeftColumn {
-        json
-        links {
-          assets {
-            block {
-              sys {
-                id
+      aboutTaichiHealthBenefitsCollection {
+        items {
+          sys {
+            id
+          }
+          icon
+          text {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  description
+                  contentType
+                  width
+                  height
+                }
               }
-              url
-              title
-              description
-              contentType
-              width
-              height
             }
           }
         }
       }
-      aboutTaichiTextRightColumn {
-        json
-        links {
-          assets {
-            block {
-              sys {
-                id
+      aboutTaichiLabsCollection {
+        items {
+          sys {
+            id
+          }
+          icon
+          text {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  description
+                  contentType
+                  width
+                  height
+                }
               }
-              url
-              title
-              description
-              contentType
-              width
-              height
             }
           }
         }

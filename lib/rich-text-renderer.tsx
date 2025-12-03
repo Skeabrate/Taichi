@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES, MARKS, Document } from "@contentful/rich-text-types";
 import { ReactNode } from "react";
 import Image from "next/image";
+import { CheckCircle } from "lucide-react";
 
 interface RichTextRendererProps {
   document: Document;
@@ -22,6 +23,8 @@ interface RichTextRendererProps {
     };
   };
   onHeadingsExtracted?: (headings: Array<{ id: string; text: string }>) => void;
+  useCheckCircleIcons?: boolean;
+  blogPostStyle?: boolean;
 }
 
 /**
@@ -61,6 +64,8 @@ export function RichTextRenderer({
   className,
   links,
   onHeadingsExtracted,
+  useCheckCircleIcons = false,
+  blogPostStyle = false,
 }: RichTextRendererProps) {
   // Create a map of asset IDs to asset data for quick lookup
   const assetMap = new Map<string, any>();
@@ -107,20 +112,42 @@ export function RichTextRenderer({
           </h2>
         );
       },
-      [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => (
-        <h3 className="font-eagle-lake mb-4 text-2xl font-bold text-red-800">
-          {children}
-        </h3>
+      [BLOCKS.HEADING_3]: (node: any, children: ReactNode) =>
+        blogPostStyle ? (
+          <h3 className="mb-4">
+            {children}
+          </h3>
+        ) : (
+          <h3 className="font-eagle-lake mb-4 text-2xl font-bold text-red-800">
+            {children}
+          </h3>
+        ),
+      [BLOCKS.HEADING_4]: (node: any, children: ReactNode) => (
+        <h4 className="text-foreground mb-4 font-semibold">{children}</h4>
       ),
       [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
-        <ul className="mb-4 ml-6 list-disc space-y-2">{children}</ul>
+        <ul
+          className={`mb-4 space-y-2 ${
+            useCheckCircleIcons ? "ml-0 list-none" : "ml-6 list-disc"
+          }`}
+        >
+          {children}
+        </ul>
       ),
       [BLOCKS.OL_LIST]: (node: any, children: ReactNode) => (
         <ol className="mb-4 ml-6 list-decimal space-y-2">{children}</ol>
       ),
-      [BLOCKS.LIST_ITEM]: (node: any, children: ReactNode) => (
-        <li className="pl-2 [&>p]:mb-0">{children}</li>
-      ),
+      [BLOCKS.LIST_ITEM]: (node: any, children: ReactNode) =>
+        useCheckCircleIcons ? (
+          <li className="mb-2.5 flex items-start gap-3">
+            <CheckCircle className="text-primary mt-0.5 h-5 w-5 shrink-0" />
+            <div className="flex-1 [&>p]:!m-0 [&>p]:leading-relaxed">
+              {children}
+            </div>
+          </li>
+        ) : (
+          <li className="pl-2 [&>p]:mb-0">{children}</li>
+        ),
       [BLOCKS.PARAGRAPH]: (node: any, children: ReactNode) => (
         <p className="mb-4 leading-relaxed">{children}</p>
       ),

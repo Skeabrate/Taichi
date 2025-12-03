@@ -1,19 +1,18 @@
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import type { MainPageData } from "@/lib/contentful";
 import type { Document } from "@contentful/rich-text-types";
-import Image from "next/image";
-import { YinYang } from "@/components/YinYang";
-import { ChineseBorder } from "@/components/ChineseBorder";
+import { ChineseOrnament } from "@/components/ChineseOrnament";
 import { SECTION_ID_ABOUT, NAV_LABEL_ABOUT } from "@/lib/constants";
 import { FadeInTitle } from "@/components/animations/FadeInTitle";
 import { FadeInImage } from "@/components/animations/FadeInImage";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { DecoratedImage } from "@/components/DecoratedImage";
 
-interface AboutSectionProps {
+type AboutSectionProps = {
   aboutMe?: MainPageData["aboutMe"];
   quoteAboutMe?: MainPageData["quoteAboutMe"];
   mainAsset?: MainPageData["mainAsset"];
-}
+};
 
 export function AboutSection({
   aboutMe,
@@ -23,47 +22,57 @@ export function AboutSection({
   return (
     <section
       id={SECTION_ID_ABOUT}
-      className="flex items-center justify-center bg-neutral-100 px-4 py-12 sm:py-28"
+      className="bg-background relative overflow-hidden py-24 lg:py-32"
     >
-      <div className="w-full max-w-6xl">
-        <FadeInTitle className="mb-12 flex w-full flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
-          <div className="mb-2 flex items-center gap-4">
-            <YinYang />
+      {/* Corner ornaments */}
+      <ChineseOrnament
+        variant="corner"
+        className="absolute top-8 left-8 opacity-20"
+      />
+      <ChineseOrnament
+        variant="corner"
+        className="absolute top-8 right-8 rotate-90 opacity-20"
+      />
+
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        {/* Section title */}
+        <FadeInTitle className="mb-16 text-center">
+          <ChineseOrnament variant="divider" className="mb-6" />
+          <h2 className="font-heading text-foreground text-3xl font-normal tracking-wide sm:text-4xl">
             {NAV_LABEL_ABOUT}
-            <YinYang />
-          </div>
-          <ChineseBorder />
+          </h2>
+          <div className="bg-primary mx-auto mt-4 h-1 w-16" />
         </FadeInTitle>
 
-        <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Image */}
           {mainAsset?.url && (
             <FadeInImage>
-              <div className="relative">
-                <div className="absolute -top-4 -left-4 h-full w-full rounded-3xl border-2 border-black opacity-20" />
-                <div className="relative h-[500px] w-full overflow-hidden rounded-3xl border-4 border-black sm:h-[600px] md:h-[700px]">
-                  <Image
-                    src={mainAsset.url}
-                    alt={mainAsset.title ?? mainAsset.description ?? ""}
-                    width={mainAsset.width || 800}
-                    height={mainAsset.height || 500}
-                    className="h-full w-full object-cover object-top"
-                  />
-                </div>
-              </div>
+              <DecoratedImage
+                src={mainAsset.url}
+                alt={mainAsset.title ?? mainAsset.description ?? ""}
+                width={mainAsset.width || 800}
+                height={mainAsset.height || 1000}
+                aspectRatio="aspect-[4/5]"
+                imageClassName="h-full w-full object-cover"
+              />
             </FadeInImage>
           )}
 
-          <FadeIn delay={0.2} className="space-y-8 text-lg leading-relaxed">
+          {/* Content */}
+          <FadeIn delay={0.2} className="space-y-6">
             {aboutMe?.json && (
-              <RichTextRenderer document={aboutMe.json as Document} />
+              <div className="prose prose-lg">
+                <RichTextRenderer document={aboutMe.json as Document} />
+              </div>
             )}
 
             {quoteAboutMe && (
-              <div className="mt-12 border-t-2 border-gray-300 pt-8">
-                <p className="text-center text-gray-600 italic">
+              <blockquote className="border-primary relative mt-8 border-l-2 pl-6">
+                <p className="text-muted-foreground text-lg italic">
                   &ldquo;{quoteAboutMe}&rdquo;
                 </p>
-              </div>
+              </blockquote>
             )}
           </FadeIn>
         </div>

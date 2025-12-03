@@ -1,24 +1,31 @@
 import { Footer } from "@/components/sections/FooterSection";
+import { StickyNav } from "@/components/StickyNav";
 import { fetchMainPageData } from "@/lib/contentful";
 import { GOOGLE_SITE_VERIFICATION, NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
-import type { Metadata } from "next";
-import { Eagle_Lake, Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Noto_Serif_SC, Eagle_Lake, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const notoSerifSC = Noto_Serif_SC({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-noto-serif-sc",
+});
+
+const eagleLake = Eagle_Lake({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-eagle-lake",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const eagleLake = Eagle_Lake({
-  variable: "--font-eagle-lake",
-  subsets: ["latin"],
-  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -98,6 +105,12 @@ export const metadata: Metadata = {
   category: "martial arts",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#c41e3a",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -106,10 +119,11 @@ export default async function RootLayout({
   const mainPageData = await fetchMainPageData();
 
   return (
-    <html lang="en">
+    <html lang="pl">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${eagleLake.variable} antialiased`}
+        className={`${inter.variable} ${notoSerifSC.variable} ${eagleLake.variable} ${geistMono.variable} font-sans antialiased`}
       >
+        <StickyNav />
         {children}
         <Footer {...mainPageData} />
       </body>

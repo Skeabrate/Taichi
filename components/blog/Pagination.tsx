@@ -10,10 +10,10 @@ import {
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-interface PaginationProps {
+type PaginationProps = {
   currentPage: number;
   totalPages: number;
-}
+};
 
 export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const getPageHref = (page: number) => {
@@ -23,30 +23,25 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
 
   const getPageNumbers = (): (number | "ellipsis")[] => {
     if (totalPages <= 7) {
-      // Show all pages if 7 or fewer
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
     const pages: (number | "ellipsis")[] = [];
 
-    // Always show first page
     pages.push(1);
 
     if (currentPage <= 4) {
-      // Near the beginning: 1 2 3 4 5 ... last
       for (let i = 2; i <= 5; i++) {
         pages.push(i);
       }
       pages.push("ellipsis");
       pages.push(totalPages);
     } else if (currentPage >= totalPages - 3) {
-      // Near the end: 1 ... (last-4) (last-3) (last-2) (last-1) last
       pages.push("ellipsis");
       for (let i = totalPages - 4; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // In the middle: 1 ... (current-1) current (current+1) ... last
       pages.push("ellipsis");
       pages.push(currentPage - 1);
       pages.push(currentPage);
@@ -68,7 +63,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
             <PaginationItem className="hidden md:block">
               <PaginationPrevious
                 href={getPageHref(currentPage - 1)}
-                className="gap-1"
+                className="border-border text-muted-foreground hover:border-primary/50 hover:text-primary gap-1 border transition-colors"
                 size="default"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -81,7 +76,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
             if (page === "ellipsis") {
               return (
                 <PaginationItem key={`ellipsis-${index}`}>
-                  <PaginationEllipsis className="h-8 w-8" />
+                  <PaginationEllipsis className="text-muted-foreground h-8 w-8" />
                 </PaginationItem>
               );
             }
@@ -94,9 +89,9 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
                   isActive={isActive}
                   size="icon"
                   className={cn(
-                    "h-8 w-8 text-sm",
+                    "border-border text-muted-foreground hover:border-primary/50 hover:text-primary h-8 w-8 border text-sm transition-colors",
                     isActive &&
-                      "border-2 border-red-800 bg-red-800 text-white hover:bg-red-900 hover:text-white",
+                      "border-primary bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
                   )}
                 >
                   {page}
@@ -109,7 +104,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
             <PaginationItem className="hidden md:block">
               <PaginationNext
                 href={getPageHref(currentPage + 1)}
-                className="gap-1"
+                className="border-border text-muted-foreground hover:border-primary/50 hover:text-primary gap-1 border transition-colors"
                 size="default"
               >
                 <span>Następna</span>
@@ -124,7 +119,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
           {currentPage > 1 && (
             <PaginationPrevious
               href={getPageHref(currentPage - 1)}
-              className="gap-1"
+              className="border-border text-muted-foreground hover:border-primary/50 hover:text-primary gap-1 border transition-colors"
               size="default"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -134,7 +129,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
           {currentPage < totalPages && (
             <PaginationNext
               href={getPageHref(currentPage + 1)}
-              className="gap-1"
+              className="border-border text-muted-foreground hover:border-primary/50 hover:text-primary gap-1 border transition-colors"
               size="default"
             >
               <span>Następna</span>

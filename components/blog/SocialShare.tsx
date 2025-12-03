@@ -1,6 +1,6 @@
 "use client";
 
-import { Facebook, Twitter, Copy, Check } from "lucide-react";
+import { Facebook, Twitter, Link as LinkIcon } from "lucide-react";
 import { useState } from "react";
 
 interface SocialShareProps {
@@ -19,7 +19,7 @@ export function SocialShare({ url, title }: SocialShareProps) {
     twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
   };
 
-  const handleCopy = async () => {
+  const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -30,40 +30,44 @@ export function SocialShare({ url, title }: SocialShareProps) {
   };
 
   return (
-    <div className="mt-6 border-t border-gray-200 pt-6">
-      <h3 className="mb-2 text-xl font-bold text-gray-900">Udostępnij</h3>
-      <p className="mb-3 text-base text-gray-600">
+    <div className="bg-muted/30 border-border rounded-lg border p-6">
+      <h3 className="text-foreground font-heading mb-2 text-lg font-semibold">
+        Udostępnij
+      </h3>
+      <p className="text-muted-foreground mb-4 text-sm">
         Podziel się tym artykułem z innymi
       </p>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex items-center gap-3">
         <a
           href={shareLinks.facebook}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-700 transition-colors hover:border-red-800 hover:bg-red-50 hover:text-red-800"
-          title="Udostępnij na Facebooku"
+          className="bg-primary/10 hover:bg-primary text-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors hover:text-white"
           aria-label="Udostępnij na Facebooku"
         >
-          <Facebook size={20} />
+          <Facebook className="h-5 w-5" />
         </a>
         <a
           href={shareLinks.twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-700 transition-colors hover:border-red-800 hover:bg-red-50 hover:text-red-800"
-          title="Udostępnij na X"
+          className="bg-primary/10 hover:bg-primary text-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors hover:text-white"
           aria-label="Udostępnij na X"
         >
-          <Twitter size={20} />
+          <Twitter className="h-5 w-5" />
         </a>
         <button
-          onClick={handleCopy}
-          className="flex items-center justify-center rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-700 transition-colors hover:border-red-800 hover:bg-red-50 hover:text-red-800"
-          title={copied ? "Skopiowano!" : "Kopiuj link"}
-          aria-label={copied ? "Skopiowano!" : "Kopiuj link"}
+          onClick={handleCopyLink}
+          className="bg-primary/10 hover:bg-primary text-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors hover:text-white"
+          aria-label="Kopiuj link"
         >
-          {copied ? <Check size={20} /> : <Copy size={20} />}
+          <LinkIcon className="h-5 w-5" />
         </button>
+        {copied && (
+          <span className="text-primary animate-fade-in text-sm">
+            Skopiowano!
+          </span>
+        )}
       </div>
     </div>
   );

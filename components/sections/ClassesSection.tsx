@@ -1,11 +1,11 @@
 "use client";
 
-import { ChineseBorder } from "@/components/ChineseBorder";
+import { ChineseOrnament } from "@/components/ChineseOrnament";
 import { YinYang } from "@/components/YinYang";
 import { NAV_LABEL_CLASSES, SECTION_ID_CLASSES } from "@/lib/constants";
 import type { MainPageData } from "@/lib/contentful";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
-import { Clock, MapPin, Play } from "lucide-react";
+import { Clock, MapPin, Video, Play, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { ImageLightbox } from "../ImageLightbox";
@@ -13,14 +13,14 @@ import { FadeInTitle } from "@/components/animations/FadeInTitle";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { FadeInImage } from "@/components/animations/FadeInImage";
 
-interface ClassesSectionProps {
+type ClassesSectionProps = {
   classesScheduleCollection?: MainPageData["classesScheduleCollection"];
   localization?: MainPageData["localization"];
   coordinates?: MainPageData["coordinates"];
   patreonSection?: MainPageData["patreonSection"];
   patreon?: MainPageData["patreon"];
   classesAssetsCollection?: MainPageData["classesAssetsCollection"];
-}
+};
 
 export function ClassesSection({
   classesScheduleCollection,
@@ -66,70 +66,132 @@ export function ClassesSection({
     return null;
   };
 
+  const displayedMedia = showAllPhotos
+    ? trainingMedia
+    : trainingMedia.slice(0, 6);
+
   return (
     <section
       id={SECTION_ID_CLASSES}
-      className="bg-neutral-100 px-4 py-12 sm:py-28"
+      className="bg-background relative overflow-hidden py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-7xl">
-        <FadeInTitle className="mb-12 flex flex-col items-center justify-center gap-4 pb-2 text-3xl font-bold sm:text-5xl">
-          <div className="mb-2 flex items-center gap-4">
-            <YinYang />
+      {/* Decorative bamboo */}
+      <svg
+        className="absolute top-1/4 left-4 h-auto w-12 opacity-5"
+        viewBox="0 0 50 200"
+      >
+        <line
+          x1="25"
+          y1="0"
+          x2="25"
+          y2="200"
+          stroke="currentColor"
+          strokeWidth="3"
+        />
+        <ellipse
+          cx="25"
+          cy="40"
+          rx="10"
+          ry="3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <ellipse
+          cx="25"
+          cy="100"
+          rx="10"
+          ry="3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <ellipse
+          cx="25"
+          cy="160"
+          rx="10"
+          ry="3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+      </svg>
+
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        {/* Section title */}
+        <FadeInTitle className="mb-16 text-center">
+          <ChineseOrnament variant="divider" className="mb-6" />
+          <h2 className="font-heading text-foreground text-3xl font-normal tracking-wide sm:text-4xl">
             {NAV_LABEL_CLASSES}
-            <YinYang />
-          </div>
-          <ChineseBorder />
+          </h2>
+          <div className="bg-primary mx-auto mt-4 h-1 w-16" />
         </FadeInTitle>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Left column: Harmonogram and Nauka Online */}
-          <FadeIn delay={0.1} className="space-y-6">
-            <div className="rounded-3xl border-2 border-gray-300 p-8">
-              <div className="mb-6 flex items-start gap-4">
-                <Clock className="mt-1 h-8 w-8" />
-                <div>
-                  <h3 className="mb-4 text-2xl font-bold">HARMONOGRAM</h3>
-                  {classesSchedule && classesSchedule.length > 0 && (
-                    <div className="space-y-3">
-                      {classesSchedule
-                        .filter(
-                          (
-                            schedule,
-                          ): schedule is NonNullable<typeof schedule> =>
-                            schedule != null,
-                        )
-                        .map((schedule, index, array) => (
-                          <div
-                            key={schedule.sys.id || index}
-                            className={
-                              index < array.length - 1
-                                ? "border-b border-gray-300 pb-3"
-                                : "pb-3"
-                            }
-                          >
-                            {schedule.day && (
-                              <p className="font-bold">{schedule.day}</p>
-                            )}
-                            {schedule.hours && (
-                              <p className="text-gray-600">{schedule.hours}</p>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                  )}
-                </div>
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Left column: Schedule and Online Learning */}
+          <FadeIn delay={0.1} className="space-y-8">
+            {/* Schedule Card */}
+            <div className="border-border bg-muted/30 rounded-lg border p-8">
+              <div className="mb-6 flex items-center gap-3">
+                <Clock className="text-primary h-6 w-6" />
+                <h3 className="text-foreground text-xl font-semibold">
+                  HARMONOGRAM
+                </h3>
               </div>
+              {classesSchedule && classesSchedule.length > 0 && (
+                <div className="space-y-3">
+                  {classesSchedule
+                    .filter(
+                      (schedule): schedule is NonNullable<typeof schedule> =>
+                        schedule != null,
+                    )
+                    .map((schedule, index) => (
+                      <div
+                        key={schedule.sys.id || index}
+                        className="bg-background flex items-center justify-between rounded-lg p-4"
+                      >
+                        {schedule.day && (
+                          <span className="text-foreground font-semibold">
+                            {schedule.day}
+                          </span>
+                        )}
+                        {schedule.hours && (
+                          <span className="text-primary text-lg font-bold">
+                            {schedule.hours}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
 
-            {patreonSection?.json && (
-              <div className="rounded-3xl border-2 border-gray-300 bg-gray-50 p-8">
-                <RichTextRenderer document={patreonSection.json as any} />
+            {/* Online Learning */}
+            {(patreonSection?.json || patreonUrl) && (
+              <div className="border-border bg-muted/30 rounded-lg border p-8">
+                <div className="mb-4 flex items-center gap-3">
+                  <Video className="text-primary h-6 w-6" />
+                  <h3 className="text-foreground text-xl font-semibold">
+                    NAUKA ONLINE
+                  </h3>
+                  <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">
+                    w przygotowaniu
+                  </span>
+                </div>
+                {patreonSection?.json && (
+                  <div className="prose prose-sm text-muted-foreground mb-6">
+                    <RichTextRenderer
+                      document={patreonSection.json as any}
+                      useCheckCircleIcons={true}
+                    />
+                  </div>
+                )}
                 {patreonUrl && (
                   <a
                     href={patreonUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block rounded-lg bg-black px-8 py-3 font-bold text-white transition-all hover:scale-105 hover:bg-gray-800 hover:shadow-lg"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 mt-6 inline-block rounded-full px-6 py-3 font-medium transition-all"
                   >
                     ODWIEDŹ PATREON
                   </a>
@@ -138,116 +200,132 @@ export function ClassesSection({
             )}
           </FadeIn>
 
-          {/* Right column: Lokalizacja */}
-          <FadeIn delay={0.2} className="flex">
-            <div className="flex w-full flex-col rounded-3xl border-2 border-gray-300 p-8">
-              <div className="flex items-start gap-4">
-                <MapPin className="mt-1 h-8 w-8 shrink-0" />
-                <div className="w-full flex-1">
-                  <h3 className="mb-4 text-2xl font-bold">LOKALIZACJA</h3>
-                  {localization?.json && (
-                    <RichTextRenderer document={localization.json as any} />
-                  )}
-                  {getGoogleMapsUrl() && (
-                    <div className="mt-4 flex-1 overflow-hidden rounded-2xl border-2 border-gray-300">
-                      <iframe
-                        src={getGoogleMapsUrl()!}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0, minHeight: "300px" }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="Lokalizacja zajęć"
-                        className="h-full w-full"
-                      />
-                    </div>
-                  )}
+          {/* Right column: Location Card */}
+          <FadeIn delay={0.2}>
+            <div className="bg-foreground text-background relative h-full overflow-hidden rounded-lg p-8">
+              <div className="absolute top-4 right-4 opacity-10">
+                <YinYang className="h-24 w-24" />
+              </div>
+
+              <div className="relative">
+                <div className="mb-6 flex items-center gap-3">
+                  <MapPin className="text-primary h-6 w-6" />
+                  <h3 className="text-xl font-semibold">LOKALIZACJA</h3>
                 </div>
+
+                {localization?.json && (
+                  <div className="text-background/80 mb-6">
+                    <RichTextRenderer document={localization.json as any} />
+                  </div>
+                )}
+
+                {getGoogleMapsUrl() && (
+                  <div className="bg-background/10 aspect-video overflow-hidden rounded-lg">
+                    <iframe
+                      src={getGoogleMapsUrl()!}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Lokalizacja zajęć"
+                      className="h-full w-full"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </FadeIn>
         </div>
 
-        {/* Image gallery grid below */}
+        {/* Gallery */}
         {trainingMedia.length > 0 && (
-          <div className="mt-12">
-            <div className="relative">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {trainingMedia
-                  .slice(0, showAllPhotos ? trainingMedia.length : 6)
-                  .map((media, displayIndex) => {
-                    const originalIndex = displayIndex;
-                    const delay = 0.3 + displayIndex * 0.1;
-                    return (
-                      <FadeInImage key={originalIndex} delay={delay}>
-                        <div
-                          className={`group relative aspect-square cursor-pointer overflow-hidden rounded-3xl border-2 border-gray-300 ${
-                            !showAllPhotos && displayIndex === 5 ? "relative" : ""
-                          }`}
-                          onClick={() => openLightbox(originalIndex)}
-                        >
-                        {media.isVideo ? (
-                          <>
-                            <video
-                              src={media.url}
-                              className="h-full w-full object-cover transition-transform group-hover:scale-110"
-                              muted
-                              playsInline
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
-                              <div className="flex flex-col items-center gap-2">
-                                <div className="rounded-full bg-white/90 p-4">
-                                  <Play
-                                    className="h-8 w-8 text-black"
-                                    fill="black"
-                                  />
-                                </div>
-                                <span className="text-sm font-bold text-white">
-                                  Kliknij aby odtworzyć
-                                </span>
-                              </div>
+          <div className="mt-16">
+            <h3 className="font-eagle-lake mb-8 text-center text-2xl font-bold text-red-800">
+              Galeria
+            </h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+              {displayedMedia.map((media, i) => {
+                const isLastVisible =
+                  !showAllPhotos && i === 5 && trainingMedia.length > 6;
+
+                return (
+                  <FadeInImage key={i} delay={0.3 + i * 0.05}>
+                    <div
+                      className="group bg-muted relative aspect-video cursor-pointer overflow-hidden rounded-lg"
+                      onClick={() => openLightbox(i)}
+                    >
+                      {media.isVideo ? (
+                        <>
+                          <video
+                            src={media.url}
+                            className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                            muted
+                            playsInline
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
+                            <div className="rounded-full bg-white/90 p-3">
+                              <Play
+                                className="h-6 w-6 text-black"
+                                fill="black"
+                              />
                             </div>
-                          </>
-                        ) : (
-                          <>
-                            <Image
-                              src={media.url}
-                              alt={
-                                media.title ??
-                                media.description ??
-                                `Zdjęcie z treningu ${originalIndex + 1}`
-                              }
-                              fill
-                              className="object-cover object-top transition-transform group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/10">
-                              <span className="text-sm font-bold text-white opacity-0 transition-opacity group-hover:opacity-100">
-                                Kliknij aby powiększyć
-                              </span>
-                            </div>
-                          </>
-                        )}
-                        {/* Blur overlay on 6th image when not showing all */}
-                        {!showAllPhotos && displayIndex === 5 && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-md">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setShowAllPhotos(true);
-                              }}
-                              className="rounded-full bg-red-800 px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-red-800"
-                            >
-                              Pokaż wszystkie zdjęcia ({trainingMedia.length})
-                            </button>
                           </div>
-                        )}
-                        </div>
-                      </FadeInImage>
-                    );
-                  })}
-              </div>
+                        </>
+                      ) : (
+                        <>
+                          <Image
+                            src={media.url}
+                            alt={
+                              media.title ??
+                              media.description ??
+                              `Zdjęcie z treningu ${i + 1}`
+                            }
+                            fill
+                            className="object-cover transition-all duration-500 group-hover:scale-105"
+                          />
+                          {/* Red inset shadow hover effect */}
+                          <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(196,30,58,0.6)]" />
+                          </div>
+                        </>
+                      )}
+
+                      {/* Show more overlay on last visible image */}
+                      {isLastVisible && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowAllPhotos(true);
+                          }}
+                          className="bg-foreground/70 text-background hover:bg-foreground/80 absolute inset-0 flex flex-col items-center justify-center gap-2 transition-colors"
+                        >
+                          <span className="text-lg font-semibold">
+                            +{trainingMedia.length - 6}
+                          </span>
+                          <span className="flex items-center gap-1 text-sm">
+                            Zobacz więcej <ChevronRight className="h-4 w-4" />
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                  </FadeInImage>
+                );
+              })}
             </div>
+
+            {/* Show less button */}
+            {showAllPhotos && trainingMedia.length > 6 && (
+              <div className="mt-6 text-center">
+                <button
+                  onClick={() => setShowAllPhotos(false)}
+                  className="border-primary/50 text-primary hover:bg-primary rounded-full border px-6 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                >
+                  Pokaż mniej
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -11,11 +11,13 @@ export default async function BlogPage() {
   const listItems = posts.map(mapToBlogPostListItem);
 
   return (
-    <BlogPageClient
-      posts={listItems}
-      totalPages={totalPages}
-      currentPage={1}
-      blogData={blogData}
-    />
+    <main className="bg-background min-h-screen">
+      <BlogPageClient
+        posts={listItems}
+        totalPages={totalPages}
+        currentPage={1}
+        blogData={blogData}
+      />
+    </main>
   );
 }

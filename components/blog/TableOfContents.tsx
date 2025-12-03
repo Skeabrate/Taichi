@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { SocialShare } from "./SocialShare";
 
 interface TableOfContentsItem {
@@ -18,35 +19,74 @@ export function TableOfContents({
   shareUrl,
   shareTitle,
 }: TableOfContentsProps) {
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-100px 0px -66%" },
+    );
+
+    headings.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [headings]);
+
   if (headings.length === 0) {
     return null;
   }
 
   return (
-    <div className="max-h-[90vh] overflow-y-auto pt-8 md:sticky md:top-0">
-      <div className="rounded-lg border-2 border-gray-200 bg-white p-6">
-        <h3 className="mb-5 text-xl font-bold text-gray-900">Spis treści</h3>
+    <div className="space-y-8">
+      {/* Table of Contents */}
+      <div className="bg-muted/30 border-border rounded-lg border p-6">
+        <h3 className="text-foreground font-heading mb-4 text-lg font-semibold">
+          Spis treści
+        </h3>
         <nav>
           <ol className="space-y-2">
-            {headings.map((heading, index) => (
-              <li key={heading.id} className="flex gap-3">
-                <span className="shrink-0 font-semibold text-gray-400">
+            {headings.map((item, index) => (
+              <li key={item.id} className="flex items-start gap-2">
+                <span
+                  className={`min-w-[20px] text-sm transition-colors ${
+                    activeSection === item.id
+                      ? "text-primary font-medium"
+                      : "text-muted-foreground"
+                  }`}
+                >
                   {index + 1}.
                 </span>
                 <a
-                  href={`#${heading.id}`}
-                  className="block text-base text-gray-600 transition-colors hover:text-red-800"
+                  href={`#${item.id}`}
+                  className={`hover:text-primary cursor-pointer text-sm transition-colors ${
+                    activeSection === item.id
+                      ? "text-primary border-primary -ml-2 border-l-2 pl-2 font-medium"
+                      : "text-muted-foreground"
+                  }`}
                 >
-                  {heading.text}
+                  {item.text}
                 </a>
               </li>
             ))}
           </ol>
         </nav>
-        {shareUrl && shareTitle && (
-          <SocialShare url={shareUrl} title={shareTitle} />
-        )}
       </div>
+
+      {/* Share section */}
+      {shareUrl && shareTitle && (
+        <SocialShare url={shareUrl} title={shareTitle} />
+      )}
     </div>
   );
 }

@@ -1,20 +1,19 @@
 import { TableOfContents } from "@/components/blog/TableOfContents";
-import { Button } from "@/components/ui/button";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog-data";
 import { extractHeadings } from "@/lib/blog-utils";
 import { NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
-interface BlogPostPageProps {
+type BlogPostPageProps = {
   params: Promise<{
     slug: string;
   }>;
-}
+};
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
@@ -89,84 +88,90 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
 
   return (
-    <article className="blog-post min-h-screen bg-linear-to-b from-gray-50 to-white">
-      {/* Hero Image Section */}
-      <header className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <div className="absolute inset-0 z-10 bg-linear-to-t from-black/60 to-black/20" />
-        <Image
-          src={post.thumbnail}
-          alt={post.title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+    <main className="bg-background min-h-screen">
+      <article className="bg-background relative pt-32 pb-24 lg:pb-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          {/* Hero image - with decoration matching O MNIE section */}
+          <div className="relative mb-8">
+            <div className="from-primary/10 absolute -inset-4 rounded-lg bg-gradient-to-br to-transparent" />
+            <div className="relative overflow-hidden rounded-lg shadow-2xl">
+              <Image
+                src={post.thumbnail}
+                alt={post.title}
+                width={1200}
+                height={600}
+                className="h-[300px] w-full object-cover md:h-[400px]"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+              />
+              {/* Red accent border */}
+              <div className="bg-primary absolute right-0 bottom-0 left-0 h-1" />
+              <div className="from-foreground/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
+            </div>
+            {/* Decorative frame corner */}
+            <div className="border-primary/30 absolute -right-4 -bottom-4 h-24 w-24 border-r-2 border-b-2" />
+          </div>
 
-        {/* Back Button */}
-        <div className="absolute top-6 left-6 z-20">
-          <Link href="/blog">
-            <Button
-              variant="outline"
-              className="border-white/20 bg-white/90 shadow-lg backdrop-blur-sm hover:border-white/40 hover:bg-red-800 hover:text-white"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Powrót do bloga
-            </Button>
+          {/* Back to blog link */}
+          <Link
+            href="/blog"
+            className="text-muted-foreground hover:text-primary group mb-8 inline-flex cursor-pointer items-center gap-2 transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            <span>Powrót do bloga</span>
           </Link>
-        </div>
 
-        {/* Title Overlay */}
-        <div className="absolute right-0 bottom-0 left-0 z-20 p-8 md:p-12 lg:p-16">
-          <div className="mx-auto max-w-4xl">
-            <time className="mb-3 block text-sm font-medium text-white/90">
+          {/* Post header */}
+          <div className="mb-12">
+            <time className="text-muted-foreground mb-4 block text-sm">
               {formatDate(post.createDate)}
             </time>
-            <h1 className="mb-4 text-4xl leading-tight font-bold text-white drop-shadow-lg md:text-5xl lg:text-6xl">
+            <h1 className="text-foreground font-heading mb-4 text-4xl font-normal tracking-wide sm:text-5xl">
               {post.title}
             </h1>
             {post.description && (
-              <p className="text-xl leading-relaxed text-white/95 drop-shadow-md md:text-2xl">
+              <p className="text-muted-foreground text-xl leading-relaxed">
                 {post.description}
               </p>
             )}
           </div>
-        </div>
-      </header>
 
-      {/* Content Section */}
-      <section className="mx-auto max-w-7xl px-4 pb-12 md:pb-16 lg:pb-20">
-        <div className="grid grid-cols-1 gap-x-8 md:grid-cols-[300px_1fr]">
-          {headings.length > 0 && (
-            <TableOfContents
-              headings={headings}
-              shareUrl={shareUrl}
-              shareTitle={post.title}
-            />
-          )}
-          <div className="prose prose-lg prose-red max-w-[700px] pt-8">
-            {post.content && (
-              <RichTextRenderer
-                document={post.content}
-                links={post.contentLinks}
-                className="prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-8 prose-h2:text-gray-900 prose-h2:scroll-mt-5 prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6 prose-h3:text-red-800 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:text-lg prose-a:text-red-800 prose-a:no-underline prose-a:font-semibold hover:prose-a:underline prose-strong:text-gray-900 prose-strong:font-bold prose-ul:my-6 prose-ol:my-6 prose-li:text-gray-700 prose-li:text-lg prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8 prose-img:max-h-[500px] prose-img:w-auto prose-img:object-contain prose-blockquote:border-l-4 prose-blockquote:border-red-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600 [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:pt-0"
-              />
+          <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
+            {/* Main content */}
+            <div className="prose prose-lg prose-headings:font-heading prose-headings:font-normal prose-headings:text-foreground prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:scroll-mt-24 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-img:rounded-lg prose-img:shadow-lg max-w-none">
+              {post.content && (
+                <RichTextRenderer
+                  document={post.content}
+                  links={post.contentLinks}
+                  blogPostStyle={true}
+                />
+              )}
+            </div>
+
+            {/* Sidebar with TOC and share */}
+            {headings.length > 0 && (
+              <aside className="sticky top-24 hidden self-start lg:block">
+                <TableOfContents
+                  headings={headings}
+                  shareUrl={shareUrl}
+                  shareTitle={post.title}
+                />
+              </aside>
             )}
           </div>
-        </div>
 
-        {/* Back to Blog Button */}
-        <div className="mt-16 border-t border-gray-200 pt-8">
-          <Link href="/blog">
-            <Button
-              variant="outline"
-              className="border-red-800 text-red-800 transition-colors hover:bg-red-800 hover:text-white"
+          {/* Back to all posts */}
+          <div className="border-border mt-16 border-t pt-8">
+            <Link
+              href="/blog"
+              className="text-muted-foreground hover:text-primary group inline-flex cursor-pointer items-center gap-2 transition-colors"
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Powrót do wszystkich wpisów
-            </Button>
-          </Link>
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              <span>Powrót do wszystkich wpisów</span>
+            </Link>
+          </div>
         </div>
-      </section>
-    </article>
+      </article>
+    </main>
   );
 }

@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BlogPostListItem } from "@/lib/blog-data";
 
-interface BlogPostCardProps {
+type BlogPostCardProps = {
   post: BlogPostListItem;
-}
+};
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   const formatDate = (dateString: string) => {
@@ -17,26 +17,32 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
   };
 
   return (
-    <Link href={`/blog/${post.slug}`} className="group w-full text-left">
-      <article className="h-full overflow-hidden rounded-3xl border-2 border-gray-200 bg-white transition-all hover:border-red-800 hover:shadow-lg">
-        <div className="relative h-[300px] w-full overflow-hidden">
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group bg-background border-border hover:border-primary/50 block cursor-pointer overflow-hidden rounded-lg border transition-all duration-300 hover:shadow-xl"
+    >
+      <article>
+        <div className="bg-muted relative aspect-video overflow-hidden">
           <Image
             src={post.thumbnail}
             alt={post.title}
             fill
-            className="object-cover transition-transform group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
           />
-          <div className="absolute inset-0 bg-black/30 transition-opacity group-hover:opacity-0" />
+          {/* Red inset shadow on hover */}
+          <div className="pointer-events-none absolute inset-0 opacity-0 shadow-[inset_0_0_30px_rgba(196,30,58,0.4)] transition-opacity duration-300 group-hover:opacity-100" />
         </div>
         <div className="p-6">
-          <time className="text-sm text-gray-500">
+          <time className="text-muted-foreground mb-3 block text-sm">
             {formatDate(post.createDate)}
           </time>
-          <h3 className="mt-2 text-2xl font-bold text-gray-900 transition-colors group-hover:text-red-800">
+          <h3 className="text-foreground group-hover:text-primary font-heading mb-3 text-2xl font-normal transition-colors">
             {post.title}
           </h3>
-          <p className="mt-3 line-clamp-3 text-gray-600">{post.description}</p>
+          <p className="text-muted-foreground leading-relaxed">
+            {post.description}
+          </p>
         </div>
       </article>
     </Link>
