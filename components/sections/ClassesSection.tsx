@@ -73,11 +73,11 @@ export function ClassesSection({
   return (
     <section
       id={SECTION_ID_CLASSES}
-      className="bg-background relative overflow-hidden py-24 lg:py-32"
+      className="bg-background relative overflow-hidden py-12 sm:py-24 lg:py-32"
     >
       {/* Decorative bamboo */}
       <svg
-        className="absolute top-1/4 left-4 h-auto w-12 opacity-5"
+        className="absolute top-1/4 left-4 hidden h-auto w-12 opacity-5 sm:block"
         viewBox="0 0 50 200"
       >
         <line
@@ -174,7 +174,7 @@ export function ClassesSection({
                   <h3 className="text-foreground text-xl font-semibold">
                     NAUKA ONLINE
                   </h3>
-                  <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">
+                  <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs whitespace-nowrap">
                     w przygotowaniu
                   </span>
                 </div>

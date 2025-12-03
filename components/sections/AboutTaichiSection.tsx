@@ -75,12 +75,12 @@ export function AboutTaichiSection({
   return (
     <section
       id={SECTION_ID_TAICHI}
-      className="bg-muted/30 relative overflow-hidden py-24 lg:py-32"
+      className="bg-muted/30 relative overflow-hidden py-12 sm:py-24 lg:py-32"
     >
-      {/* Background Yin Yang with dots */}
-      <div className="absolute top-1/2 right-5 -translate-y-1/2 opacity-[0.02]">
+      {/* Background Yin Yang with dots - centered on mobile */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:left-auto sm:right-5 sm:translate-x-0 opacity-[0.02]">
         <YinYang
-          className="text-foreground animate-spin-slow h-[600px] w-[600px]"
+          className="text-foreground animate-spin-slow h-[300px] w-[300px] sm:h-[600px] sm:w-[600px]"
           withDots={true}
         />
       </div>

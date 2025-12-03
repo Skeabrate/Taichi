@@ -25,7 +25,7 @@ export function ContactSection({
   return (
     <section
       id={SECTION_ID_CONTACT}
-      className="bg-muted/30 relative overflow-hidden py-24 lg:py-32"
+      className="bg-muted/30 relative overflow-hidden py-12 sm:py-24 lg:py-32"
     >
       {/* Decorative elements */}
       <ChineseOrnament

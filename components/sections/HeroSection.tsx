@@ -10,19 +10,19 @@ type HeroProps = {
 
 export function Hero({ nameLastNameSeniority }: HeroProps) {
   return (
-    <section className="from-muted/50 to-background relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b">
+    <section className="from-muted/50 to-background relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b py-12 sm:py-24">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Large Yin Yang watermark - aligned to left */}
-        <div className="absolute top-1/4 left-5 opacity-[0.04]">
+        {/* Large Yin Yang watermark - centered on mobile, aligned to left on desktop */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 opacity-[0.04] sm:left-5 sm:translate-x-0">
           <YinYang
-            className="text-foreground animate-spin-slow h-[600px] w-[600px]"
+            className="text-foreground animate-spin-slow h-[300px] w-[300px] sm:h-[600px] sm:w-[600px]"
             withDots={true}
           />
         </div>
 
-        {/* Chinese pattern on right side */}
-        <div className="absolute top-0 right-0 h-full w-1/3 opacity-[0.02]">
+        {/* Chinese pattern on right side - hidden on mobile */}
+        <div className="absolute top-0 right-0 hidden h-full w-1/3 opacity-[0.02] sm:block">
           <div
             className="h-full w-full"
             style={{
@@ -37,9 +37,9 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
           />
         </div>
 
-        {/* Bamboo illustration */}
+        {/* Bamboo illustration - hidden on mobile */}
         <svg
-          className="absolute top-1/3 right-8 hidden h-auto w-16 opacity-10 md:block lg:right-16 lg:w-24"
+          className="absolute top-1/3 right-8 hidden h-auto w-16 opacity-10 sm:block lg:right-16 lg:w-24"
           viewBox="0 0 50 200"
         >
           <line

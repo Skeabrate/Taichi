@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
 
           {/* Post header */}
-          <div className="mb-12">
+          <div className="mb-6 sm:mb-12">
             <time className="text-muted-foreground mb-4 block text-sm">
               {formatDate(post.createDate)}
             </time>

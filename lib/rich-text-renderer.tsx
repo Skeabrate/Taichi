@@ -114,16 +114,16 @@ export function RichTextRenderer({
       },
       [BLOCKS.HEADING_3]: (node: any, children: ReactNode) =>
         blogPostStyle ? (
-          <h3 className="mb-4">
-            {children}
-          </h3>
+          <h3 className="mb-4">{children}</h3>
         ) : (
-          <h3 className="font-eagle-lake mb-4 text-2xl font-bold text-red-800">
+          <h3 className="font-eagle-lake mb-4 text-xl font-bold text-red-800 sm:text-2xl">
             {children}
           </h3>
         ),
       [BLOCKS.HEADING_4]: (node: any, children: ReactNode) => (
-        <h4 className="text-foreground mb-4 font-semibold">{children}</h4>
+        <h4 className="text-foreground mb-4 text-base font-semibold sm:text-lg">
+          {children}
+        </h4>
       ),
       [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
         <ul
