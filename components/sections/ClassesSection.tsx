@@ -253,7 +253,7 @@ export function ClassesSection({
                 return (
                   <FadeInImage key={i} delay={0.3 + i * 0.05}>
                     <div
-                      className="group bg-muted relative aspect-video cursor-pointer overflow-hidden rounded-lg"
+                      className="group bg-muted relative aspect-square cursor-pointer overflow-hidden rounded-lg"
                       onClick={() => openLightbox(i)}
                     >
                       {media.isVideo ? (
