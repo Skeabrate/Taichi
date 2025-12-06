@@ -75,48 +75,6 @@ export function ClassesSection({
       id={SECTION_ID_CLASSES}
       className="bg-background relative overflow-hidden py-12 sm:py-24 lg:py-32"
     >
-      {/* Decorative bamboo */}
-      <svg
-        className="absolute top-1/4 left-4 hidden h-auto w-12 opacity-5 sm:block"
-        viewBox="0 0 50 200"
-      >
-        <line
-          x1="25"
-          y1="0"
-          x2="25"
-          y2="200"
-          stroke="currentColor"
-          strokeWidth="3"
-        />
-        <ellipse
-          cx="25"
-          cy="40"
-          rx="10"
-          ry="3"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <ellipse
-          cx="25"
-          cy="100"
-          rx="10"
-          ry="3"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <ellipse
-          cx="25"
-          cy="160"
-          rx="10"
-          ry="3"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-      </svg>
-
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Section title */}
         <FadeInTitle className="mb-16 text-center">

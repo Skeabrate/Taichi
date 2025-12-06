@@ -22,12 +22,12 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       className="group bg-background border-border hover:border-primary/50 block cursor-pointer overflow-hidden rounded-lg border transition-all duration-300 hover:shadow-xl"
     >
       <article>
-        <div className="bg-muted relative aspect-video overflow-hidden">
+        <div className="bg-muted relative aspect-5/4 overflow-hidden">
           <Image
             src={post.thumbnail}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
           />
           {/* Red inset shadow on hover */}

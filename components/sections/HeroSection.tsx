@@ -10,19 +10,19 @@ type HeroProps = {
 
 export function Hero({ nameLastNameSeniority }: HeroProps) {
   return (
-    <section className="from-muted/50 to-background relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b py-12 sm:py-24">
+    <section className="from-muted/50 to-background relative flex min-h-screen items-center justify-center bg-gradient-to-b py-12 sm:py-24">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 z-10">
         {/* Large Yin Yang watermark - centered on mobile, aligned to left on desktop */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 opacity-[0.04] sm:left-5 sm:translate-x-0">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 opacity-[0.04] md:left-5 md:translate-x-0">
           <YinYang
-            className="text-foreground animate-spin-slow h-[300px] w-[300px] sm:h-[600px] sm:w-[600px]"
+            className="text-foreground animate-spin-slow h-[300px] w-[300px] md:h-[500px] md:w-[500px] lg:h-[700px] lg:w-[700px]"
             withDots={true}
           />
         </div>
 
         {/* Chinese pattern on right side - hidden on mobile */}
-        <div className="absolute top-0 right-0 hidden h-full w-1/3 opacity-[0.02] sm:block">
+        <div className="absolute top-0 right-0 hidden h-full w-1/3 opacity-[0.02] md:block">
           <div
             className="h-full w-full"
             style={{
@@ -36,75 +36,6 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
             }}
           />
         </div>
-
-        {/* Bamboo illustration - hidden on mobile */}
-        <svg
-          className="absolute top-1/3 right-8 hidden h-auto w-16 opacity-10 sm:block lg:right-16 lg:w-24"
-          viewBox="0 0 50 200"
-        >
-          <line
-            x1="25"
-            y1="0"
-            x2="25"
-            y2="200"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-          <ellipse
-            cx="25"
-            cy="30"
-            rx="12"
-            ry="3"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <ellipse
-            cx="25"
-            cy="70"
-            rx="12"
-            ry="3"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <ellipse
-            cx="25"
-            cy="110"
-            rx="12"
-            ry="3"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <ellipse
-            cx="25"
-            cy="150"
-            rx="12"
-            ry="3"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M25 50 Q40 40 50 55"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-          />
-          <path
-            d="M25 90 Q10 80 0 95"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-          />
-          <path
-            d="M25 130 Q40 120 45 135"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-          />
-        </svg>
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">

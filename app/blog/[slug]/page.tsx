@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 alt={post.title}
                 width={1200}
                 height={600}
-                className="h-[300px] w-full object-cover md:h-[400px]"
+                className="h-[300px] w-full object-cover md:h-[400px] lg:h-[500px]"
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               />

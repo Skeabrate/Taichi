@@ -22,7 +22,7 @@ export function AboutSection({
   return (
     <section
       id={SECTION_ID_ABOUT}
-      className="bg-background relative overflow-hidden py-12 sm:py-24 lg:py-32"
+      className="bg-background relative overflow-hidden pb-12 sm:pb-24 lg:pb-32"
     >
       {/* Corner ornaments */}
       <ChineseOrnament
