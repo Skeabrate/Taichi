@@ -1,11 +1,10 @@
-import type { Document } from "@contentful/rich-text-types";
 import {
   fetchBlogPostBySlug,
   fetchBlogPosts,
   fetchBlogPostSitemapEntries,
   fetchBlogPostSlugs,
-} from "./contentful";
-import { GetBlogPostBySlugQuery, GetBlogPostsQuery } from "./generated/graphql";
+  type BlogPostData,
+} from "./hygraph/api";
 import { fetchAllInBatches } from "./utils";
 
 export interface BlogPost {
@@ -13,20 +12,7 @@ export interface BlogPost {
   slug: string;
   title: string;
   description: string;
-  content: Document | null;
-  contentLinks?: {
-    assets?: {
-      block?: Array<{
-        sys: { id: string };
-        url?: string | null;
-        title?: string | null;
-        description?: string | null;
-        contentType?: string | null;
-        width?: number | null;
-        height?: number | null;
-      } | null>;
-    };
-  };
+  content: any; // Hygraph raw JSON
   thumbnail: string;
   createDate: string;
 }
@@ -41,42 +27,15 @@ export interface BlogPostListItem {
   createDate: string;
 }
 
-type BlogPostItem = NonNullable<
-  NonNullable<GetBlogPostsQuery["blogPostCollection"]>["items"][0]
->;
-
-type BlogPostBySlugItem = NonNullable<
-  NonNullable<GetBlogPostBySlugQuery["blogPostCollection"]>["items"][0]
->;
-
-function mapContentfulPostToBlogPost(
-  post: BlogPostItem | BlogPostBySlugItem,
-): BlogPost {
-  const thumbnailUrl = post.thumbnail?.url ?? "";
-
+function mapHygraphPostToBlogPost(post: BlogPostData): BlogPost {
   return {
-    id: post.sys.id,
+    id: post.id,
     slug: post.slug ?? "",
     title: post.title ?? "",
     description: post.excerpt ?? "",
-    content: (post.content?.json as Document) ?? null,
-    contentLinks: post.content?.links
-      ? {
-          assets: {
-            block: post.content.links.assets?.block?.map((asset) => ({
-              sys: { id: asset?.sys?.id ?? "" },
-              url: asset?.url ?? null,
-              title: asset?.title ?? null,
-              description: asset?.description ?? null,
-              contentType: asset?.contentType ?? null,
-              width: asset?.width ?? null,
-              height: asset?.height ?? null,
-            })),
-          },
-        }
-      : undefined,
-    thumbnail: thumbnailUrl,
-    createDate: post.createDate
+    content: post.content?.raw ?? null,
+    thumbnail: post.thumbnail?.url ?? "",
+    createDate: post.createDate && typeof post.createDate === "string"
       ? new Date(post.createDate).toISOString().split("T")[0]
       : new Date().toISOString().split("T")[0],
   };
@@ -106,7 +65,7 @@ export async function getPaginatedPosts(page: number): Promise<{
     return { posts: [], totalPages: 0 };
   }
 
-  const posts = result.posts.map(mapContentfulPostToBlogPost);
+  const posts = result.posts.map(mapHygraphPostToBlogPost);
   const totalPages = Math.ceil(result.total / POSTS_PER_PAGE);
 
   return { posts, totalPages };
@@ -121,7 +80,7 @@ export async function getPostBySlug(
     return undefined;
   }
 
-  return mapContentfulPostToBlogPost(post);
+  return mapHygraphPostToBlogPost(post);
 }
 
 export async function getAllPostSlugs(): Promise<string[]> {

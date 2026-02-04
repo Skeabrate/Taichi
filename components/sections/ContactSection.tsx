@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Youtube, Phone, Mail, Heart } from "lucide-react";
-import type { MainPageData } from "@/lib/contentful";
+import type { MainPageData } from "@/lib/hygraph/api";
 import { ChineseOrnament } from "@/components/ChineseOrnament";
 import { SECTION_ID_CONTACT, NAV_LABEL_CONTACT } from "@/lib/constants";
 import { FadeInTitle } from "@/components/animations/FadeInTitle";

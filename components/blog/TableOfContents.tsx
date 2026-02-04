@@ -2,14 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { SocialShare } from "./SocialShare";
-
-interface TableOfContentsItem {
-  id: string;
-  text: string;
-}
+import { HeadingItemType } from "@/lib/heading-utils";
 
 interface TableOfContentsProps {
-  headings: TableOfContentsItem[];
+  headings: HeadingItemType[];
   shareUrl?: string;
   shareTitle?: string;
 }

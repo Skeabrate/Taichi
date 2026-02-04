@@ -1,6 +1,6 @@
 "use client";
 
-import type { MainPageData } from "@/lib/contentful";
+import type { MainPageData } from "@/lib/hygraph/api";
 import { YinYang } from "@/components/YinYang";
 import { ChevronDown } from "lucide-react";
 

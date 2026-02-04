@@ -1,6 +1,6 @@
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog-data";
-import { extractHeadings } from "@/lib/blog-utils";
+import { extractHeadings } from "@/lib/heading-utils";
 import { NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import { ArrowLeft } from "lucide-react";
@@ -140,11 +140,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Main content */}
             <div className="prose prose-lg prose-headings:font-heading prose-headings:font-normal prose-headings:text-foreground prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:scroll-mt-24 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-img:rounded-lg prose-img:shadow-lg max-w-none">
               {post.content && (
-                <RichTextRenderer
-                  document={post.content}
-                  links={post.contentLinks}
-                  blogPostStyle={true}
-                />
+                <RichTextRenderer content={post.content} blogPostStyle={true} />
               )}
             </div>
 

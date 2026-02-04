@@ -4,7 +4,7 @@ import { AboutTaichiSection } from "@/components/sections/AboutTaichiSection";
 import { ClassesSection } from "@/components/sections/ClassesSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Hero } from "@/components/sections/HeroSection";
-import { fetchMainPageData } from "@/lib/contentful";
+import { fetchMainPageData } from "@/lib/hygraph/api";
 
 export const revalidate = false;
 

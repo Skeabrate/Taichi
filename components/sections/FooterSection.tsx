@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Youtube, Heart } from "lucide-react";
-import type { MainPageData } from "@/lib/contentful";
+import type { MainPageData } from "@/lib/hygraph/api";
 import { YinYang } from "@/components/YinYang";
 import Link from "next/link";
 import { NAVIGATION_LINKS } from "@/lib/constants";

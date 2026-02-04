@@ -1,12 +1,8 @@
 import { BlogPageClient } from "@/components/blog/BlogPageClient";
 import { getPaginatedPosts, mapToBlogPostListItem } from "@/lib/blog-data";
-import { fetchBlogData } from "@/lib/contentful";
 
 export default async function BlogPage() {
-  const [{ posts, totalPages }, blogData] = await Promise.all([
-    getPaginatedPosts(1),
-    fetchBlogData(),
-  ]);
+  const { posts, totalPages } = await getPaginatedPosts(1);
 
   const listItems = posts.map(mapToBlogPostListItem);
 
@@ -16,7 +12,6 @@ export default async function BlogPage() {
         posts={listItems}
         totalPages={totalPages}
         currentPage={1}
-        blogData={blogData}
       />
     </main>
   );

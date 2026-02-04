@@ -1,22 +1,21 @@
 import { ChineseOrnament } from "@/components/ChineseOrnament";
 import { YinYang } from "@/components/YinYang";
 import { NAV_LABEL_TAICHI, SECTION_ID_TAICHI } from "@/lib/constants";
-import type { MainPageData } from "@/lib/contentful";
+import type { MainPageData } from "@/lib/hygraph/api";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
-import type { Document } from "@contentful/rich-text-types";
 import { FadeInTitle } from "@/components/animations/FadeInTitle";
 import { FadeInImage } from "@/components/animations/FadeInImage";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { DecoratedImage } from "@/components/DecoratedImage";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { GrYoga } from "react-icons/gr";
 
 type AboutTaichiSectionProps = {
   quoteAboutTaichi?: MainPageData["quoteAboutTaichi"];
   aboutTaichiText?: MainPageData["aboutTaichiText"];
   taichiImage?: MainPageData["taichiImage"];
-  aboutTaichiHealthBenefitsCollection?: MainPageData["aboutTaichiHealthBenefitsCollection"];
-  aboutTaichiLabsCollection?: MainPageData["aboutTaichiLabsCollection"];
+  aboutTaichiHealthBenefits?: MainPageData["aboutTaichiHealthBenefits"];
 };
 
 const polishIconMap: Record<string, string> = {
@@ -26,7 +25,7 @@ const polishIconMap: Record<string, string> = {
   serce: "Heart",
   tarcza: "Shield",
   waga: "Scale",
-  iskra: "Sparkles",
+  ludek: "GrYoga",
 };
 
 // Helper to normalize icon name (lowercase, remove diacritics)
@@ -40,7 +39,7 @@ function normalizeIconName(name: string): string {
 // Helper function to get icon component from string name
 function getIconComponent(
   iconName: string | null | undefined,
-): LucideIcon | null {
+): LucideIcon | typeof GrYoga | null {
   if (!iconName) return null;
 
   const normalized = normalizeIconName(iconName);
@@ -48,6 +47,11 @@ function getIconComponent(
   // Look up in Polish icon map (normalize map keys for comparison)
   for (const [key, value] of Object.entries(polishIconMap)) {
     if (normalizeIconName(key) === normalized) {
+      // Special case for react-icons
+      if (value === "GrYoga") {
+        return GrYoga;
+      }
+
       const icon = LucideIcons[value as keyof typeof LucideIcons];
       if (icon) {
         return icon as LucideIcon;
@@ -62,16 +66,11 @@ export function AboutTaichiSection({
   quoteAboutTaichi,
   aboutTaichiText,
   taichiImage,
-  aboutTaichiHealthBenefitsCollection,
-  aboutTaichiLabsCollection,
+  aboutTaichiHealthBenefits,
 }: AboutTaichiSectionProps) {
-  const healthBenefits = aboutTaichiHealthBenefitsCollection?.items?.filter(
+  const healthBenefits = aboutTaichiHealthBenefits?.filter(
     (item): item is NonNullable<typeof item> => item != null,
   );
-
-  // Get the first item from each collection for the bottom tiles
-  const healthBenefitsTile = aboutTaichiHealthBenefitsCollection?.items?.[0];
-  const labsTile = aboutTaichiLabsCollection?.items?.[0];
   return (
     <section
       id={SECTION_ID_TAICHI}
@@ -98,9 +97,9 @@ export function AboutTaichiSection({
         {/* Main content */}
         <div className="mx-auto mb-20 max-w-3xl text-center">
           <FadeIn delay={0.1} className="space-y-6">
-            {aboutTaichiText?.json && (
+            {!!aboutTaichiText?.richText?.raw && (
               <div className="prose prose-lg text-muted-foreground mx-auto">
-                <RichTextRenderer document={aboutTaichiText.json as Document} />
+                <RichTextRenderer content={aboutTaichiText.richText.raw} />
               </div>
             )}
 
@@ -120,7 +119,7 @@ export function AboutTaichiSection({
             <FadeInImage delay={0.2}>
               <DecoratedImage
                 src={taichiImage.url}
-                alt={taichiImage.title ?? taichiImage.description ?? ""}
+                alt="Tai Chi"
                 width={taichiImage.width || 800}
                 height={taichiImage.height || 400}
                 imageClassName="h-[400px] md:h-[500px] lg:h-[600px] w-full object-cover"
@@ -158,10 +157,7 @@ export function AboutTaichiSection({
                 }
 
                 return (
-                  <FadeIn
-                    key={benefit.sys?.id || index}
-                    delay={0.3 + index * 0.1}
-                  >
+                  <FadeIn key={benefit.id || index} delay={0.3 + index * 0.1}>
                     <div className="group border-border bg-background hover:border-primary/30 flex h-full flex-col rounded-lg border p-6 shadow-sm transition-all duration-300 hover:shadow-md">
                       {IconComponent ? (
                         <div className="bg-primary/10 group-hover:bg-primary/20 mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-colors">
@@ -175,11 +171,10 @@ export function AboutTaichiSection({
                           </span>
                         </div>
                       ) : null}
-                      {benefit.text?.json && (
+                      {!!benefit.tekst?.richText?.raw && (
                         <div className="prose prose-sm text-muted-foreground flex-1 [&_h4]:mb-2 [&_p]:text-sm [&_p]:leading-relaxed">
                           <RichTextRenderer
-                            document={benefit.text.json as Document}
-                            links={benefit.text.links}
+                            content={benefit.tekst.richText.raw}
                           />
                         </div>
                       )}
@@ -188,37 +183,6 @@ export function AboutTaichiSection({
                 );
               })}
             </div>
-          </div>
-        )}
-
-        {/* Two tiles for additional content */}
-        {(healthBenefitsTile?.text?.json || labsTile?.text?.json) && (
-          <div className="grid gap-8 md:grid-cols-2">
-            {healthBenefitsTile?.text?.json && (
-              <FadeIn delay={0.4}>
-                <div className="border-border bg-background flex h-full flex-col rounded-lg border p-8 shadow-sm">
-                  <div className="prose prose-lg flex-1">
-                    <RichTextRenderer
-                      document={healthBenefitsTile.text.json as Document}
-                      links={healthBenefitsTile.text.links}
-                    />
-                  </div>
-                </div>
-              </FadeIn>
-            )}
-
-            {labsTile?.text?.json && (
-              <FadeIn delay={0.5}>
-                <div className="border-border bg-background flex h-full flex-col rounded-lg border p-8 shadow-sm">
-                  <div className="prose prose-lg flex-1">
-                    <RichTextRenderer
-                      document={labsTile.text.json as Document}
-                      links={labsTile.text.links}
-                    />
-                  </div>
-                </div>
-              </FadeIn>
-            )}
           </div>
         )}
       </div>

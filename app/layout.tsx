@@ -1,6 +1,6 @@
 import { Footer } from "@/components/sections/FooterSection";
 import { StickyNav } from "@/components/StickyNav";
-import { fetchMainPageData } from "@/lib/contentful";
+import { fetchMainPageData } from "@/lib/hygraph/api";
 import { GOOGLE_SITE_VERIFICATION, NEXT_PUBLIC_SITE_URL } from "@/lib/envs";
 import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Serif_SC, Eagle_Lake, Geist_Mono } from "next/font/google";

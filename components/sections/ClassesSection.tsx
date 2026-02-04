@@ -3,7 +3,7 @@
 import { ChineseOrnament } from "@/components/ChineseOrnament";
 import { YinYang } from "@/components/YinYang";
 import { NAV_LABEL_CLASSES, SECTION_ID_CLASSES } from "@/lib/constants";
-import type { MainPageData } from "@/lib/contentful";
+import type { MainPageData } from "@/lib/hygraph/api";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
 import { Clock, MapPin, Video, Play, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -14,24 +14,33 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import { FadeInImage } from "@/components/animations/FadeInImage";
 
 type ClassesSectionProps = {
-  classesScheduleCollection?: MainPageData["classesScheduleCollection"];
-  localization?: MainPageData["localization"];
+  classesSchedule?: MainPageData["classesSchedule"];
+  localisation?: MainPageData["localisation"];
   coordinates?: MainPageData["coordinates"];
   patreonSection?: MainPageData["patreonSection"];
   patreon?: MainPageData["patreon"];
   classesAssetsCollection?: MainPageData["classesAssetsCollection"];
 };
 
+const DAYS_MAP = {
+  monday: "Poniedziałek",
+  tuesday: "Wtorek",
+  wednesday: "Środa",
+  thursday: "Czwartek",
+  friday: "Piątek",
+  saturday: "Sobota",
+  sunday: "Niedziela",
+};
+
 export function ClassesSection({
-  classesScheduleCollection,
-  localization,
+  classesSchedule,
+  localisation,
   coordinates,
   patreonSection,
-  patreon: patreonUrl,
+  patreon,
   classesAssetsCollection,
 }: ClassesSectionProps) {
-  const classesSchedule = classesScheduleCollection?.items;
-  const classesAssets = classesAssetsCollection?.items;
+  const classesAssets = classesAssetsCollection;
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showAllPhotos, setShowAllPhotos] = useState(false);
@@ -41,14 +50,10 @@ export function ClassesSection({
     classesAssets
       ?.map((asset) => {
         if (!asset?.url) return null;
-        const isVideo =
-          asset.contentType?.startsWith("video/") ||
-          asset.url.match(/\.(mov|mp4|webm|ogg|avi|wmv|flv|mkv)$/i);
+        const isVideo = asset.mimeType?.startsWith("video/");
         return {
           url: asset.url,
           isVideo: !!isVideo,
-          title: asset.title,
-          description: asset.description,
         };
       })
       .filter((media): media is NonNullable<typeof media> => media !== null) ??
@@ -60,8 +65,8 @@ export function ClassesSection({
   };
 
   const getGoogleMapsUrl = () => {
-    if (coordinates?.lat != null && coordinates?.lon != null) {
-      return `https://www.google.com/maps?q=${coordinates.lat},${coordinates.lon}&output=embed`;
+    if (coordinates?.latitude != null && coordinates?.longitude != null) {
+      return `https://www.google.com/maps?q=${coordinates.latitude},${coordinates.longitude}&output=embed`;
     }
     return null;
   };
@@ -88,7 +93,6 @@ export function ClassesSection({
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Left column: Schedule and Online Learning */}
           <FadeIn delay={0.1} className="space-y-8">
-            {/* Schedule Card */}
             <div className="border-border bg-muted/30 rounded-lg border p-8">
               <div className="mb-6 flex items-center gap-3">
                 <Clock className="text-primary h-6 w-6" />
@@ -96,7 +100,7 @@ export function ClassesSection({
                   HARMONOGRAM
                 </h3>
               </div>
-              {classesSchedule && classesSchedule.length > 0 && (
+              {!!classesSchedule && classesSchedule.length > 0 && (
                 <div className="space-y-3">
                   {classesSchedule
                     .filter(
@@ -105,15 +109,15 @@ export function ClassesSection({
                     )
                     .map((schedule, index) => (
                       <div
-                        key={schedule.sys.id || index}
+                        key={schedule.id || index}
                         className="bg-background flex items-center justify-between rounded-lg p-4"
                       >
-                        {schedule.day && (
+                        {!!schedule.day && (
                           <span className="text-foreground font-semibold">
-                            {schedule.day}
+                            {DAYS_MAP[schedule.day as keyof typeof DAYS_MAP]}
                           </span>
                         )}
-                        {schedule.hours && (
+                        {!!schedule.hours && (
                           <span className="text-primary text-lg font-bold">
                             {schedule.hours}
                           </span>
@@ -125,33 +129,36 @@ export function ClassesSection({
             </div>
 
             {/* Online Learning */}
-            {(patreonSection?.json || patreonUrl) && (
+            {!!patreonSection?.richText?.raw && (
               <div className="border-border bg-muted/30 rounded-lg border p-8">
                 <div className="mb-4 flex items-center gap-3">
                   <Video className="text-primary h-6 w-6" />
                   <h3 className="text-foreground text-xl font-semibold">
                     NAUKA ONLINE
                   </h3>
-                  <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs whitespace-nowrap">
-                    w przygotowaniu
-                  </span>
+                  {!patreon && (
+                    <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs whitespace-nowrap">
+                      w przygotowaniu
+                    </span>
+                  )}
                 </div>
-                {patreonSection?.json && (
+                {patreonSection?.richText?.raw && (
                   <div className="prose prose-sm text-muted-foreground mb-6">
                     <RichTextRenderer
-                      document={patreonSection.json as any}
+                      content={patreonSection.richText.raw}
                       useCheckCircleIcons={true}
                     />
                   </div>
                 )}
-                {patreonUrl && (
+                {patreon && (
                   <a
-                    href={patreonUrl}
+                    href={patreon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 mt-6 inline-block rounded-full px-6 py-3 font-medium transition-all"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors"
                   >
-                    ODWIEDŹ PATREON
+                    Sprawdź kurs
+                    <ChevronRight className="h-5 w-5" />
                   </a>
                 )}
               </div>
@@ -171,9 +178,9 @@ export function ClassesSection({
                   <h3 className="text-xl font-semibold">LOKALIZACJA</h3>
                 </div>
 
-                {localization?.json && (
-                  <div className="text-background/80 mb-6">
-                    <RichTextRenderer document={localization.json as any} />
+                {!!localisation?.richText?.raw && (
+                  <div className="text-background/80 mb-6 [&_p]:mb-4 [&_p]:leading-relaxed [&_strong]:font-bold">
+                    <RichTextRenderer content={localisation.richText.raw} />
                   </div>
                 )}
 
@@ -235,11 +242,7 @@ export function ClassesSection({
                         <>
                           <Image
                             src={media.url}
-                            alt={
-                              media.title ??
-                              media.description ??
-                              `Zdjęcie z treningu ${i + 1}`
-                            }
+                            alt={`Zdjęcie z treningu ${i + 1}`}
                             fill
                             className="object-cover transition-all duration-500 group-hover:scale-105"
                           />

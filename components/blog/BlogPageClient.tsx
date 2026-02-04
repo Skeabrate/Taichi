@@ -1,25 +1,22 @@
 import { BlogHeading } from "./BlogHeading";
 import { BlogPostCard } from "./BlogPostCard";
 import { Pagination } from "./Pagination";
-import type { BlogData } from "@/lib/contentful";
 import type { BlogPostListItem } from "@/lib/blog-data";
 
 interface BlogPageClientProps {
   posts: BlogPostListItem[];
   totalPages: number;
   currentPage: number;
-  blogData: BlogData | null;
 }
 
 export function BlogPageClient({
   posts,
   totalPages,
   currentPage,
-  blogData,
 }: BlogPageClientProps) {
   return (
     <>
-      <BlogHeading blogData={blogData} />
+      <BlogHeading />
 
       <section className="bg-background relative overflow-hidden pt-8 pb-24 lg:pb-32">
         <div className="relative mx-auto max-w-6xl px-6 lg:px-8">

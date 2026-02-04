@@ -1,6 +1,5 @@
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
-import type { MainPageData } from "@/lib/contentful";
-import type { Document } from "@contentful/rich-text-types";
+import type { MainPageData } from "@/lib/hygraph/api";
 import { ChineseOrnament } from "@/components/ChineseOrnament";
 import { SECTION_ID_ABOUT, NAV_LABEL_ABOUT } from "@/lib/constants";
 import { FadeInTitle } from "@/components/animations/FadeInTitle";
@@ -50,7 +49,7 @@ export function AboutSection({
             <FadeInImage>
               <DecoratedImage
                 src={mainAsset.url}
-                alt={mainAsset.title ?? mainAsset.description ?? ""}
+                alt="About me image"
                 width={mainAsset.width || 800}
                 height={mainAsset.height || 1000}
                 aspectRatio="aspect-[4/5]"
@@ -61,9 +60,9 @@ export function AboutSection({
 
           {/* Content */}
           <FadeIn delay={0.2} className="space-y-6">
-            {aboutMe?.json && (
+            {!!aboutMe?.richText?.raw && (
               <div className="prose prose-lg">
-                <RichTextRenderer document={aboutMe.json as Document} />
+                <RichTextRenderer content={aboutMe.richText.raw} />
               </div>
             )}
 

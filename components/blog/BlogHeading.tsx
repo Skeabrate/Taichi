@@ -1,13 +1,8 @@
-import type { BlogData } from "@/lib/contentful";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { YinYang } from "@/components/YinYang";
 
-type BlogHeadingProps = {
-  blogData?: BlogData | null;
-};
-
-export function BlogHeading({ blogData }: BlogHeadingProps) {
+export function BlogHeading() {
   return (
     <section className="bg-background relative pt-32 pb-12 lg:pb-16">
       {/* Background decorative yin yang */}
@@ -36,13 +31,15 @@ export function BlogHeading({ blogData }: BlogHeadingProps) {
             <div className="via-primary/40 to-primary/60 h-px w-16 bg-gradient-to-l from-transparent" />
           </div>
           <h1 className="text-foreground font-heading mb-6 text-4xl font-normal tracking-wide sm:text-5xl lg:text-6xl">
-            {blogData?.title || "ŚWIAT TAICHI"}
+            ŚWIAT TAICHI
           </h1>
-          {blogData?.description && (
-            <p className="text-muted-foreground mx-auto max-w-3xl text-lg leading-relaxed">
-              {blogData.description}
-            </p>
-          )}
+          <p className="text-muted-foreground mx-auto max-w-3xl text-lg leading-relaxed">
+            Zapraszam Cię do odkrywania świata Tai Chi Chuan przez moje
+            artykuły, poradniki i historie. Dzielę się swoją wiedzą o
+            tradycyjnej sztuce walki, korzyściach zdrowotnych, filozofii oraz
+            praktycznych wskazówkach dla początkujących i zaawansowanych
+            praktykujących.
+          </p>
         </div>
       </div>
     </section>

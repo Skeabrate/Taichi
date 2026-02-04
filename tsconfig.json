@@ -21,6 +21,11 @@
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "@0no-co/graphqlsp",
+        "schema": "./lib/hygraph/graphql-env.d.ts",
+        "tadaOutputLocation": "./lib/hygraph/graphql.ts"
       }
     ],
     "paths": {
