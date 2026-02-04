@@ -24,42 +24,27 @@ export async function POST(request: Request) {
     const revalidatedPaths: string[] = [];
 
     if (contentType === "MainPage") {
-      revalidatePath("/", "page");
+      revalidatePath("/");
       revalidatedPaths.push("/");
     } else if (contentType === "BlogPost") {
       const slug = payload?.data?.slug;
-      revalidatePath("/blog", "page");
-      revalidatePath("/blog/page", "page");
-      revalidatePath(`/blog/${slug}`, "page");
-      revalidatedPaths.push("/blog", "/blog/page", `/blog/${slug}`);
+      revalidatePath("/blog");
+      revalidatePath("/blog/page/[pageNumber]");
+      revalidatePath(`/blog/${slug}`);
+      revalidatedPaths.push(
+        "/blog",
+        "/blog/page/[pageNumber]",
+        `/blog/${slug}`,
+      );
     }
 
     revalidatePath("/sitemap.xml", "page");
     revalidatePath("/robots.txt", "page");
     revalidatedPaths.push("/sitemap.xml", "/robots.txt");
 
-    return new Response(
-      JSON.stringify({
-        revalidated: true,
-        contentType: contentType,
-        paths: revalidatedPaths,
-      }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
+    return new Response(null, { status: 200 });
   } catch (error) {
     console.error("Revalidation error:", error);
-    return new Response(
-      JSON.stringify({
-        error: "Failed to revalidate",
-        message: error instanceof Error ? error.message : "Unknown error",
-      }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
+    return new Response(null, { status: 500 });
   }
 }
