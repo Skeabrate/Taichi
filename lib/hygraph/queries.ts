@@ -27,10 +27,10 @@ export const GetMainPage = graphql(`
         }
       }
       classesAssetsCollection {
-				mimeType
+        mimeType
         url
-				width
-				height
+        width
+        height
       }
       classesSchedule(first: 100) {
         id
@@ -52,9 +52,9 @@ export const GetMainPage = graphql(`
       instagram
       mainAsset {
         url
-				width
-				height
-				mimeType
+        width
+        height
+        mimeType
       }
       nameLastNameSeniority
       patreonSection {
@@ -69,9 +69,9 @@ export const GetMainPage = graphql(`
       quoteFooter
       taichiImage {
         url
-				width
-				height
-				mimeType
+        width
+        height
+        mimeType
       }
       youtube
     }
@@ -90,9 +90,9 @@ export const GetBlogPosts = graphql(`
       thumbnail {
         id
         url
-				width
-				height
-				mimeType
+        width
+        height
+        mimeType
       }
       content {
         raw
@@ -118,9 +118,9 @@ export const GetBlogPostBySlug = graphql(`
       thumbnail {
         id
         url
-				width
-				height
-				mimeType
+        width
+        height
+        mimeType
       }
       content {
         raw

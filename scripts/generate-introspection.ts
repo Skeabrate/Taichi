@@ -12,13 +12,13 @@ const HYGRAPH_ENVIRONMENT = process.env.HYGRAPH_ENVIRONMENT || "master";
 
 if (!HYGRAPH_ENDPOINT || !HYGRAPH_DRAFT_TOKEN) {
   throw new Error(
-    "Missing required environment variables: HYGRAPH_ENDPOINT and HYGRAPH_DRAFT_TOKEN must be set in .env.local"
+    "Missing required environment variables: HYGRAPH_ENDPOINT and HYGRAPH_DRAFT_TOKEN must be set in .env.local",
   );
 }
 
 async function generateIntrospection() {
   const url = `${HYGRAPH_ENDPOINT}/${HYGRAPH_ENVIRONMENT}`;
-  
+
   console.log("Fetching schema from:", url);
 
   const response = await fetch(url, {
@@ -66,7 +66,7 @@ declare module "gql.tada" {
 
   writeFileSync(
     resolve(process.cwd(), "lib/hygraph/graphql-env.d.ts"),
-    introspectionContent
+    introspectionContent,
   );
 
   console.log("✅ Generated lib/hygraph/graphql-env.d.ts");

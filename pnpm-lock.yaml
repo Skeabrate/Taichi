@@ -11,6 +11,9 @@ importers:
       '@graphcms/rich-text-react-renderer':
         specifier: ^0.6.1
         version: 0.6.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@hygraph/utils':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -964,6 +967,9 @@ packages:
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
+
+  '@hygraph/utils@1.2.1':
+    resolution: {integrity: sha512-Eu4xKWAAzAhWUcgxSzgL+6o5alCItry1Jo0LtsnQ3q3/EaGHeI3Z/kMuGvsFf8zrhyAljeSHC4otwRc5ibMinQ==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -4987,6 +4993,8 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.4.3': {}
+
+  '@hygraph/utils@1.2.1': {}
 
   '@img/colour@1.0.0':
     optional: true

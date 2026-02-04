@@ -14,9 +14,7 @@ export const createGQLClient = async (
   tags: string | string[] = [],
   skipDraftMode = false,
 ) => {
-  const HYGRAPH_URL = new URL(
-    `${HYGRAPH_ENDPOINT}/${HYGRAPH_ENVIRONMENT}`,
-  );
+  const HYGRAPH_URL = new URL(`${HYGRAPH_ENDPOINT}/${HYGRAPH_ENVIRONMENT}`);
   const client = new GraphQLClient(HYGRAPH_URL.toString(), {
     next: { tags: [Array.isArray(tags) ? combineCacheTags(tags) : tags] },
   });

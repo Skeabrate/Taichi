@@ -2,14 +2,16 @@
  * Generate a URL-friendly ID from heading text, preserving Polish characters
  */
 export function generateId(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    // Keep Polish characters (ą, ć, ę, ł, ń, ó, ś, ź, ż), alphanumeric, spaces, and hyphens
-    .replace(/[^a-ząćęłńóśźż0-9\s-]/gi, "")
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
-    .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
+  return (
+    text
+      .toLowerCase()
+      .trim()
+      // Keep Polish characters (ą, ć, ę, ł, ń, ó, ś, ź, ż), alphanumeric, spaces, and hyphens
+      .replace(/[^a-ząćęłńóśźż0-9\s-]/gi, "")
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+      .replace(/^-|-$/g, "")
+  ); // Remove leading/trailing hyphens
 }
 
 /**
@@ -41,7 +43,6 @@ export function extractText(node: any): string {
   }
   return "";
 }
-
 
 export interface HeadingItemType {
   id: string;

@@ -13,9 +13,9 @@ export function ChineseOrnament({
   if (variant === "divider") {
     return (
       <div className={cn("flex items-center justify-center gap-4", className)}>
-        <div className="h-px w-16 bg-gradient-to-r from-transparent via-primary/40 to-primary/60" />
-        <YinYang className="h-6 w-6 text-primary/60" />
-        <div className="h-px w-16 bg-gradient-to-l from-transparent via-primary/40 to-primary/60" />
+        <div className="via-primary/40 to-primary/60 h-px w-16 bg-gradient-to-r from-transparent" />
+        <YinYang className="text-primary/60 h-6 w-6" />
+        <div className="via-primary/40 to-primary/60 h-px w-16 bg-gradient-to-l from-transparent" />
       </div>
     );
   }
@@ -24,7 +24,7 @@ export function ChineseOrnament({
     return (
       <svg
         viewBox="0 0 60 60"
-        className={cn("h-12 w-12 text-primary/20", className)}
+        className={cn("text-primary/20 h-12 w-12", className)}
       >
         <path
           d="M5 5 L5 25 M5 5 L25 5 M15 5 L15 15 L5 15"
@@ -42,7 +42,7 @@ export function ChineseOrnament({
     return (
       <svg
         viewBox="0 0 100 20"
-        className={cn("h-5 w-full text-primary/30", className)}
+        className={cn("text-primary/30 h-5 w-full", className)}
       >
         <pattern
           id="chinese-pattern"
@@ -64,5 +64,3 @@ export function ChineseOrnament({
 
   return null;
 }
-
-

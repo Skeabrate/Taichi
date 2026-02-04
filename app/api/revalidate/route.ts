@@ -1,56 +1,39 @@
 import { revalidatePath } from "next/cache";
 import { REVALIDATE_SECRET } from "@/lib/envs";
+import { verifyWebhookSignature } from "@hygraph/utils";
 
 export async function POST(request: Request) {
-  const secret = request.headers.get("authorization");
+  const body = await request.text();
+  const signature = request.headers.get("gcms-signature");
 
-  if (secret !== REVALIDATE_SECRET) {
+  if (
+    !verifyWebhookSignature({
+      body: JSON.parse(body),
+      signature: signature || "",
+      secret: REVALIDATE_SECRET || "",
+    })
+  ) {
+    console.error("Webhook signature verification failed");
     return new Response("Unauthorized", { status: 401 });
   }
 
   try {
-    const payload = await request.json();
-    const contentTypeId =
-      payload?.sys?.contentType?.sys?.id || payload?.contentType?.sys?.id;
-
-    if (!contentTypeId) {
-      return new Response("Invalid payload: missing contentType", {
-        status: 400,
-      });
-    }
+    const payload = JSON.parse(body);
+    const contentType = payload?.data?.__typename as "MainPage" | "BlogPost";
 
     const revalidatedPaths: string[] = [];
 
-    // Handle mainPage content type
-    if (contentTypeId === "mainPage" || contentTypeId === "classesSchedule") {
+    if (contentType === "MainPage") {
       revalidatePath("/", "page");
       revalidatedPaths.push("/");
-    }
-    // Handle blog content type
-    else if (contentTypeId === "blog") {
+    } else if (contentType === "BlogPost") {
+      const slug = payload?.data?.slug;
       revalidatePath("/blog", "page");
       revalidatePath("/blog/page", "page");
-      revalidatedPaths.push("/blog", "/blog/page");
-    }
-    // Handle blogPost content type
-    else if (contentTypeId === "blogPost") {
-      // Revalidate blog listing pages
-      revalidatePath("/blog", "page");
-      revalidatePath("/blog/page", "page");
-      revalidatedPaths.push("/blog", "/blog/page");
-
-      const slug =
-        payload?.fields?.slug?.["en-US"] ||
-        payload?.fields?.slug ||
-        payload?.slug;
-
-      if (slug) {
-        revalidatePath(`/blog/${slug}`, "page");
-        revalidatedPaths.push(`/blog/${slug}`);
-      }
+      revalidatePath(`/blog/${slug}`, "page");
+      revalidatedPaths.push("/blog", "/blog/page", `/blog/${slug}`);
     }
 
-    // Always revalidate sitemap and robots
     revalidatePath("/sitemap.xml", "page");
     revalidatePath("/robots.txt", "page");
     revalidatedPaths.push("/sitemap.xml", "/robots.txt");
@@ -58,7 +41,7 @@ export async function POST(request: Request) {
     return new Response(
       JSON.stringify({
         revalidated: true,
-        contentType: contentTypeId,
+        contentType: contentType,
         paths: revalidatedPaths,
       }),
       {

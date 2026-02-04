@@ -35,9 +35,10 @@ function mapHygraphPostToBlogPost(post: BlogPostData): BlogPost {
     description: post.excerpt ?? "",
     content: post.content?.raw ?? null,
     thumbnail: post.thumbnail?.url ?? "",
-    createDate: post.createDate && typeof post.createDate === "string"
-      ? new Date(post.createDate).toISOString().split("T")[0]
-      : new Date().toISOString().split("T")[0],
+    createDate:
+      post.createDate && typeof post.createDate === "string"
+        ? new Date(post.createDate).toISOString().split("T")[0]
+        : new Date().toISOString().split("T")[0],
   };
 }
 

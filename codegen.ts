@@ -10,7 +10,7 @@ const HYGRAPH_ENVIRONMENT = process.env.HYGRAPH_ENVIRONMENT || "master";
 
 if (!HYGRAPH_ENDPOINT || !HYGRAPH_DRAFT_TOKEN) {
   throw new Error(
-    "Missing required environment variables: HYGRAPH_ENDPOINT and HYGRAPH_DRAFT_TOKEN must be set in .env.local"
+    "Missing required environment variables: HYGRAPH_ENDPOINT and HYGRAPH_DRAFT_TOKEN must be set in .env.local",
   );
 }
 
