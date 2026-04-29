@@ -45,17 +45,9 @@ export function StickyNav() {
         <div className="flex h-20 items-center justify-between">
           <Link
             href="/"
-            className="group flex cursor-pointer items-center gap-3"
+            className="hover:text-primary cursor-pointer font-serif text-xl font-bold tracking-wide transition-colors text-foreground"
           >
-            <YinYang className="text-primary h-10 w-10 transition-transform duration-500 group-hover:rotate-180" />
-            <span
-              className={cn(
-                "font-serif text-xl font-bold tracking-wide transition-colors",
-                "text-foreground",
-              )}
-            >
               太極拳
-            </span>
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">

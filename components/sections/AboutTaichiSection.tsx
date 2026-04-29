@@ -1,5 +1,4 @@
 import { ChineseOrnament } from "@/components/ChineseOrnament";
-import { YinYang } from "@/components/YinYang";
 import { NAV_LABEL_TAICHI, SECTION_ID_TAICHI } from "@/lib/constants";
 import type { MainPageData } from "@/lib/hygraph/api";
 import { RichTextRenderer } from "@/lib/rich-text-renderer";
@@ -76,14 +75,6 @@ export function AboutTaichiSection({
       id={SECTION_ID_TAICHI}
       className="bg-muted/30 relative overflow-hidden py-12 sm:py-24 lg:py-32"
     >
-      {/* Background Yin Yang with dots - centered on mobile */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] sm:right-5 sm:left-auto sm:translate-x-0">
-        <YinYang
-          className="text-foreground animate-spin-slow h-[300px] w-[300px] sm:h-[600px] sm:w-[600px]"
-          withDots={true}
-        />
-      </div>
-
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* Section title */}
         <FadeInTitle className="mb-16 text-center">

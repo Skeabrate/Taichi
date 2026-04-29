@@ -3,6 +3,7 @@
 import type { MainPageData } from "@/lib/hygraph/api";
 import { YinYang } from "@/components/YinYang";
 import { ChevronDown } from "lucide-react";
+import { SiteLogo } from "@/components/SiteLogo";
 
 type HeroProps = {
   nameLastNameSeniority?: MainPageData["nameLastNameSeniority"];
@@ -10,13 +11,28 @@ type HeroProps = {
 
 export function Hero({ nameLastNameSeniority }: HeroProps) {
   return (
-    <section className="from-muted/50 to-background relative flex min-h-screen items-center justify-center bg-gradient-to-b py-12 sm:py-24">
+      <section className="from-muted/50 to-background relative flex min-h-screen items-center justify-center bg-gradient-to-b py-12 sm:py-24">
       {/* Background decorative elements */}
       <div className="absolute inset-0 z-10">
-        {/* Large Yin Yang watermark - centered on mobile, aligned to left on desktop */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 opacity-[0.04] md:left-5 md:translate-x-0">
+        {/* Chinese pattern on left side - hidden on mobile */}
+        <div className="absolute top-0 left-0 hidden h-full w-1/3 opacity-[0.02] md:block">
+          <div
+            className="h-full w-full"
+            style={{
+              backgroundImage: `repeating-linear-gradient(
+              -45deg,
+              currentColor 0px,
+              currentColor 1px,
+              transparent 1px,
+              transparent 20px
+            )`,
+            }}
+          />
+        </div>
+
+         <div className="absolute top-0 left-0 flex items-center justify-center opacity-[0.04] w-full h-full">
           <YinYang
-            className="text-foreground animate-spin-slow h-[300px] w-[300px] md:h-[500px] md:w-[500px] lg:h-[700px] lg:w-[700px]"
+            className="text-foreground animate-spin-slow h-full w-full max-w-[70vw] max-h-[70vh]"
             withDots={true}
           />
         </div>
@@ -40,24 +56,20 @@ export function Hero({ nameLastNameSeniority }: HeroProps) {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         <div className="animate-fade-in-up">
-          {/* Chinese characters */}
           <h1 className="font-heading text-foreground mb-4 text-6xl font-normal tracking-wider sm:text-7xl lg:text-8xl">
             太極拳
           </h1>
 
-          {/* Red decorative line */}
           <div className="mb-6 flex items-center justify-center gap-4">
             <div className="bg-primary h-0.5 w-12" />
             <YinYang className="text-primary h-6 w-6" />
             <div className="bg-primary h-0.5 w-12" />
           </div>
 
-          {/* English title */}
           <h2 className="font-heading text-foreground mb-8 text-3xl font-normal sm:text-4xl lg:text-6xl">
             TAI CHI CHUAN
           </h2>
 
-          {/* Instructor name */}
           {nameLastNameSeniority && (
             <p className="text-muted-foreground mb-12 text-lg tracking-wide sm:text-xl">
               {nameLastNameSeniority}

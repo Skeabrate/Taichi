@@ -41,7 +41,7 @@ export function Footer({
             href="/"
             className="mb-6 flex cursor-pointer items-center gap-3 transition-opacity hover:opacity-80"
           >
-            <YinYang className="text-primary h-8 w-8" withDots={false} />
+            <YinYang className="text-primary h-4 w-4" withDots={false} />
             <span className="font-serif text-xl font-bold tracking-wider">
               太極拳
             </span>
